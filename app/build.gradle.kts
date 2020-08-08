@@ -1,8 +1,10 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+
 }
 
 android {
@@ -70,8 +72,9 @@ dependencies {
     implementation(Libs.LOGGING_INTERCEPTOR)
     implementation(Libs.GSON)
     implementation(Libs.GLIDE)
-    implementation(Libs.DAGGER2)
     implementation(Libs.TIMBER)
+    implementation(Libs.HILT)
+    kapt(Libs.HILT_ANNOTATION)
 
     testImplementation(TestLibs.JUNIT)
     androidTestImplementation(TestLibs.ANDROID_X_JUNIT)

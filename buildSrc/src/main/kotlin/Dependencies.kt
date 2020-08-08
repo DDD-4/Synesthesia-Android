@@ -1,4 +1,4 @@
-private object Versions {
+object Versions {
     // Kotlin
     const val KOTLIN = "1.3.72"
     const val COROUTINES = "1.3.7"
@@ -20,7 +20,7 @@ private object Versions {
     const val GLIDE = "4.11.0"
     const val OK_HTTP = "4.7.2"
     const val GSON = "2.8.6"
-    const val DAGGER2 = "2.28.3"
+    const val HILT = "2.28-alpha"
     const val TIMBER = "4.7.1"
 }
 
@@ -55,7 +55,9 @@ object Libs {
     const val OK_HTTP = "com.squareup.okhttp3:okhttp:${Versions.OK_HTTP}"
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OK_HTTP}"
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
-    const val DAGGER2 = "com.google.dagger:dagger-android:${Versions.DAGGER2}"
+    const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
+    const val HILT_ANNOTATION = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
+
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
 
 }

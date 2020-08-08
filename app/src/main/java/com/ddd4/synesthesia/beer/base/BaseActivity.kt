@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
@@ -17,5 +18,5 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
     }
 
     open fun initBind() { }
-    open fun observing() { }
+    open fun initObserving() { }
 }

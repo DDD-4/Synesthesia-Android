@@ -21,4 +21,7 @@ abstract class BaseFragment<B : ViewDataBinding>(private val layoutId : Int) : F
         binding.lifecycleOwner = this
         return binding.root
     }
+
+    open fun initBind() { }
+    open fun initObserving() { }
 }
