@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">비어있다</string>
+
+    <string name="key_token">token</string>
+    <string name="key_recently_visit">visit</string>
+    <string name="key_user">user</string>
+    <string name="is_show_snackbar">snackbar</string>
+
+    <string name="success_logout">로그아웃에 성공하였습니다</string>
+    <string name="fail_login">로그인에 실패하였습니다</string>
+    <string name="login_kakao">카카오톡으로 로그인</string>
 </resources>

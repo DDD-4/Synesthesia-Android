@@ -8,13 +8,13 @@
 
     <fragment
         android:id="@+id/homeScreen"
-        android:name="com.ddd4.synesthesia.beer.presentation.home.HomeFragment"
+        android:name="com.ddd4.synesthesia.beer.presentation.ui.home.view.HomeFragment"
         tools:layout="@layout/fragment_home">
     </fragment>
 
     <fragment
         android:id="@+id/detailScreen"
-        android:name="com.ddd4.synesthesia.beer.presentation.detail.view.DetailFragment"
+        android:name="com.ddd4.synesthesia.beer.presentation.ui.detail.view.DetailFragment"
         tools:layout="@layout/fragment_detail"/>
 
 

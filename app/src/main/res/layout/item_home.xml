@@ -19,7 +19,7 @@
             android:id="@+id/iv_beer_thumbnail"
             android:layout_width="81dp"
             android:layout_height="100dp"
-            android:background="#dadada"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
@@ -31,9 +31,10 @@
             android:layout_marginStart="14dp"
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@{item.beerStyle}"
-            android:textColor="@color/color_black"
+            android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@id/iv_beer_thumbnail"
             app:layout_constraintTop_toTopOf="parent"
+            tools:textColor="@color/black"
             tools:text="맥주스타일" />
 
         <TextView
@@ -42,10 +43,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@{item.rateAvgToString}"
-            android:textColor="@color/color_butterscotch"
+            android:textColor="@color/butterscotch"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_beer_style"
+            tools:textColor="@color/black"
             tools:text="5.0" />
 
         <TextView
@@ -55,10 +57,11 @@
             android:layout_marginTop="3dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.name}"
-            android:textColor="@color/color_black"
+            android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_style"
+            tools:textColor="@color/black"
             tools:text="맥주 이름" />
 
         <TextView
@@ -68,10 +71,11 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.country}"
-            android:textColor="@color/color_black"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_name"
+            tools:textColor="@color/black"
             tools:text="대한민국" />
 
         <TextView
@@ -80,10 +84,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@{item.abvToString}"
-            android:textColor="@color/color_black"
+            android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_beer_country"
+            tools:textColor="@color/black"
             tools:text="4.9%" />
 
         <HorizontalScrollView
