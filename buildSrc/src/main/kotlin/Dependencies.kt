@@ -24,7 +24,9 @@ object Versions {
     const val OK_HTTP = "4.7.2"
     const val GSON = "2.8.6"
     const val HILT = "2.28-alpha"
+    const val HILT_VIEWMODEL = "1.0.0-alpha01"
     const val TIMBER = "4.7.1"
+    const val KAKAO = "2.0.0-beta07"
 }
 
 object Libs {
@@ -63,9 +65,12 @@ object Libs {
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OK_HTTP}"
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
     const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
+    const val HILT_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.HILT_VIEWMODEL}"
+    const val HILT_COMPILER = "androidx.hilt:hilt-compiler:${Versions.HILT_VIEWMODEL}"
     const val HILT_ANNOTATION = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
 
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val KAKAO = "com.kakao.sdk:v2-user:${Versions.KAKAO}"
 
 }
 

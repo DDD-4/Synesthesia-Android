@@ -1,3 +1,6 @@
+import PropertiesExt.KAKAO
+import PropertiesExt.getKakaoKey
+
 plugins {
     id("com.android.application")
     id("dagger.hilt.android.plugin")
@@ -19,6 +22,9 @@ android {
         versionName = AndroidConfig.VERSION_NAME
 
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
+
+        resValue("string", KAKAO, getKakaoKey())
+        manifestPlaceholders = mapOf<String,String>(KAKAO to getKakaoKey())
     }
 
     buildTypes {
@@ -77,6 +83,9 @@ dependencies {
     implementation(Libs.TIMBER)
     implementation(Libs.HILT)
     kapt(Libs.HILT_ANNOTATION)
+    implementation(Libs.HILT_VIEWMODEL)
+    kapt(Libs.HILT_COMPILER)
+    implementation(Libs.KAKAO)
 
     testImplementation(TestLibs.JUNIT)
     androidTestImplementation(TestLibs.ANDROID_X_JUNIT)
