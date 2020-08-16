@@ -45,7 +45,7 @@
                     android:layout_margin="12dp"
                     android:fontFamily="@font/notosans_kr_regular"
                     android:text="기본 정렬"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
