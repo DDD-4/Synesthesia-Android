@@ -35,6 +35,14 @@
         <item name="colorControlNormal">@android:color/holo_green_light</item>
     </style>
 
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/background_dialog_white_round_20</item>
+    </style>
+    
+    <style name="BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
     <!--삭제확인 다이얼로그 테마-->
     <style name="Dialog" parent="Theme.MaterialComponents.Dialog.Alert.Bridge">
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>

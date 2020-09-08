@@ -2,7 +2,6 @@ package com.ddd4.synesthesia.beer.presentation.ui.home.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -15,10 +14,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
-import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity
-import com.ddd4.synesthesia.beer.presentation.ui.login.viewmodel.LoginViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
-import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -44,6 +40,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             header.btnMyPage.setOnClickListener {
                 findNavController().navigate(NavigationDirections.actionToMyPage())
             }
+
+            sort.setOnClickListener {
+                // 1. 홈 화면 정렬 부분 텍스트 업데이트
+                // 2. 정렬 선택한 부분 강조 처리 font 변경
+                val bottom = HomeSortDialog()
+                bottom.show(this@HomeFragment.parentFragmentManager, bottom.tag)
+            }
+
         }
     }
 
