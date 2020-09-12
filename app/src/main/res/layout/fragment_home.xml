@@ -40,6 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@id/filter_chip">
 
                 <TextView
+                    android:id="@+id/sort"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
@@ -47,6 +48,9 @@
                     android:text="기본 정렬"
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

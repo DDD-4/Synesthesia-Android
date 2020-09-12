@@ -5,8 +5,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.ddd4.synesthesia.beer.BR
 import com.ddd4.synesthesia.beer.R
+import com.ddd4.synesthesia.beer.BR
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.databinding.FragmentHomeBinding
 import com.ddd4.synesthesia.beer.databinding.LayoutHomeContentsBinding
@@ -15,6 +15,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
+import com.ddd4.synesthesia.beer.util.sort.SortType
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -42,13 +43,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             }
 
             sort.setOnClickListener {
-                // 1. 홈 화면 정렬 부분 텍스트 업데이트
-                // 2. 정렬 선택한 부분 강조 처리 font 변경
                 val bottom = HomeSortDialog()
                 bottom.show(this@HomeFragment.parentFragmentManager, bottom.tag)
             }
-
         }
+
+        initObserving()
     }
 
     private fun LayoutHomeContentsBinding.set() {
@@ -60,6 +60,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {
             listAdapter.updateItems(it)
+        })
+    }
+
+    override fun initObserving() {
+        homeViewModel.sortType.observe(viewLifecycleOwner, Observer { sortType ->
+            binding.sort.text = when (sortType) {
+                SortType.Default -> "기본 정렬"
+                SortType.Comment -> "후기 정렬"
+                SortType.Review -> "리뷰 정렬"
+                else -> return@Observer
+            }
         })
     }
 }
