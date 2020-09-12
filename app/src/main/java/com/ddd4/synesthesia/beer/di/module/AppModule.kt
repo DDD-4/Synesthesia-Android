@@ -18,7 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSharedPreference(application : Application) : SharedPreferenceProvider {
+    fun provideSharedPreference(application: Application): SharedPreferenceProvider {
         return SharedPreferenceProvider(application)
     }
 
