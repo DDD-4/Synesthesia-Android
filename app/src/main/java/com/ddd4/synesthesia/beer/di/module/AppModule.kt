@@ -25,7 +25,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideSortSettings(
+        preference: SharedPreferenceProvider,
         @ApplicationContext context: Context
-    ): SortSetting = SortImpl(context)
+    ): SortSetting = SortImpl(preference, context)
 
 }

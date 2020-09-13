@@ -15,15 +15,14 @@ enum class SortType {
     Review
 }
 
-class SortImpl(context: Context) : SortSetting, ReadWriteProperty<Any, SortType> {
+class SortImpl(val preference: SharedPreferenceProvider, context: Context) : SortSetting,
+    ReadWriteProperty<Any, SortType> {
 
-    private val prefs =
-        SharedPreferenceProvider(context)
     private val resource = context.resources
 
     private fun getDefaultValue(): SortType {
         return SortType.valueOf(
-            prefs.getPreferenceString(resource.getString(R.string.key_sort_type))
+            preference.getPreferenceString(resource.getString(R.string.key_sort_type))
                 ?: return SortType.Default
         )
     }
@@ -31,7 +30,7 @@ class SortImpl(context: Context) : SortSetting, ReadWriteProperty<Any, SortType>
     private val channel = ConflatedBroadcastChannel(getDefaultValue())
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: SortType) {
-        prefs.setPreference(resource.getString(R.string.key_sort_type), value.toString())
+        preference.setPreference(resource.getString(R.string.key_sort_type), value.toString())
         channel.offer(value)
     }
 
