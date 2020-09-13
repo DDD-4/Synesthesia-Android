@@ -21,10 +21,8 @@ class SortImpl(val preference: SharedPreferenceProvider, context: Context) : Sor
     private val resource = context.resources
 
     private fun getDefaultValue(): SortType {
-        return SortType.valueOf(
-            preference.getPreferenceString(resource.getString(R.string.key_sort_type))
-                ?: return SortType.Default
-        )
+        val storeValue = preference.getPreferenceString(resource.getString(R.string.key_sort_type))
+        return if (storeValue.isNullOrEmpty()) SortType.Default else SortType.valueOf(storeValue)
     }
 
     private val channel = ConflatedBroadcastChannel(getDefaultValue())
