@@ -1,10 +1,12 @@
-package com.ddd4.synesthesia.beer.data.utils
+package com.ddd4.synesthesia.beer.util
 
 import android.util.TypedValue
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
+import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -29,4 +31,15 @@ fun forgroundSelected(view : View, type : InfomationsType) = if(type == Infomati
     val typeValue = TypedValue()
     view.context.theme.resolveAttribute(android.R.attr.selectableItemBackground,typeValue,true)
     view.foreground = view.context.getDrawable(typeValue.resourceId)
+}
+
+@BindingAdapter("app:sortTypeText")
+fun sortTypeText(textView: TextView, type: SortType?) {
+    type ?: return
+    textView.text = when(type) {
+        SortType.Default -> textView.resources.getString(R.string.sort_default)
+        SortType.Comment -> textView.resources.getString(R.string.sort_comment)
+        SortType.Review -> textView.resources.getString(R.string.sort_review)
+    }
+
 }

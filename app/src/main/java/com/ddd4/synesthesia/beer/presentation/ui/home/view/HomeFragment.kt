@@ -15,7 +15,6 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
-import com.ddd4.synesthesia.beer.util.sort.SortType
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -37,6 +36,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            vm = homeViewModel
+
             contents.set()
             header.btnMyPage.setOnClickListener {
                 findNavController().navigate(NavigationDirections.actionToMyPage())
@@ -47,8 +48,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 bottom.show(this@HomeFragment.parentFragmentManager, bottom.tag)
             }
         }
-
-        initObserving()
     }
 
     private fun LayoutHomeContentsBinding.set() {
@@ -60,17 +59,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {
             listAdapter.updateItems(it)
-        })
-    }
-
-    override fun initObserving() {
-        homeViewModel.sortType.observe(viewLifecycleOwner, Observer { sortType ->
-            binding.sort.text = when (sortType) {
-                SortType.Default -> "기본 정렬"
-                SortType.Comment -> "후기 정렬"
-                SortType.Review -> "리뷰 정렬"
-                else -> return@Observer
-            }
         })
     }
 }
