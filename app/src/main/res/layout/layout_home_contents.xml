@@ -5,12 +5,16 @@
 
     <data>
 
+        <variable
+            name="adapter"
+            type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:adapter="@{adapter}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_home" />
 </layout>

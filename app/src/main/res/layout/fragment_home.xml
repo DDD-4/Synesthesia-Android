@@ -8,6 +8,9 @@
         <variable
             name="vm"
             type="com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel" />
+        <variable
+            name="adapter"
+            type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -65,6 +68,7 @@
             <include
                 android:id="@+id/contents"
                 layout="@layout/layout_home_contents"
+                app:adapter="@{adapter}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
