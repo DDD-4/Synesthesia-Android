@@ -1,7 +1,10 @@
 package com.ddd4.synesthesia.beer.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Review(
     @SerializedName("name")
     val name: String,
@@ -11,4 +14,4 @@ data class Review(
     val date: String,
     @SerializedName("review")
     val review: String
-)
+) : Parcelable

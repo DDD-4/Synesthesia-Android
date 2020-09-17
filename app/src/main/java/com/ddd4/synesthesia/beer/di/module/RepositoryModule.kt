@@ -2,6 +2,7 @@ package com.ddd4.synesthesia.beer.di.module
 
 import com.ddd4.synesthesia.beer.data.repository.BeerRepositoryImpl
 import com.ddd4.synesthesia.beer.data.repository.LoginRepositoryImpl
+import com.ddd4.synesthesia.beer.data.source.remote.service.BeerApi
 import com.ddd4.synesthesia.beer.domain.repository.BeerRepository
 import com.ddd4.synesthesia.beer.domain.repository.LoginRepository
 import com.ddd4.synesthesia.beer.util.SharedPreferenceProvider
@@ -23,7 +24,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideBeerRepository() : BeerRepository {
-        return BeerRepositoryImpl()
+    fun provideBeerRepository(beerApi : BeerApi) : BeerRepository {
+        return BeerRepositoryImpl(beerApi)
     }
 }

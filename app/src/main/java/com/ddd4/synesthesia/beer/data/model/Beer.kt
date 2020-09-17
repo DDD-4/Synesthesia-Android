@@ -1,8 +1,11 @@
 package com.ddd4.synesthesia.beer.data.model
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Beer(
     @SerializedName("abv")
     val abv: Double,
@@ -28,7 +31,7 @@ data class Beer(
     val rateOwner: RateOwner,
     @SerializedName("reviews")
     val reviews: List<Review>? = null
-) {
+) : Parcelable {
     val rateAvgToString: String
         get() = rateAvg.toString()
 

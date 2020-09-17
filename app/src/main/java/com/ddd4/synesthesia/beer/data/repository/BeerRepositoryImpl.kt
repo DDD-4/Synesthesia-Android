@@ -2,13 +2,37 @@ package com.ddd4.synesthesia.beer.data.repository
 
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.data.model.RateOwner
+import com.ddd4.synesthesia.beer.data.model.Response
 import com.ddd4.synesthesia.beer.data.model.Review
+import com.ddd4.synesthesia.beer.data.source.remote.service.BeerApi
 import com.ddd4.synesthesia.beer.domain.repository.BeerRepository
 import com.ddd4.synesthesia.beer.util.sort.SortType
+import javax.inject.Inject
 
-class BeerRepositoryImpl : BeerRepository {
+class BeerRepositoryImpl @Inject constructor(
+    private val beerApi : BeerApi
+): BeerRepository {
 
-    override fun getBeerList(sortType: SortType): List<Beer> {
+    override suspend fun getBeerList(): List<Beer>? {
+        return beerApi.getBeerList()?.result?.beers?.let {
+            it
+        } ?: kotlin.run {
+            getBeerList(SortType.Default)
+        }
+
+    }
+
+    override suspend fun getBeer(id : Int): Beer? {
+        return beerApi.getBeer(id)?.result?.beer?.let {
+            it
+        } ?: kotlin.run { getBeerDetail() }
+    }
+
+    override suspend fun getUserInfo(): Response? {
+        return beerApi.getUserInfo()
+    }
+
+    override fun getBeerList(sortType: SortType): List<Beer>? {
         val list = arrayListOf<Beer>()
         when (sortType) {
             SortType.Review -> {
@@ -73,8 +97,7 @@ class BeerRepositoryImpl : BeerRepository {
             }
         }
     }
-
-    override suspend fun getBeer(): Beer {
+    override fun getBeerDetail(): Beer? {
         val reviews = arrayListOf<Review>()
         for (i in 0..20) {
             reviews.add(
@@ -97,8 +120,9 @@ class BeerRepositoryImpl : BeerRepository {
             arrayListOf(),
             "맥주이름(${0})",
             5.0,
-            RateOwner(0, 0.0, 0),
+            RateOwner(0,0.0, 0),
             reviews
         )
     }
+
 }

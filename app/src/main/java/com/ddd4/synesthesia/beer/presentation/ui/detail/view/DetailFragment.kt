@@ -8,6 +8,7 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.ddd4.synesthesia.beer.R
+import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.data.model.Review
 import com.ddd4.synesthesia.beer.databinding.FragmentDetailBinding
 import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
@@ -59,7 +60,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 true
             }
         }
-
+        val data = arguments?.get(getString(R.string.key_data)) as? Beer
+        data?.id?.let {
+            detailViewModel.fetchBeer(it)
+        }
         initObserving()
     }
 

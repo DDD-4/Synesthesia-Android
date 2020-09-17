@@ -2,6 +2,7 @@ package com.ddd4.synesthesia.beer.presentation.ui.home.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -22,13 +23,14 @@ import timber.log.Timber
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val homeViewModel by viewModels<HomeViewModel>()
+    private val listAdapter by lazy { BaseItemsApdater(R.layout.item_home, BR.item, itemClickListener) }
+
     private val itemClickListener by lazy {
         object : ItemClickListener {
             override fun <T> onItemClick(item: T) {
                 Timber.d("onItemClick ${item.toString()}")
-                findNavController().navigate(
-                    NavigationDirections.actionToDetail(item as Beer)
-                )
+//                findNavController().navigate(NavigationDirections.actionToDetail(item as Beer))
+                findNavController().navigate(R.id.action_to_detail, bundleOf( getString(R.string.key_data) to item as? Beer))
             }
         }
     }
@@ -39,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             vm = homeViewModel
 
             contents.set()
+            adapter = listAdapter
             header.btnMyPage.setOnClickListener {
                 findNavController().navigate(NavigationDirections.actionToMyPage())
             }
@@ -51,14 +54,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun LayoutHomeContentsBinding.set() {
-        val listAdapter = BaseItemsApdater(R.layout.item_home, BR.item, itemClickListener)
 
         with(itemList) {
             adapter = listAdapter
         }
 
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {
-            listAdapter.updateItems(it)
+            it?.let { list ->
+                listAdapter.updateItems(list)
+            }
         })
     }
 }

@@ -3,6 +3,7 @@ package com.ddd4.synesthesia.beer.di.module
 import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import com.ddd4.synesthesia.beer.BuildConfig
+import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.remote.service.BeerApi
 import com.ddd4.synesthesia.beer.data.source.remote.service.KakaoApi
 import dagger.Module
@@ -61,8 +62,16 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOtherOkHttpClient() : OkHttpClient {
+    fun provideOtherOkHttpClient(application: Application) : OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(Interceptor.invoke {
+                it.run {
+                    val request = request().newBuilder()
+                        .addHeader("Authorization",application.getSharedPreferences("BEER",MODE_PRIVATE).getString("token","")!!)
+                        .build()
+                    proceed(request)
+                }
+            })
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = if (BuildConfig.DEBUG) {
                     HttpLoggingInterceptor.Level.BODY
@@ -75,11 +84,11 @@ object NetworkModule {
     @Provides
     @Singleton
     @Named("beer")
-    fun provideRetrofit() : Retrofit {
+    fun provideRetrofit(application : Application) : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("")
-            .client(provideOtherOkHttpClient())
+            .baseUrl(application.getString(R.string.base_url))
+            .client(provideOtherOkHttpClient(application))
             .build()
     }
 

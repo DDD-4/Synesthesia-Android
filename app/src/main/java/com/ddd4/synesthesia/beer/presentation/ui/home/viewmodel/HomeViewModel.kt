@@ -18,8 +18,8 @@ class HomeViewModel @ViewModelInject constructor(
     private val sortSetting: SortSetting
 ) : BaseViewModel() {
 
-    private val _beerList = MutableLiveData<List<Beer>>()
-    val beerList: LiveData<List<Beer>>
+    private val _beerList = MutableLiveData<List<Beer>?>()
+    val beerList: LiveData<List<Beer>?>
         get() = _beerList
 
     private val _sortType = MutableLiveData<SortType>()
@@ -27,13 +27,16 @@ class HomeViewModel @ViewModelInject constructor(
         get() = _sortType
 
     init {
+        fetch()
+    }
+
+    private fun fetch() {
         viewModelScope.launch(Dispatchers.IO) {
+            _beerList.postValue(beerRepository.getBeerList())
             sortSetting.getSort().collect {
-                _beerList.postValue(beerRepository.getBeerList(it))
                 _sortType.postValue(it)
             }
         }
-
     }
 
 }
