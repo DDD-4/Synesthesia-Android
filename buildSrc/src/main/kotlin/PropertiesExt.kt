@@ -4,6 +4,7 @@ import java.util.*
 object PropertiesExt {
     private const val FILE_SCRURE = "secure.properties"
     const val KAKAO = "kakao"
+    const val BASE_URL = "base_url"
 
     private fun secure() : Properties {
         val secureProperties = Properties()
@@ -17,5 +18,6 @@ object PropertiesExt {
     }
 
     fun getKakaoKey() : String = secure().getProperty(KAKAO) ?: ""
+    fun getBaseUrl() : String = secure().getProperty(BASE_URL) ?: ""
 
 }

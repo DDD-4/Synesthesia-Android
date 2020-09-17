@@ -1,4 +1,6 @@
+import PropertiesExt.BASE_URL
 import PropertiesExt.KAKAO
+import PropertiesExt.getBaseUrl
 import PropertiesExt.getKakaoKey
 
 plugins {
@@ -24,6 +26,7 @@ android {
         testInstrumentationRunner = AndroidConfig.TEST_INSTRUMENTATION_RUNNER
 
         resValue("string", KAKAO, getKakaoKey())
+        resValue("string", BASE_URL, getBaseUrl())
         manifestPlaceholders = mapOf<String,String>(KAKAO to getKakaoKey())
     }
 
@@ -49,6 +52,9 @@ android {
 
     buildFeatures {
         dataBinding = true
+    }
+    androidExtensions {
+        isExperimental = true
     }
 
 }
