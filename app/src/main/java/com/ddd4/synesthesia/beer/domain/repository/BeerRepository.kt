@@ -8,9 +8,9 @@ import com.ddd4.synesthesia.beer.data.model.Result
 interface BeerRepository {
     suspend fun getBeerList(): List<Beer>?
     suspend fun getUserInfo() : Response?
-    suspend fun getBeer(id : Int): Beer?
+    suspend fun getBeer(id : Int): Result?
 
     // sample
-    fun getBeerDetail(): Beer?
+    fun getBeerDetail(): Result?
     fun getBeerList(sortType: SortType): List<Beer>?
 }

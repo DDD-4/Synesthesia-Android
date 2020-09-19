@@ -1,7 +1,10 @@
 package com.ddd4.synesthesia.beer.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Related(
     @SerializedName("abv")
     val abv: Double,
@@ -18,5 +21,8 @@ data class Related(
     @SerializedName("name")
     val name: String,
     @SerializedName("rate_avg")
-    val rateAvg: Double
-)
+    val rateAvg: Double,
+    @SerializedName("thumbnail_image")
+    val thumbnailImage: String
+
+) : Parcelable

@@ -46,6 +46,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             vm = detailViewModel
             aromaAdapter = BaseItemsApdater(R.layout.layout_aroma, BR.scent ,itemClickListener)
             reviewAdapter = BaseItemsApdater(R.layout.layout_review, BR.review ,itemClickListener)
+            aromaRelatedAdapter = BaseItemsApdater(R.layout.layout_beer_card, BR.related, itemClickListener)
+            styleRelatedAdapter = BaseItemsApdater(R.layout.layout_beer_card, BR.related, itemClickListener)
+            randomRelatedAdapter = BaseItemsApdater(R.layout.layout_beer_card, BR.related, itemClickListener)
+
             inclideToolbar.toolbar.setNavigationOnClickListener {
                 parentFragmentManager.popBackStack()
             }
@@ -69,13 +73,12 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     override fun initObserving() {
         super.initObserving()
-        detailViewModel.beer.observe(viewLifecycleOwner, Observer {
-            it.reviews?.let { reviews ->
-                binding.reviewAdapter?.updateItems(reviews)
-            }
-            it.aromas.let { aromas ->
-                binding.aromaAdapter?.updateItems(aromas)
-            }
+        detailViewModel.result.observe(viewLifecycleOwner, Observer { result ->
+            result.beer?.reviews?.let { binding.reviewAdapter?.updateItems(it) }
+            result.beer?.aromas?.let { binding.aromaAdapter?.updateItems(it) }
+            result.relatedBeers?.aromaRelated?.let { binding.aromaRelatedAdapter?.updateItems(it) }
+            result.relatedBeers?.styleRelated?.let { binding.styleRelatedAdapter?.updateItems(it) }
+            result.relatedBeers?.randomlyRelated?.let { binding.randomRelatedAdapter?.updateItems(it) }
         })
     }
 }

@@ -43,15 +43,15 @@ class MyPageViewModel @ViewModelInject constructor(
         MyInfo(InfomationsData.UNLINK.title, InfomationsType.UNLINK)
     )
 
-//    private fun me() = loginRepository.me {
-//        _userInfo.value = it
-//    }
-
-    private fun me() {
-        viewModelScope.launch {
-            beerRepository.getUserInfo()
-        }
+    private fun me() = loginRepository.me {
+        _userInfo.value = it
     }
+
+//    private fun me() {
+//        viewModelScope.launch {
+//            beerRepository.getUserInfo()
+//        }
+//    }
 
     fun logout() = loginRepository.logout {
         isUnConnected.call(it)
