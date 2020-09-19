@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="28dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@{TextUtils.isEmpty(vm.review) ? @color/color_f2f3f5 : @color/butterscotch}"
+                android:backgroundTint="@{TextUtils.isEmpty(vm.review) ? @color/color_f2f3f5 : @color/black}"
                 android:clickable="@{TextUtils.isEmpty(vm.review) ? false : true}"
                 android:focusable="@{TextUtils.isEmpty(vm.review) ? false : true}"
                 android:paddingVertical="10dp"

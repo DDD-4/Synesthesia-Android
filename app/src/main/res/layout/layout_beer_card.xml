@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="related"
+            type="com.ddd4.synesthesia.beer.data.model.Related" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_beer_thumbnail"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            tools:src="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            app:loadUrl="@{related.thumbnailImage}" />
+
+        <TextView
+            android:id="@+id/tv_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{related.beerStyle}"
+            app:layout_constraintEnd_toEndOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintStart_toStartOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/iv_beer_thumbnail"
+            tools:text="스타일" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{related.name}"
+            app:layout_constraintEnd_toEndOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintStart_toStartOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_style"
+            tools:text="맥주이름" />
+
+        <TextView
+            android:id="@+id/tv_beer_abv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/abv(related.abv)}"
+            app:layout_constraintStart_toStartOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="5.0%" />
+
+        <TextView
+            android:id="@+id/tv_beer_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_star"
+            android:text="@{@string/rate(related.rateAvg)}"
+            android:textColor="@color/butterscotch"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/tv_beer_abv"
+            app:layout_constraintTop_toTopOf="@+id/tv_beer_abv"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_beer_abv"
+            tools:text="3.5점" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

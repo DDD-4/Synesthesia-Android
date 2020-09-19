@@ -17,9 +17,11 @@
 
         <ImageView
             android:id="@+id/iv_beer_thumbnail"
-            android:layout_width="81dp"
+            android:layout_width="80dp"
             android:layout_height="100dp"
             android:background="@color/white"
+            android:scaleType="centerCrop"
+            app:loadUrl="@{item.imageUrl.size() > 0 ? item.imageUrl.get(0) : null}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_close"
@@ -82,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{item.abvToString}"
+            android:text="@{@string/abv(item.abv)}"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
