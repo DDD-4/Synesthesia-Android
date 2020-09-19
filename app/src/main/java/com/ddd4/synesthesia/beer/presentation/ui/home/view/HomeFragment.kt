@@ -29,8 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         object : ItemClickListener {
             override fun <T> onItemClick(item: T) {
                 Timber.d("onItemClick ${item.toString()}")
-//                findNavController().navigate(NavigationDirections.actionToDetail(item as Beer))
-                findNavController().navigate(R.id.action_to_detail, bundleOf( getString(R.string.key_data) to item as? Beer))
+                findNavController().navigate(NavigationDirections.actionToDetail(item as Beer))
             }
         }
     }

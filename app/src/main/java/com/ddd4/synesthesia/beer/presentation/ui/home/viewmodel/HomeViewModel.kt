@@ -12,6 +12,7 @@ import com.ddd4.synesthesia.beer.util.sort.SortType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class HomeViewModel @ViewModelInject constructor(
     private val beerRepository: BeerRepository,
@@ -27,16 +28,13 @@ class HomeViewModel @ViewModelInject constructor(
         get() = _sortType
 
     init {
-        fetch()
-    }
-
-    private fun fetch() {
         viewModelScope.launch(Dispatchers.IO) {
-            _beerList.postValue(beerRepository.getBeerList())
             sortSetting.getSort().collect {
+                _beerList.postValue(beerRepository.getBeerList(it))
                 _sortType.postValue(it)
             }
         }
+
     }
 
 }

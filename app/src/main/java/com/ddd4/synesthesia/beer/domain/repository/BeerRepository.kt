@@ -12,5 +12,5 @@ interface BeerRepository {
 
     // sample
     fun getBeerDetail(): Result?
-    fun getBeerList(sortType: SortType): List<Beer>?
+    suspend fun getBeerList(sortType: SortType): List<Beer>?
 }

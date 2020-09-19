@@ -7,6 +7,8 @@ import android.view.View
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.data.model.Review
@@ -20,6 +22,8 @@ import kotlinx.android.synthetic.main.layout_global_toolbar.view.*
 
 @AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
+
+    private val args: DetailFragmentArgs by navArgs()
     private val detailViewModel by viewModels<DetailViewModel>()
 
     private val itemClickListener by lazy {
@@ -64,10 +68,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 true
             }
         }
-        val data = arguments?.get(getString(R.string.key_data)) as? Beer
-        data?.id?.let {
-            detailViewModel.fetchBeer(it)
-        }
+
+        detailViewModel.fetchBeer(args.beer.id)
         initObserving()
     }
 

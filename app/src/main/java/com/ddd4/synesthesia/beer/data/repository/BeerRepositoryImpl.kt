@@ -12,11 +12,8 @@ class BeerRepositoryImpl @Inject constructor(
 
     override suspend fun getBeerList(): List<Beer>? {
         return beerApi.getBeerList()?.result?.beers?.let {
-            it
-        } ?: kotlin.run {
-            getBeerList(SortType.Default)
+            it.subList(0, 20)
         }
-
     }
 
     override suspend fun getBeer(id : Int): Result? {
@@ -29,7 +26,7 @@ class BeerRepositoryImpl @Inject constructor(
         return beerApi.getUserInfo()
     }
 
-    override fun getBeerList(sortType: SortType): List<Beer>? {
+    override suspend fun getBeerList(sortType: SortType): List<Beer>? {
         val list = arrayListOf<Beer>()
         when (sortType) {
             SortType.Review -> {
@@ -73,24 +70,7 @@ class BeerRepositoryImpl @Inject constructor(
                 return list
             }
             SortType.Default -> {
-                for (i in 1..20) {
-                    list.add(
-                        Beer(
-                            4.0,
-                            arrayListOf("Lemon", "Chocolate"),
-                            "스타일",
-                            "브루어리",
-                            arrayListOf(),
-                            "대한민국(${i})",
-                            i,
-                            arrayListOf(),
-                            "맥주이름(${i})",
-                            5.0,
-                            RateOwner(0, 0.0, 0)
-                        )
-                    )
-                }
-                return list
+                return getBeerList()
             }
         }
     }
