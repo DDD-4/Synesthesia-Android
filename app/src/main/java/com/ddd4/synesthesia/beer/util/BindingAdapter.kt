@@ -4,8 +4,10 @@ import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
+import com.ddd4.synesthesia.beer.ext.toPx
 import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -42,4 +44,20 @@ fun sortTypeText(textView: TextView, type: SortType?) {
         SortType.Review -> textView.resources.getString(R.string.sort_review)
     }
 
+}
+
+@BindingAdapter(value = ["space","vertical_space","horizontal_space"], requireAll = false)
+fun decoration(recyclerview : RecyclerView, space : Int, verticalSpace : Int?, horizontalSpace : Int?) {
+    verticalSpace?.let {
+        RecyclerItemDecoration(space = space.toFloat().toPx(recyclerview.context),verticalSpace = verticalSpace.toFloat().toPx(recyclerview.context))
+            .run {
+                recyclerview.addItemDecoration(this)
+            }
+    }
+    horizontalSpace?.let {
+        RecyclerItemDecoration(space = space.toFloat().toPx(recyclerview.context), horizontalSpace = horizontalSpace.toFloat().toPx(recyclerview.context))
+            .run {
+                recyclerview.addItemDecoration(this)
+            }
+    }
 }
