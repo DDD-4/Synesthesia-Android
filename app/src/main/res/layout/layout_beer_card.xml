@@ -20,7 +20,10 @@
             android:layout_height="140dp"
             tools:src="@tools:sample/avatars"
             android:scaleType="centerCrop"
-            app:loadUrl="@{related.thumbnailImage}" />
+            app:loadUrl="@{related.thumbnailImage}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/tv_style"
