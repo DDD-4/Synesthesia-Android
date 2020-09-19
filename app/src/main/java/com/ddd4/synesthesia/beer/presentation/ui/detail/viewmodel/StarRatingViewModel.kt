@@ -17,7 +17,7 @@ class StarRatingViewModel @ViewModelInject constructor(
 
     }
 
-    private fun postReview() {
-
+    fun postReview(rate : Float) {
+//        beerRepository.postReview(rate,review.value)
     }
 }

@@ -19,7 +19,7 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
         binding.apply {
             vm = starRatingViewModel
             btnSendReview.setOnClickListener {
-
+                starRatingViewModel.postReview(rating)
             }
         }
     }

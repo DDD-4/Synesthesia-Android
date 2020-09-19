@@ -29,6 +29,10 @@ class BeerRepositoryImpl @Inject constructor(
         return beerApi.getUserInfo()
     }
 
+    override suspend fun postReview(rate: Float, review: String?) {
+        return beerApi.postReview(rate,review)
+    }
+
     override fun getBeerList(sortType: SortType): List<Beer>? {
         val list = arrayListOf<Beer>()
         when (sortType) {

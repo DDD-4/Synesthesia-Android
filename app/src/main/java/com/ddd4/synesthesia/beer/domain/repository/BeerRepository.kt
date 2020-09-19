@@ -9,6 +9,7 @@ interface BeerRepository {
     suspend fun getBeerList(): List<Beer>?
     suspend fun getUserInfo() : Response?
     suspend fun getBeer(id : Int): Result?
+    suspend fun postReview(rating : Float, review : String?)
 
     // sample
     fun getBeerDetail(): Result?
