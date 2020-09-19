@@ -36,7 +36,7 @@
     </style>
 
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/background_dialog_white_round_20</item>
+        <item name="android:background">@drawable/background_dialog_round_20</item>
     </style>
     
     <style name="BottomSheetDialog" parent="Theme.Design.BottomSheetDialog">

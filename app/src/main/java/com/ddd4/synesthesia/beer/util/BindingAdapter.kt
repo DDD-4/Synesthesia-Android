@@ -40,7 +40,7 @@ fun sortTypeText(textView: TextView, type: SortType?) {
     type ?: return
     textView.text = when(type) {
         SortType.Default -> textView.resources.getString(R.string.sort_default)
-        SortType.Comment -> textView.resources.getString(R.string.sort_comment)
+        SortType.Rating -> textView.resources.getString(R.string.sort_rating)
         SortType.Review -> textView.resources.getString(R.string.sort_review)
     }
 

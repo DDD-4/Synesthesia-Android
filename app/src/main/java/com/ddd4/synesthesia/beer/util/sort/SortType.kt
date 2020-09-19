@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
 
 enum class SortType {
     Default,
-    Comment,
+    Rating,
     Review
 }
 

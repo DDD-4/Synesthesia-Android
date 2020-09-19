@@ -49,7 +49,7 @@ class BeerRepositoryImpl @Inject constructor(
                 }
                 return list
             }
-            SortType.Comment -> {
+            SortType.Rating -> {
                 for (i in 1..6) {
                     list.add(
                         Beer(
@@ -61,7 +61,7 @@ class BeerRepositoryImpl @Inject constructor(
                             "대한민국(${i})",
                             i,
                             arrayListOf(),
-                            "후기 정렬(${i})",
+                            "별점 정렬(${i})",
                             3.0,
                             RateOwner(0, 0.0, 0)
                         )

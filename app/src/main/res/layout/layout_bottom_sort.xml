@@ -24,7 +24,7 @@
             android:textSize="16sp"
             android:fontFamily="@font/notosans_kr_bold"
             android:text="정렬"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginStart="28dp"
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="기본 순"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:fontFamily="@font/notosans_kr_regular"
             android:layout_marginTop="42dp"
             android:onClick="@{() -> vm.sortWithType(SortType.Default)}"
@@ -58,7 +58,7 @@
             android:id="@+id/divider1"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/very_light_pink"
+            android:background="@color/shark"
             android:layout_marginTop="24dp"
             android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
@@ -67,15 +67,15 @@
             app:layout_constraintTop_toBottomOf="@id/sort_default" />
 
         <TextView
-            android:id="@+id/sort_comment"
+            android:id="@+id/sort_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="후기 많은 순"
+            android:text="별점 높은 순"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/notosans_kr_regular"
-            android:onClick="@{() -> vm.sortWithType(SortType.Comment)}"
+            android:onClick="@{() -> vm.sortWithType(SortType.Rating)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider1" />
@@ -84,13 +84,13 @@
             android:id="@+id/divider2"
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:background="@color/very_light_pink"
+            android:background="@color/shark"
             android:layout_marginTop="24dp"
             android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sort_comment" />
+            app:layout_constraintTop_toBottomOf="@id/sort_rating" />
 
         <TextView
             android:id="@+id/sort_review"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:text="리뷰 많은 순"
             android:textSize="14sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="60dp"
             android:fontFamily="@font/notosans_kr_regular"

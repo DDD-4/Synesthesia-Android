@@ -1,11 +1,12 @@
 package com.ddd4.synesthesia.beer.ext
 
+import android.graphics.Typeface
 import android.view.View
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 
 
-fun View.showSnackBar(message : String, duration: Int? = null) {
+fun View.showSnackBar(message: String, duration: Int? = null) {
     Snackbar.make(this, message, duration ?: Snackbar.LENGTH_SHORT).also { snackbar ->
         snackbar.view.apply {
             val view = findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
@@ -14,3 +15,9 @@ fun View.showSnackBar(message : String, duration: Int? = null) {
         }
     }
 }
+
+fun TextView.updateTypeface(options: Pair<Typeface?, Int>) =
+    this.apply {
+        typeface = options.first
+        setTextColor(options.second)
+    }
