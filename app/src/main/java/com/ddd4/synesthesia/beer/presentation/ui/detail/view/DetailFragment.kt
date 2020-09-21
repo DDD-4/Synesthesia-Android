@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.layout_global_toolbar.view.*
 
 @AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
+
     private val detailViewModel by viewModels<DetailViewModel>()
+    private val beer by lazy { arguments?.get(getString(R.string.key_data)) as? Beer }
 
     private val itemClickListener by lazy {
         object : ItemClickListener {
@@ -42,6 +44,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val data = arguments?.get(getString(R.string.key_data)) as? Beer
         binding.apply {
             vm = detailViewModel
             aromaAdapter = BaseItemsApdater(R.layout.layout_aroma, BR.scent ,itemClickListener)
@@ -57,17 +60,21 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 when(event.action) {
                     MotionEvent.ACTION_UP -> {
                         StarRatingBottomDialog().run {
-                            show(this@DetailFragment.parentFragmentManager,tag)
+                            beer?.let {
+                                val bundle = Bundle()
+                                bundle.putInt("id",it.id)
+                                this@run.arguments = bundle
+                            }
+                            showDialog(this@DetailFragment.parentFragmentManager) {
+                                data?.id?.let { detailViewModel.fetchBeer(it) }
+                            }
                         }
                     }
                 }
                 true
             }
         }
-        val data = arguments?.get(getString(R.string.key_data)) as? Beer
-        data?.id?.let {
-            detailViewModel.fetchBeer(it)
-        }
+        data?.id?.let { detailViewModel.fetchBeer(it) }
         initObserving()
     }
 

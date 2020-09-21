@@ -8,10 +8,6 @@
         <import type="android.text.TextUtils" />
 
         <variable
-            name="rating"
-            type="Float" />
-
-        <variable
             name="vm"
             type="com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.StarRatingViewModel" />
 
@@ -78,7 +74,7 @@
                 android:paddingBottom="16dp"
                 android:progressBackgroundTint="@color/silver_alpha_80"
                 android:progressTint="@color/butterscotch"
-                android:rating="@={rating}"
+                android:rating="@={vm.rating}"
                 android:secondaryProgressTint="@color/butterscotch"
                 android:stepSize="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
                 android:fontFamily="@font/notosans_kr_bold"
-                android:text="@{rating == null ? @string/rate(0.0) : @string/rate(rating)}"
+                android:text="@{vm.rating == null ? @string/rate(0.0) : @string/rate(vm.rating)}"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -47,15 +47,15 @@ fun sortTypeText(textView: TextView, type: SortType?) {
 }
 
 @BindingAdapter(value = ["space","vertical_space","horizontal_space"], requireAll = false)
-fun decoration(recyclerview : RecyclerView, space : Int, verticalSpace : Int?, horizontalSpace : Int?) {
+fun decoration(recyclerview : RecyclerView, space : Int?, verticalSpace : Int?, horizontalSpace : Int?) {
     verticalSpace?.let {
-        RecyclerItemDecoration(space = space.toFloat().toPx(recyclerview.context),verticalSpace = verticalSpace.toFloat().toPx(recyclerview.context))
+        RecyclerItemDecoration(space = space?.toFloat()?.toPx(recyclerview.context) ?: 0,verticalSpace = verticalSpace.toFloat().toPx(recyclerview.context))
             .run {
                 recyclerview.addItemDecoration(this)
             }
     }
     horizontalSpace?.let {
-        RecyclerItemDecoration(space = space.toFloat().toPx(recyclerview.context), horizontalSpace = horizontalSpace.toFloat().toPx(recyclerview.context))
+        RecyclerItemDecoration(space = space?.toFloat()?.toPx(recyclerview.context) ?: 0, horizontalSpace = horizontalSpace.toFloat().toPx(recyclerview.context))
             .run {
                 recyclerview.addItemDecoration(this)
             }
