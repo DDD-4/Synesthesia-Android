@@ -29,9 +29,11 @@ interface BeerApi {
      * 리뷰 등록
      */
     @FormUrlEncoded
-    @POST("api/")
+    @POST("api/review")
     suspend fun postReview(
-        @Field("rate") rate : Float,
-        @Field("review") review : String? = ""
+        @Field("beer_id") id : Int,
+        @Field("ratio") ratio : Float,
+        @Field("content") content : String?
     )
+
 }
