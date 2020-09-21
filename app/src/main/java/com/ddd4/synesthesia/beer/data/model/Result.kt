@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Result(
     @SerializedName("beers")
-    val beers: List<Beer>? = null,
+    val beers: List<Beer>?,
     @SerializedName("beer")
-    val beer: Beer? = null,
+    val beer: Beer?,
     @SerializedName("related_beers")
-    val relatedBeers : RelatedBeers? = null
+    val relatedBeers : RelatedBeers?
 )
