@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.ddd4.synesthesia.beer.BR
+import com.ddd4.synesthesia.beer.HomeNavigationDirections
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.databinding.FragmentHomeBinding
@@ -29,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         object : ItemClickListener {
             override fun <T> onItemClick(item: T) {
                 Timber.d("onItemClick ${item.toString()}")
-                findNavController().navigate(NavigationDirections.actionToDetail(item as Beer))
+                findNavController().navigate(HomeNavigationDirections.actionToDetail(item as Beer))
             }
         }
     }

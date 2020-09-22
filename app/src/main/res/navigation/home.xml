@@ -15,7 +15,14 @@
     <fragment
         android:id="@+id/detailScreen"
         android:name="com.ddd4.synesthesia.beer.presentation.ui.detail.view.DetailFragment"
-        tools:layout="@layout/fragment_detail"/>
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="beer"
+            app:argType="com.ddd4.synesthesia.beer.data.model.Beer"
+            app:nullable="false" />
+    </fragment>
+
+
 
     <fragment
         android:id="@+id/myPageScreen"
