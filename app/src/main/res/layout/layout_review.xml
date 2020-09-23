@@ -12,15 +12,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{review.name}"
+            android:text="@{review.nickname}"
             tools:text="qwe123"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -33,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_user_name"
             app:layout_constraintStart_toEndOf="@+id/tv_user_name"
             app:layout_constraintTop_toTopOf="@+id/tv_user_name"
-            app:rate="@{review.rate}" />
+            app:rate="@{review.ratio}" />
 
         <TextView
             android:id="@+id/tv_date"
@@ -49,8 +49,8 @@
             android:id="@+id/tv_review_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{review.review}"
+            android:layout_marginTop="8dp"
+            android:text="@{review.content}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_name"

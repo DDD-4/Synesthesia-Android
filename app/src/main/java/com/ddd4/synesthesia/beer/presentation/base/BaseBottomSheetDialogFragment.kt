@@ -7,12 +7,18 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.ddd4.synesthesia.beer.util.SharedPreferenceProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import javax.inject.Inject
 
 abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding>(private val layoutId : Int) : BottomSheetDialogFragment() {
 
+    @Inject
+    lateinit var preference : SharedPreferenceProvider
     lateinit var binding : B
     abstract fun initBind()
+    abstract fun initObserving()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

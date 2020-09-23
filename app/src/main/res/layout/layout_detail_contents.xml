@@ -44,8 +44,8 @@
             android:text="@{title}"
             android:textStyle="bold"
             android:visibility="@{isVisible ? View.GONE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider"
             tools:text="@string/title_aroma" />
 
@@ -53,10 +53,10 @@
             android:id="@+id/rv_aroma_related"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:clipToPadding="true"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            android:layout_marginTop="4dp"
             android:visibility="@{isVisible ? View.GONE : View.VISIBLE}"
             app:adapter="@{adapter}"
             app:horizontal_space="@{@integer/space_28}"
@@ -64,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_review"
-            app:space="@{@integer/space_8}"
+            app:space="@{@integer/space_10}"
             tools:listitem="@layout/layout_beer_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

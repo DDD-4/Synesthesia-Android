@@ -64,4 +64,7 @@ class HomeSortDialog
         }
     }
 
+    override fun initObserving() {
+
+    }
 }
