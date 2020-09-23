@@ -6,11 +6,12 @@ import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.ddd4.synesthesia.beer.data.model.Result
 
 interface BeerRepository {
-    suspend fun getBeerList(): List<Beer>?
+    suspend fun getBeerList(sortType: SortType): List<Beer>?
     suspend fun getUserInfo() : Response?
     suspend fun getBeer(id : Int): Result?
+    suspend fun postReview(id : Int, rating : Float, review : String?)
 
     // sample
-    fun getBeerDetail(): Result?
-    suspend fun getBeerList(sortType: SortType): List<Beer>?
+//    fun getBeerDetail(): Result?
+//    suspend fun getBeerList(sortType: SortType): List<Beer>?
 }

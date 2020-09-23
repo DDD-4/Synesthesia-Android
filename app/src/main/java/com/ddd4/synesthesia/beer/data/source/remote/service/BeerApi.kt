@@ -1,8 +1,7 @@
 package com.ddd4.synesthesia.beer.data.source.remote.service
 
 import com.ddd4.synesthesia.beer.data.model.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface BeerApi {
 
@@ -25,4 +24,16 @@ interface BeerApi {
      */
     @GET("api/user")
     suspend fun getUserInfo() : Response?
+
+    /**
+     * 리뷰 등록
+     */
+    @FormUrlEncoded
+    @POST("api/review")
+    suspend fun postReview(
+        @Field("beer_id") id : Int,
+        @Field("ratio") ratio : Float,
+        @Field("content") content : String?
+    )
+
 }

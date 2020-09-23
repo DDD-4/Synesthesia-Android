@@ -86,8 +86,8 @@ object NetworkModule {
     @Named("beer")
     fun provideRetrofit(application : Application) : Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(application.getString(R.string.base_url))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(provideOtherOkHttpClient(application))
             .build()
     }
