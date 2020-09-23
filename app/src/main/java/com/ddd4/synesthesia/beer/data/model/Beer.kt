@@ -15,8 +15,6 @@ data class Beer(
     val beerStyle: String,
     @SerializedName("brewery")
     val brewery: String,
-    @SerializedName("comments")
-    val comments: List<Comment>,
     @SerializedName("country")
     val country: String,
     @SerializedName("id")
@@ -30,11 +28,9 @@ data class Beer(
     @SerializedName("rate_owner")
     val rateOwner: RateOwner,
     @SerializedName("reviews")
-    val reviews: List<Review>? = null
-) : Parcelable {
-    val rateAvgToString: String
-        get() = rateAvg.toString()
-
-    val abvToString: String
-        get() = abv.toString()
-}
+    val reviews: List<Review>?,
+    @SerializedName("thumbnail_image")
+    val thumbnailImage : String?,
+    @SerializedName("review_owner")
+    val reviewOwner : ReviewOwner?
+) : Parcelable
