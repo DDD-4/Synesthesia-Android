@@ -1,14 +1,18 @@
 <resources>
     <string name="app_name">비어있다</string>
 
+    <string name="key_id">id</string>
     <string name="key_token">token</string>
     <string name="key_recently_visit">visit</string>
     <string name="key_user">user</string>
     <string name="key_sort_type">sort_type</string>
     <string name="key_data">data_of</string>
+    <string name="key_callback">calback</string>
+    <string name="key_review">review</string>
     <string name="is_show_snackbar">snackbar</string>
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
+    <string name="complete">완료</string>
     <string name="register">등록하기</string>
 
     <string name="success_logout">로그아웃에 성공하였습니다</string>
@@ -16,6 +20,7 @@
     <string name="login_kakao">카카오톡으로 로그인</string>
     <string name="connect_kakao">카카오톡 계정 연결</string>
 
+    <string name="review_fail_message">리뷰등록에 실패하였습니다.</string>
     <string name="logout_message">로그아웃 하시겠습니까?</string>
     <string name="unlink_message">카카오 계정연결을 끊으시겠습니까?</string>
     <string name="rate">%,.1f점</string>
@@ -34,4 +39,7 @@
     <string name="title_style">같은 스타일의 맥주입니다 🍺</string>
     <string name="title_random">추천하는 맥주입니다 🏆</string>
     <string name="show_all">전체보기</string>
+    <string name="register_review">별점과 리뷰 남기기</string>
+    <string name="manufacturer">제조사</string>
+    <string name="registered_review">후기가 등록되었습니다.</string>
 </resources>

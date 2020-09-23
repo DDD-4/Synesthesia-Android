@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="space_8">10</integer>
+    <integer name="space_4">4</integer>
+    <integer name="space_8">8</integer>
+    <integer name="space_10">10</integer>
+    <integer name="space_16">16</integer>
+    <integer name="space_24">24</integer>
     <integer name="space_28">28</integer>
+    <integer name="space_32">32</integer>
 </resources>
