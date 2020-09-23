@@ -1,7 +1,6 @@
 package com.ddd4.synesthesia.beer.data.source.remote.service
 
 import com.ddd4.synesthesia.beer.data.source.response.LogoutResponse
-import com.ddd4.synesthesia.beer.data.source.response.RefreshTokenResponse
 import retrofit2.http.POST
 
 interface KakaoApi {
@@ -17,10 +16,4 @@ interface KakaoApi {
      */
     @POST("v1/user/unlink")
     suspend fun unlike() : LogoutResponse
-
-    /**
-     * 리프레시 토큰
-     */
-    @POST("oauth/token")
-    suspend fun refreshToken() : RefreshTokenResponse
 }

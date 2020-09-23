@@ -2,7 +2,7 @@ package com.ddd4.synesthesia.beer.data.source.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RefreshTokenResponse(
+data class TokenResponse(
     @SerializedName(value = "token_type")
     val tokenType: String,
     @SerializedName(value = "access_token")
@@ -12,5 +12,7 @@ data class RefreshTokenResponse(
     @SerializedName(value = "refresh_token")
     val refreshToken: String,
     @SerializedName(value = "refresh_token_expires_in")
-    val refreshTokenExpiresIn: Int
+    val refreshTokenExpiresIn: Int,
+    @SerializedName(value = "scope")
+    val scope : String
 )

@@ -6,6 +6,7 @@ import com.ddd4.synesthesia.beer.BuildConfig
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.remote.service.BeerApi
 import com.ddd4.synesthesia.beer.data.source.remote.service.KakaoApi
+import com.ddd4.synesthesia.beer.data.source.remote.service.KakaoAuthApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,9 +30,10 @@ object NetworkModule {
             .addInterceptor(Interceptor.invoke {
                 it.run {
                     val request = request().newBuilder()
-                        .addHeader("Authorization","Bearer " + application.getSharedPreferences("BEER",MODE_PRIVATE).getString("token","")!!)
-                        .build()
-                    proceed(request)
+                    application.getSharedPreferences("BEER",MODE_PRIVATE).getString("token","")?.let {
+                        request.addHeader("Authorization","Bearer " + application.getSharedPreferences("BEER",MODE_PRIVATE).getString("token","")!!)
+                    }
+                    proceed(request.build())
                 }
             })
             .addInterceptor(HttpLoggingInterceptor().apply {
@@ -40,6 +42,16 @@ object NetworkModule {
                 } else {
                     HttpLoggingInterceptor.Level.NONE
                 } })
+            .build()
+    }
+    @Provides
+    @Singleton
+    @Named("kakaoAuth")
+    fun provideKakaoAuthRetrofit(application: Application) : Retrofit {
+        return Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://kauth.kakao.com")
+            .client(provideOAuthOkHttpClient(application))
             .build()
     }
 
@@ -52,6 +64,11 @@ object NetworkModule {
             .baseUrl("https://kapi.kakao.com")
             .client(provideOAuthOkHttpClient(application))
             .build()
+    }
+    @Provides
+    @Singleton
+    fun provideKakaoAuthService(@Named("kakaoAuth") retrofit: Retrofit) : KakaoAuthApi {
+        return retrofit.create(KakaoAuthApi::class.java)
     }
 
     @Provides
