@@ -63,5 +63,10 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="Filter.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/color_1c1b21</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipStrokeColor">@color/filter_select_change</item>
+    </style>
 
 </resources>

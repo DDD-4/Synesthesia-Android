@@ -17,6 +17,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -44,6 +45,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             adapter = listAdapter
             header.btnMyPage.setOnClickListener {
                 findNavController().navigate(NavigationDirections.actionToMyPage())
+            }
+
+            header.btnBeerRecommend.setOnClickListener {
+                FilterDialog().run {
+                    show(this@HomeFragment.parentFragmentManager, tag)
+                }
             }
 
             sort.setOnClickListener {

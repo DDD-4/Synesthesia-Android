@@ -1,0 +1,11 @@
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Filter.Chip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:textAllCaps="false"
+    android:textSize="12sp"
+    android:textAlignment="center"
+    android:textColor="@color/filter_select_change"
+    android:fontFamily="@font/notosans_kr_bold"
+    />

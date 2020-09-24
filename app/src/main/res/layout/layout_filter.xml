@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.FilterViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_drop_down" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_close" />
+
+        </LinearLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스타일"
+                    android:layout_marginStart="28dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_18"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_style_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="@dimen/textSize_14"
+                    android:fontFamily="@font/notosans_kr_regular"
+                    android:bufferType="spannable"
+                    app:layout_constraintBottom_toBottomOf="@id/style"
+                    app:layout_constraintStart_toEndOf="@id/style"
+                    app:layout_constraintTop_toTopOf="@id/style" />
+
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/style_chip_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/style"
+                    app:singleLine="false" />
+
+
+                <TextView
+                    android:id="@+id/aroma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="향"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="18dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_18"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/style_chip_group" />
+
+                <TextView
+                    android:id="@+id/tv_aroma_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="@dimen/textSize_14"
+                    android:fontFamily="@font/notosans_kr_regular"
+                    android:bufferType="spannable"
+                    app:layout_constraintBottom_toBottomOf="@id/aroma"
+                    app:layout_constraintStart_toEndOf="@id/aroma"
+                    app:layout_constraintTop_toTopOf="@id/aroma" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/aroma_chip_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="16dp"
+                    app:chipSpacingHorizontal="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/aroma"
+                    app:singleLine="false" />
+
+                <TextView
+                    android:id="@+id/abv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="도수"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="56dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_18"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/aroma_chip_group" />
+
+                <SeekBar
+                    android:id="@+id/abv_seekbar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/abv" />
+
+
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="국가"
+                    android:layout_marginTop="56dp"
+                    android:layout_marginStart="28dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize_18"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/abv_seekbar" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/country_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    app:adapter="@{adapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/btn_done"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/country"
+                    tools:listitem="@layout/item_filter_country" />
+
+                <TextView
+                    android:id="@+id/btn_done"
+                    android:layout_width="0dp"
+                    android:layout_height="70dp"
+                    android:text="상품 보러가기"
+                    android:background="@color/black"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

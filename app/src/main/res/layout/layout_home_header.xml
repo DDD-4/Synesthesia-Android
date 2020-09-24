@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/btn_beer_recommend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오늘의 맥주"
