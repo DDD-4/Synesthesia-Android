@@ -23,7 +23,6 @@ class DetailViewModel @ViewModelInject constructor(
 
     private val handler = CoroutineExceptionHandler { coroutineContext, throwable ->
         Timber.e(throwable)
-        _result.value = beerRepository.getBeerDetail()
     }
 
     fun fetchBeer(id : Int) {

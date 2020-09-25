@@ -13,6 +13,7 @@ import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.data.model.Review
 import com.ddd4.synesthesia.beer.databinding.FragmentDetailBinding
+import com.ddd4.synesthesia.beer.ext.showToast
 import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.DetailViewModel
@@ -61,7 +62,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                 when(event.action) {
                     MotionEvent.ACTION_UP -> {
                         StarRatingBottomDialog().run {
-                            show(this@DetailFragment.parentFragmentManager,tag)
+                            val bundle = Bundle()
+                            bundle.putInt("id",args.beer.id)
+                            this@run.arguments = bundle
+                            showDialog(this@DetailFragment.parentFragmentManager) {
+                                detailViewModel.fetchBeer(args.beer.id)
+                                context?.showToast(getString(R.string.registered_review))
+                            }
                         }
                     }
                 }

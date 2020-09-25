@@ -8,186 +8,172 @@
         <import type="android.text.TextUtils" />
 
         <variable
-            name="rating"
-            type="Float" />
-
-        <variable
             name="vm"
             type="com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.StarRatingViewModel" />
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="13dp"
+            android:layout_marginTop="13dp"
+            android:padding="15dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_start_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="@string/star_rating"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_close"
+            tools:text="@string/star_rating" />
+
+        <TextView
+            android:id="@+id/tv_start_rating_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/notosans_kr_light"
+            android:text="@string/message_star_rating"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_start_rating"
+            app:layout_constraintStart_toEndOf="@+id/tv_start_rating"
+            app:layout_constraintTop_toTopOf="@+id/tv_start_rating"
+            tools:text="@string/message_star_rating" />
+
+        <RatingBar
+            android:id="@+id/rb_beer_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/butterscotch"
+            android:max="5"
+            android:numStars="5"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp"
+            android:progressBackgroundTint="@color/silver_alpha_80"
+            android:progressTint="@color/butterscotch"
+            android:rating="@={vm.rating}"
+            android:secondaryProgressTint="@color/butterscotch"
+            android:stepSize="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_start_rating" />
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="@{vm.rating == null ? @string/rate(0.5) : @string/rate(vm.rating)}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rb_beer_rate"
+            tools:text="0.5점" />
+
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:background="@color/shark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_score" />
+
+        <TextView
+            android:id="@+id/tv_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="@string/review"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:text="@string/review" />
+
+        <TextView
+            android:id="@+id/tv_review_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/notosans_kr_light"
+            android:text="@string/message_review"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_review"
+            app:layout_constraintStart_toEndOf="@+id/tv_review"
+            app:layout_constraintTop_toTopOf="@+id/tv_review"
+            tools:text="@string/message_review" />
+
+        <FrameLayout
+            android:id="@+id/fl_review"
+            android:layout_width="0dp"
+            android:layout_height="110dp"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_1c1b21_stroke_dadada"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_send_review"
+            app:layout_constraintTop_toBottomOf="@+id/tv_review_message">
+
+            <EditText
+                android:id="@+id/edt_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:background="@null"
+                android:gravity="top"
+                android:clickable="false"
+                android:focusable="false"
+                android:hint="@string/message_review"
+                android:text="@={vm.review}"
+                android:textColor="@color/color_8e8f93"
+                android:textColorHint="@color/color_8e8f93"
+                android:textSize="11sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/btn_send_review"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:background="@color/white">
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:clickable="@{TextUtils.isEmpty(vm.review) ? false : true}"
+            android:focusable="@{TextUtils.isEmpty(vm.review) ? false : true}"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingVertical="22dp"
+            android:text="@string/register"
+            android:textColor="@{TextUtils.isEmpty(vm.review) ? @color/color_8e8f93 : @color/butterscotch}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:backgroundTint="@color/black"
+            tools:textColor="@color/color_8e8f93" />
 
-            <ImageView
-                android:id="@+id/iv_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="13dp"
-                android:layout_marginTop="13dp"
-                android:padding="15dp"
-                android:src="@drawable/ic_close"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
-                android:id="@+id/tv_start_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:fontFamily="@font/notosans_kr_bold"
-                android:text="@string/star_rating"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_close"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_close"
-                tools:text="@string/star_rating" />
-
-            <TextView
-                android:id="@+id/tv_start_rating_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/notosans_kr_light"
-                android:text="@string/message_star_rating"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_start_rating"
-                app:layout_constraintStart_toEndOf="@+id/tv_start_rating"
-                app:layout_constraintTop_toTopOf="@+id/tv_start_rating"
-                tools:text="@string/message_star_rating" />
-
-            <RatingBar
-                android:id="@+id/rb_beer_rate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/butterscotch"
-                android:max="5"
-                android:numStars="5"
-                android:paddingTop="24dp"
-                android:paddingBottom="16dp"
-                android:progressBackgroundTint="@color/silver_alpha_80"
-                android:progressTint="@color/butterscotch"
-                android:rating="@={rating}"
-                android:secondaryProgressTint="@color/butterscotch"
-                android:stepSize="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_start_rating" />
-
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:fontFamily="@font/notosans_kr_bold"
-                android:text="@{rating == null ? @string/rate(0.0) : @string/rate(rating)}"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rb_beer_rate"
-                tools:text="0.5점" />
-
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="28dp"
-                android:background="@color/very_light_pink"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_score" />
-
-            <TextView
-                android:id="@+id/tv_review"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/notosans_kr_bold"
-                android:text="@string/review"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                tools:text="@string/review" />
-
-            <TextView
-                android:id="@+id/tv_review_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/notosans_kr_light"
-                android:text="@string/message_review"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
-                app:layout_constraintStart_toEndOf="@+id/tv_review"
-                app:layout_constraintTop_toTopOf="@+id/tv_review"
-                tools:text="@string/message_review" />
-
-            <FrameLayout
-                android:id="@+id/fl_review"
-                android:layout_width="0dp"
-                android:layout_height="110dp"
-                android:layout_marginHorizontal="28dp"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/background_white_stroke_dadada"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_review_message">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:background="@null"
-                    android:gravity="top"
-                    android:hint="@string/message_review"
-                    android:text="@={vm.review}"
-                    android:textColorHint="@color/color_8e8f93"
-                    android:textColor="@color/color_8e8f93"
-                    android:textSize="11sp" />
-            </FrameLayout>
-
-
-            <Button
-                android:id="@+id/btn_send_review"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="28dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@{TextUtils.isEmpty(vm.review) ? @color/color_f2f3f5 : @color/black}"
-                android:clickable="@{TextUtils.isEmpty(vm.review) ? false : true}"
-                android:focusable="@{TextUtils.isEmpty(vm.review) ? false : true}"
-                android:paddingVertical="10dp"
-                android:stateListAnimator="@null"
-                android:text="@string/register"
-                android:textColor="@{TextUtils.isEmpty(vm.review) ? @color/color_8e8f93 : @color/white}"
-                tools:textColor="@color/color_8e8f93"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fl_review"
-                tools:backgroundTint="@color/color_f2f3f5" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 </layout>

@@ -5,17 +5,15 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Review(
-    @SerializedName("ratio")
-    val ratio: Float?,
-    @SerializedName("date")
-    val date: String?,
-    @SerializedName("user_id")
-    val userId: Int?,
+data class ReviewOwner(
     @SerializedName("beer")
-    val beer: Beer?,
+    val beer: Beer,
     @SerializedName("content")
-    val content: String?,
+    val content: String,
     @SerializedName("nickname")
-    val nickname: String?
+    val nickname: String,
+    @SerializedName("ratio")
+    val ratio: Double,
+    @SerializedName("user_id")
+    val userId: Int
 ) : Parcelable

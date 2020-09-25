@@ -7,9 +7,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class RelatedBeers(
     @SerializedName("aroma_related")
-    val aromaRelated: List<Related>,
+    val aromaRelated: List<Related>?,
     @SerializedName("randomly_related")
-    val randomlyRelated: List<Related>,
+    val randomlyRelated: List<Related>?,
     @SerializedName("style_related")
-    val styleRelated: List<Related>
+    val styleRelated: List<Related>?
 ) : Parcelable
