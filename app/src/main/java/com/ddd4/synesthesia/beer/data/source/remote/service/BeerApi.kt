@@ -1,6 +1,7 @@
 package com.ddd4.synesthesia.beer.data.source.remote.service
 
 import com.ddd4.synesthesia.beer.data.model.Response
+import com.ddd4.synesthesia.beer.util.sort.SortType
 import retrofit2.http.*
 
 interface BeerApi {
@@ -9,7 +10,14 @@ interface BeerApi {
      * 맥주 리스트
      */
     @GET("api/beers")
-    suspend fun getBeerList() : Response?
+    suspend fun getBeerList(
+        @Query("sort_by") sortType: String?,
+        @Query("beer_style") style: List<String>?,
+        @Query("aroma") aroma: List<String>?,
+        @Query("country") country: List<String>?,
+        @Query("min_abv") minAbv: Int?,
+        @Query("max_abv") maxAbv: Int?
+    ) : Response?
 
     /**
      * 맥주 상세

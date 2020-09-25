@@ -81,7 +81,7 @@ class FilterDialog
 
         super.onViewCreated(view, savedInstanceState)
 
-        initBind()
+        initObserving()
     }
 
 
@@ -125,9 +125,13 @@ class FilterDialog
     }
 
 
-    override fun initBind() {
+    override fun initObserving() {
         viewModel.countryList.observe(viewLifecycleOwner, Observer {
             countryListAdapter.updateItems(it)
         })
+    }
+
+    override fun initBind() {
+        //
     }
 }

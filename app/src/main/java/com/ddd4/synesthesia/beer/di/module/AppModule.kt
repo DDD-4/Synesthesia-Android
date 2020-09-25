@@ -3,6 +3,8 @@ package com.ddd4.synesthesia.beer.di.module
 import android.app.Application
 import android.content.Context
 import com.ddd4.synesthesia.beer.util.SharedPreferenceProvider
+import com.ddd4.synesthesia.beer.util.filter.FilterImpl
+import com.ddd4.synesthesia.beer.util.filter.FilterSetting
 import com.ddd4.synesthesia.beer.util.sort.SortImpl
 import com.ddd4.synesthesia.beer.util.sort.SortSetting
 import dagger.Module
@@ -28,5 +30,10 @@ object AppModule {
         preference: SharedPreferenceProvider,
         @ApplicationContext context: Context
     ): SortSetting = SortImpl(preference, context)
+
+    @Provides
+    @Singleton
+    fun provideFilterSettings(
+    ): FilterSetting = FilterImpl()
 
 }

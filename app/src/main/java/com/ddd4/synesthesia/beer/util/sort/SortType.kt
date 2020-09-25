@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.asFlow
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-enum class SortType {
-    Default,
-    Rating,
-    Review
+enum class SortType(val value: String?) {
+    Default(null),
+    Rating("rate_avg_desc"),
+    Review("review_count_desc")
 }
 
 class SortImpl(val preference: SharedPreferenceProvider, context: Context) : SortSetting,
