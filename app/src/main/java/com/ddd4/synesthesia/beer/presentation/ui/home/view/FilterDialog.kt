@@ -28,9 +28,6 @@ class FilterDialog
 
     private val viewModel: FilterViewModel by viewModels()
 
-    private val styleSelectedList = arrayListOf<String>()
-    private val aromaSelectedList = arrayListOf<String>()
-
     private val countryListAdapter by lazy {
         BaseItemsApdater(
             R.layout.item_filter_country,
@@ -48,6 +45,8 @@ class FilterDialog
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         dialog?.setOnShowListener {
             val bottomSheetInternal =
                 (it as BottomSheetDialog).findViewById<View>(R.id.design_bottom_sheet)
@@ -66,20 +65,23 @@ class FilterDialog
 
             styleChipGroup.setChips(
                 viewModel.styleList,
-                styleSelectedList,
+                viewModel.styleSelectedList,
                 tvStyleCount,
                 ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 8f).build()
             )
 
             aromaChipGroup.setChips(
                 viewModel.aromaList,
-                aromaSelectedList,
+                viewModel.aromaSelectedList,
                 tvAromaCount,
                 ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 50f).build()
             )
         }
 
-        super.onViewCreated(view, savedInstanceState)
+        binding.btnDone.setOnClickListener {
+            viewModel.executeFiltering()
+            this.dismiss()
+        }
 
         initObserving()
     }
@@ -101,19 +103,29 @@ class FilterDialog
             chip.apply {
                 text = item
                 shapeAppearanceModel = shapeModel
+                updateCountText(countView, selectedItemList)
+                if (selectedItemList.isNotEmpty() && selectedItemList.contains(item)) {
+                    this.isChecked = true
+                }
+
                 setOnCheckedChangeListener { v: CompoundButton, isChecked: Boolean ->
                     val value = v.text.toString()
                     if (isChecked) selectedItemList.add(value) else selectedItemList.remove(value)
-                    if (selectedItemList.isNotEmpty()) {
-                        val suffix = "${selectedItemList.count().minus(1)}개"
-                        countView.text =
-                            if (selectedItemList.count() > 1) "${selectedItemList[0]} 외 $suffix" else selectedItemList[0]
-                    } else {
-                        countView.text = ""
-                    }
+                    updateCountText(countView, selectedItemList)
                 }
             }
             addView(chip)
+        }
+    }
+
+    // TODO BindingAdapter 로 빼기
+    private fun updateCountText(countView: TextView, selectedItemList: MutableList<String>) {
+        if (selectedItemList.isNotEmpty()) {
+            val suffix = "${selectedItemList.count().minus(1)}개"
+            countView.text =
+                if (selectedItemList.count() > 1) "${selectedItemList[0]} 외 $suffix" else selectedItemList[0]
+        } else {
+            countView.text = ""
         }
     }
 
@@ -129,6 +141,7 @@ class FilterDialog
         viewModel.countryList.observe(viewLifecycleOwner, Observer {
             countryListAdapter.updateItems(it)
         })
+
     }
 
     override fun initBind() {

@@ -6,6 +6,7 @@
     <string name="key_recently_visit">visit</string>
     <string name="key_user">user</string>
     <string name="key_sort_type">sort_type</string>
+    <string name="key_filter">filter</string>
     <string name="key_data">data_of</string>
     <string name="key_callback">calback</string>
     <string name="key_review">review</string>

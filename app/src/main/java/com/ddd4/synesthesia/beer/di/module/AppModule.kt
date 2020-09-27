@@ -34,6 +34,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFilterSettings(
-    ): FilterSetting = FilterImpl()
+        preference: SharedPreferenceProvider,
+        @ApplicationContext context: Context
+    ): FilterSetting = FilterImpl(preference, context)
 
 }
