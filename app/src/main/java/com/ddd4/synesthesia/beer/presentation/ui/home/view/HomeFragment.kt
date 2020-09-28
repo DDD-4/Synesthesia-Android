@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val itemClickListener by lazy {
         object : ItemClickListener {
-            override fun <T> onItemClick(item: T) {
+            override fun <T> onItemClick(item: T?) {
                 Timber.d("onItemClick ${item.toString()}")
                 findNavController().navigate(HomeNavigationDirections.actionToDetail(item as Beer))
             }

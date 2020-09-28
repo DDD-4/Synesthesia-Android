@@ -27,7 +27,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private val itemClickListener by lazy {
         object : ItemClickListener {
-            override fun <T> onItemClick(item: T) {
+            override fun <T> onItemClick(item: T?) {
                 when(item) {
                     // 리뷰
                     is Review -> {
