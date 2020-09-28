@@ -9,11 +9,13 @@
     <string name="key_data">data_of</string>
     <string name="key_callback">calback</string>
     <string name="key_review">review</string>
+    <string name="key_nickname">nickname</string>
     <string name="is_show_snackbar">snackbar</string>
     <string name="ok">확인</string>
     <string name="cancel">취소</string>
     <string name="complete">완료</string>
     <string name="register">등록하기</string>
+    <string name="save">저장하기</string>
 
     <string name="success_logout">로그아웃에 성공하였습니다</string>
     <string name="fail_login">로그인에 실패하였습니다</string>
@@ -26,7 +28,7 @@
     <string name="rate">%,.1f점</string>
     <string name="abv">%,.1f%%</string>
     <string name="back_press">\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다</string>
-    <string name="profile_name">%s님</string>
+    <string name="profile_name"><b>%s</b>님</string>
 
     <string name="sort_default">기본 정렬</string>
     <string name="sort_rating">별점 정렬</string>
