@@ -11,19 +11,21 @@ class BeerRepositoryImpl @Inject constructor(
 ): BeerRepository {
 
     override suspend fun getBeerList(sortType: SortType): List<Beer>? {
-        return beerApi.getBeerList()?.result?.beers?.let {
-            it.subList(0, 20)
+        return beerApi.getBeerList()?.result?.beers.let {
+            it?.subList(0, 20)
         }
     }
 
-    override suspend fun getBeer(id : Int): Result? {
+    override suspend fun getBeer(id : Int): Response? {
         return beerApi.getBeer(id)?.result?.let {
             it
         }
     }
 
-    override suspend fun getUserInfo(): Response? {
-        return beerApi.getUserInfo()
+    override suspend fun getUserInfo(): User? {
+        return beerApi.getUserInfo()?.result?.let {
+            it
+        }
     }
 
     override suspend fun postReview(id: Int, rating: Float, review: String?) {

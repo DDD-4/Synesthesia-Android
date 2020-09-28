@@ -1,6 +1,6 @@
 package com.ddd4.synesthesia.beer.data.source.remote.service
 
-import com.ddd4.synesthesia.beer.data.model.Response
+import com.ddd4.synesthesia.beer.data.model.*
 import retrofit2.http.*
 
 interface BeerApi {
@@ -9,7 +9,7 @@ interface BeerApi {
      * 맥주 리스트
      */
     @GET("api/beers")
-    suspend fun getBeerList() : Response?
+    suspend fun getBeerList() : Result<Response>?
 
     /**
      * 맥주 상세
@@ -17,13 +17,13 @@ interface BeerApi {
     @GET("api/beer")
     suspend fun getBeer(
         @Query("beer_id") id : Int
-    ) : Response?
+    ) : Result<Response>?
 
     /**
      * 유저 정보
      */
     @GET("api/user")
-    suspend fun getUserInfo() : Response?
+    suspend fun getUserInfo() : Result<User>?
 
     /**
      * 리뷰 등록

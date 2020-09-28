@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
-            android:visibility="@{vm.result == null ? View.GONE : View.VISIBLE}"
+            android:visibility="@{vm.response == null ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:loadUrl="@{vm.result.beer.imageUrl.size() > 0 ? vm.result.beer.imageUrl.get(0) : null}"
+                    app:loadUrl="@{vm.response.beer.imageUrl.size() > 0 ? vm.response.beer.imageUrl.get(0) : null}"
                     tools:src="@color/silver_alpha_80" />
 
                 <TextView
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="@color/color_c8c8c8"
-                    android:text="@{vm.result.beer.country}"
+                    android:text="@{vm.response.beer.country}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_beer_manufacturer_title"
                     app:layout_constraintStart_toEndOf="@+id/view_line"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +119,7 @@
                     android:id="@+id/tv_beer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{vm.result.beer.name}"
+                    android:text="@{vm.response.beer.name}"
                     android:layout_marginTop="4dp"
                     android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="@+id/tv_beer_manufacturer_title"
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="@{@string/abv(vm.result.beer.abv)}"
+                    android:text="@{@string/abv(vm.response.beer.abv)}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_beer_style"
                     app:layout_constraintStart_toEndOf="@+id/tv_beer_style"
                     app:layout_constraintTop_toTopOf="@+id/tv_beer_style"
@@ -155,7 +155,7 @@
                     android:layout_marginEnd="28dp"
                     android:drawableStart="@drawable/ic_star"
                     android:drawablePadding="4dp"
-                    android:text="@{@string/rate(vm.result.beer.rateAvg)}"
+                    android:text="@{@string/rate(vm.response.beer.rateAvg)}"
                     android:textColor="@color/butterscotch"
                     android:textSize="19sp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_beer_style"
@@ -226,7 +226,7 @@
                     android:layout_marginHorizontal="28dp"
                     android:layout_marginTop="24dp"
                     android:background="@color/shark"
-                    android:visibility="@{vm.result.beer.reviews == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintTop_toBottomOf="@+id/tv_beer_review_title" />
 
                 <TextView
@@ -237,7 +237,7 @@
                     android:textSize="15sp"
                     android:text="@string/review"
                     android:textStyle="bold"
-                    android:visibility="@{vm.result.beer.reviews == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="@+id/tv_beer_manufacturer_title"
                     app:layout_constraintEnd_toStartOf="@+id/tv_all"
                     app:layout_constraintTop_toBottomOf="@+id/divider2"
@@ -250,7 +250,7 @@
                     android:gravity="center"
                     android:textSize="13sp"
                     android:text="@string/show_all"
-                    android:visibility="@{vm.result.beer.reviews == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_review"
                     app:layout_constraintEnd_toEndOf="@+id/tv_beer_rate"
                     app:layout_constraintTop_toTopOf="@+id/tv_review"
@@ -263,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:clipToPadding="true"
                     android:paddingHorizontal="4dp"
-                    android:visibility="@{vm.result.beer.reviews == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:adapter="@{reviewAdapter}"
                     app:vertical_space="@{@integer/space_16}"
                     app:space="@{@integer/space_24}"
@@ -280,9 +280,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:adapter="@{aromaRelatedAdapter}"
-                    app:isVisible="@{vm.result.relatedBeers.aromaRelated == null ? true : false}"
+                    app:isVisible="@{vm.response.relatedBeers.aromaRelated == null ? true : false}"
                     app:title="@{@string/title_aroma}"
-                    android:visibility="@{vm.result.relatedBeers.aromaRelated == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.relatedBeers.aromaRelated == null ? View.GONE : View.VISIBLE}"
                     layout="@layout/layout_detail_contents"
                     app:layout_constraintTop_toBottomOf="@+id/rv_review"/>
 
@@ -292,9 +292,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:adapter="@{styleRelatedAdapter}"
-                    app:isVisible="@{vm.result.relatedBeers.styleRelated == null ? true : false}"
+                    app:isVisible="@{vm.response.relatedBeers.styleRelated == null ? true : false}"
                     app:title="@{@string/title_style}"
-                    android:visibility="@{vm.result.relatedBeers.styleRelated == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.relatedBeers.styleRelated == null ? View.GONE : View.VISIBLE}"
                     layout="@layout/layout_detail_contents"
                     app:layout_constraintTop_toBottomOf="@+id/include_aroma_related"/>
 
@@ -304,9 +304,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:adapter="@{randomRelatedAdapter}"
-                    app:isVisible="@{vm.result.relatedBeers.randomlyRelated == null ? true : false}"
+                    app:isVisible="@{vm.response.relatedBeers.randomlyRelated == null ? true : false}"
                     app:title="@{@string/title_random}"
-                    android:visibility="@{vm.result.relatedBeers.randomlyRelated == null ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.response.relatedBeers.randomlyRelated == null ? View.GONE : View.VISIBLE}"
                     layout="@layout/layout_detail_contents"
                     app:layout_constraintTop_toBottomOf="@+id/include_style_related"/>
 

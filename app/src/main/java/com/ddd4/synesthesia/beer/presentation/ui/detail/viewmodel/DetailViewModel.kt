@@ -4,7 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.ddd4.synesthesia.beer.data.model.Result
+import com.ddd4.synesthesia.beer.data.model.Response
 import com.ddd4.synesthesia.beer.domain.repository.BeerRepository
 import com.ddd4.synesthesia.beer.presentation.base.BaseViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -15,8 +15,8 @@ class DetailViewModel @ViewModelInject constructor(
     private val beerRepository: BeerRepository
 ) : BaseViewModel() {
 
-    private val _result = MutableLiveData<Result>()
-    val result : LiveData<Result> get() = _result
+    private val _response = MutableLiveData<Response>()
+    val response : LiveData<Response> get() = _response
 
     init {
     }
@@ -27,7 +27,7 @@ class DetailViewModel @ViewModelInject constructor(
 
     fun fetchBeer(id : Int) {
         viewModelScope.launch(handler) {
-            _result.postValue(beerRepository.getBeer(id))
+            _response.postValue(beerRepository.getBeer(id))
         }
     }
 }
