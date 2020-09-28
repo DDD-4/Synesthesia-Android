@@ -61,7 +61,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                     MotionEvent.ACTION_UP -> {
                         StarRatingBottomDialog().run {
                             val bundle = Bundle()
-                            bundle.putInt("id",args.beer.id)
+                            bundle.putParcelable("beer",detailViewModel.response.value?.beer)
                             this@run.arguments = bundle
                             showDialog(this@DetailFragment.parentFragmentManager) {
                                 detailViewModel.fetchBeer(args.beer.id)

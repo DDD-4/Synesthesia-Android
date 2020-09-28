@@ -2,6 +2,7 @@
     <string name="app_name">비어있다</string>
 
     <string name="key_id">id</string>
+    <string name="key_beer">beer</string>
     <string name="key_token">token</string>
     <string name="key_recently_visit">visit</string>
     <string name="key_user">user</string>
@@ -15,6 +16,7 @@
     <string name="cancel">취소</string>
     <string name="complete">완료</string>
     <string name="register">등록하기</string>
+    <string name="modify">수정하기</string>
     <string name="save">저장하기</string>
 
     <string name="success_logout">로그아웃에 성공하였습니다</string>
@@ -42,6 +44,7 @@
     <string name="title_random">추천하는 맥주입니다 🏆</string>
     <string name="show_all">전체보기</string>
     <string name="register_review">별점과 리뷰 남기기</string>
+    <string name="already_register_review">이미 별점과 리뷰를 남기셨네요!</string>
     <string name="manufacturer">제조사</string>
     <string name="registered_review">후기가 등록되었습니다.</string>
 </resources>

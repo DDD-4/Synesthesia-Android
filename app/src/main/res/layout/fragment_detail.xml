@@ -196,14 +196,27 @@
                     android:max="5"
                     android:numStars="5"
                     android:paddingTop="24dp"
-                    android:paddingBottom="16dp"
                     android:progressBackgroundTint="@color/shark"
                     android:progressTint="@color/butterscotch"
                     android:secondaryProgressTint="@color/butterscotch"
                     android:stepSize="0.5"
+                    android:rating="@{vm.response.beer.reviewOwner.ratio}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    android:visibility="@{vm.response.beer.reviewOwner.ratio == null ? View.GONE : View.VISIBLE}"
+                    android:text="@{@string/rate(vm.response.beer.reviewOwner.ratio)}"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rb_beer_rate"
+                    tools:text="0.5점" />
 
                 <TextView
                     android:id="@+id/tv_beer_review_title"
@@ -212,10 +225,11 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:text="@string/register_review"
+                    android:paddingTop="16dp"
+                    android:text="@{vm.response.beer.reviewOwner.ratio == null ? @string/register_review : @string/already_register_review}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rb_beer_rate"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_score"
                     tools:text="@string/register_review" />
 
                 <!--리뷰-->

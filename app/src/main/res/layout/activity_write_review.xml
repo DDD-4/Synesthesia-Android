@@ -92,7 +92,7 @@
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingVertical="22dp"
-            android:text="@string/register"
+            android:text="@string/complete"
             android:textColor="@{TextUtils.isEmpty(contents) ? @color/color_8e8f93 : @color/butterscotch}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
