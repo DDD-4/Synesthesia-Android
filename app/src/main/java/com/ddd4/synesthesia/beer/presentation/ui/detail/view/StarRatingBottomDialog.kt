@@ -82,9 +82,11 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
             dismiss?.invoke()
         })
         starRatingViewModel.rating.observe(viewLifecycleOwner, Observer {
-            if(it < minRating) {
-                starRatingViewModel.rating.value = minRating
-            }
+            it?.let { rating ->
+                if(rating < minRating) {
+                    starRatingViewModel.rating.value = minRating
+                }
+            } ?: kotlin.run { starRatingViewModel.rating.value = 0.5f }
         })
     }
 }

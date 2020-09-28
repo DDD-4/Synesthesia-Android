@@ -17,7 +17,7 @@ class StarRatingViewModel @ViewModelInject constructor(
 
     val register = SingleLiveEvent<Boolean>()
     val review = MutableLiveData<String>()
-    val rating = MutableLiveData<Float>(0.5f)
+    val rating = MutableLiveData<Float?>(0.5f)
 
     init {
 
