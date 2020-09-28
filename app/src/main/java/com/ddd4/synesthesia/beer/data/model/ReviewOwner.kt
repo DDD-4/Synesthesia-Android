@@ -7,13 +7,13 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ReviewOwner(
     @SerializedName("beer")
-    val beer: Beer,
+    val beer: Beer?,
     @SerializedName("content")
-    val content: String,
+    val content: String?,
     @SerializedName("nickname")
-    val nickname: String,
+    val nickname: String?,
     @SerializedName("ratio")
-    val ratio: Double,
+    val ratio: Float?,
     @SerializedName("user_id")
     val userId: Int
 ) : Parcelable
