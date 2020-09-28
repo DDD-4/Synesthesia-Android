@@ -26,6 +26,15 @@ interface BeerApi {
     suspend fun getUserInfo() : Result<User>?
 
     /**
+     * 유저 정보 업데이트
+     */
+    @FormUrlEncoded
+    @POST("api/user/update")
+    suspend fun postUserInfo(
+        @Field("nickname") nickName : String?
+    )
+
+    /**
      * 리뷰 등록
      */
     @FormUrlEncoded

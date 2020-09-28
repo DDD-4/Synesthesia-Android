@@ -28,6 +28,10 @@ class BeerRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun postUserInfo(nickName : String?) {
+        return beerApi.postUserInfo(nickName)
+    }
+
     override suspend fun postReview(id: Int, rating: Float, review: String?) {
         return beerApi.postReview(id,rating,review)
     }

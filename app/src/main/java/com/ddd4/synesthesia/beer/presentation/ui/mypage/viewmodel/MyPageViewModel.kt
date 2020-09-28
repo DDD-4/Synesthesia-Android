@@ -13,6 +13,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseViewModel
 import com.ddd4.synesthesia.beer.util.SingleLiveEvent
 import com.kakao.sdk.user.model.User
 import kotlinx.coroutines.launch
+import okhttp3.internal.notifyAll
 
 class MyPageViewModel @ViewModelInject constructor(
     private val loginRepository : LoginRepository,
@@ -24,8 +25,12 @@ class MyPageViewModel @ViewModelInject constructor(
     private val _userInfo = MutableLiveData<User?>()
     val userInfo : LiveData<User?> get() = _userInfo
 
+    private val _nickName = MutableLiveData<String>()
+    val nickName : LiveData<String> get() = _nickName
+
     init {
         me()
+        userInfo()
     }
 
     fun generateInfoList() : List<MyInfo> = arrayListOf(
@@ -45,6 +50,18 @@ class MyPageViewModel @ViewModelInject constructor(
 
     private fun me() = loginRepository.me {
         _userInfo.value = it
+    }
+
+    private fun userInfo() {
+        viewModelScope.launch {
+            _nickName.value = beerRepository.getUserInfo()?.nickname
+        }
+    }
+
+    fun updateUserInfo(nickName : String?) {
+        viewModelScope.launch {
+            beerRepository.postUserInfo(nickName)
+        }
     }
 
 //    private fun me() {

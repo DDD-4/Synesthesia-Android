@@ -18,6 +18,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity
 import com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
+import com.ddd4.synesthesia.beer.util.SimpleCallback
 import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.layout_global_toolbar.view.*
@@ -27,15 +28,25 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
 
     private val myPageViewModel by viewModels<MyPageViewModel>()
-
+    private val nickNameCallback = object : SimpleCallback {
+        override fun call(text: String) {
+            binding.tvName.text = text
+            myPageViewModel.updateUserInfo(text)
+        }
+    }
     private val itemClickListener by lazy {
         object : ItemClickListener {
-            override fun <T> onItemClick(item: T) {
+            override fun <T> onItemClick(item: T?) {
                 when ((item as? MyInfo)?.type) {
                     InfomationsType.ITEM -> { infomationsEvent(item.title) }
                     InfomationsType.LOGOUT -> { unConnected(getString(R.string.logout_message)) }
                     InfomationsType.UNLINK -> { unConnected(getString(R.string.unlink_message)) }
-                    else -> { /*Nothing*/ }
+                    else -> {
+                        val bundle = bundleOf(
+                            getString(R.string.key_review) to binding.tvName.text
+                        )
+                        start<WriteNickNameActivity>(false,bundle)
+                    }
                 }
             }
         }
@@ -45,10 +56,17 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onCreate(savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        SimpleCallback.callback = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        SimpleCallback.callback = nickNameCallback
         binding.apply {
             myPageVm = myPageViewModel
+            itemClickListener = this@MyPageFragment.itemClickListener
             userAdapter = BaseItemsApdater(R.layout.layout_my_page, BR.my, itemClickListener).apply { updateItems(myPageViewModel.generateInfoList()) }
             includeToolbar.toolbar.setNavigationOnClickListener {
                 parentFragmentManager.popBackStack()
