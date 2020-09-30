@@ -92,6 +92,7 @@ dependencies {
     implementation(Libs.HILT_VIEWMODEL)
     kapt(Libs.HILT_COMPILER)
     implementation(Libs.KAKAO)
+    implementation(Libs.RANGE_SEEK_BAR)
 
     testImplementation(TestLibs.JUNIT)
     androidTestImplementation(TestLibs.ANDROID_X_JUNIT)

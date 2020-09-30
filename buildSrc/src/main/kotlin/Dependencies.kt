@@ -27,6 +27,7 @@ object Versions {
     const val HILT_VIEWMODEL = "1.0.0-alpha01"
     const val TIMBER = "4.7.1"
     const val KAKAO = "2.0.0-beta07"
+    const val RANGE_SEEK_BAR = "3.0.0"
 }
 
 object Libs {
@@ -71,6 +72,7 @@ object Libs {
 
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val KAKAO = "com.kakao.sdk:v2-user:${Versions.KAKAO}"
+    const val RANGE_SEEK_BAR = "com.github.Jay-Goo:RangeSeekBar:${Versions.RANGE_SEEK_BAR}"
 
 }
 
