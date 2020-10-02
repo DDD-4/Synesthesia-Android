@@ -69,4 +69,17 @@
         <item name="chipStrokeColor">@color/filter_select_change</item>
     </style>
 
+    <style name="Home.Filter.Chip" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="chipSurfaceColor">?attr/colorOnBackground</item>
+        <item name="closeIcon">@drawable/ic_chip_cancel_24</item>
+        <item name="closeIconTint">@color/color_d3d3d3</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="chipEndPadding">0dp</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
+        <item name="closeIconStartPadding">12dp</item>
+        <item name="closeIconEndPadding">0dp</item>
+
+    </style>
+
 </resources>

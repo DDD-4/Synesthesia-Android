@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
 import com.ddd4.synesthesia.beer.ext.toPx
+import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -77,4 +78,18 @@ fun updateCountText(countView: TextView, selectedItemList: MutableLiveDataList<S
 fun updateAbvRange(abvTextView: TextView, abvRange: Pair<Int, Int>) {
     val text = "${abvRange.first} - ${abvRange.second}"
     abvTextView.text = text
+}
+
+@BindingAdapter("app:filterVisibility")
+fun homeFilterVisibility(view: View, filter: BeerFilter?) {
+    filter ?: return
+
+    with(filter) {
+        view.visibility = if (styleFilter != null || aromaFilter != null || abvFilter != null || countryFilter != null) {
+             View.VISIBLE
+        } else {
+            View.GONE
+        }
+    }
+
 }

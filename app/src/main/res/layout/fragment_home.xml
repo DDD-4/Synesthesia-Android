@@ -8,6 +8,7 @@
         <variable
             name="vm"
             type="com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel" />
+
         <variable
             name="adapter"
             type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
@@ -26,16 +27,28 @@
                 android:id="@+id/header"
                 layout="@layout/layout_home_header" />
 
-            <!--임시-->
-            <View
-                android:id="@+id/filter_chip"
+            <HorizontalScrollView
+                android:id="@+id/filter_scroll"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"
+                android:overScrollMode="never"
+                app:filterVisibility="@{vm.beerFilter}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header"
-                tools:visibility="visible" />
+                app:layout_constraintTop_toBottomOf="@id/header">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/filter_chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipSpacing="0dp"
+                    app:chipSpacingHorizontal="16dp"
+                    tools:visibility="visible" />
+
+            </HorizontalScrollView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/filter"
@@ -43,7 +56,7 @@
                 android:layout_height="44dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/filter_chip">
+                app:layout_constraintTop_toBottomOf="@id/filter_scroll">
 
                 <TextView
                     android:id="@+id/sort"
@@ -68,9 +81,23 @@
             <include
                 android:id="@+id/contents"
                 layout="@layout/layout_home_contents"
-                app:adapter="@{adapter}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:adapter="@{adapter}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/filter" />
+
+            <!-- 임시 -->
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:text="데이터가 없음"
+                android:textSize="@dimen/textSize_18"
+                android:textAlignment="center"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/filter" />
