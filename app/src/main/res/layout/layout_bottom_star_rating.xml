@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{vm.rating == null ? @string/rate(0.5) : @string/rate(vm.rating)}"
+            android:text="@{vm.rating == null ? @string/rate_unit(0.5) : @string/rate_unit(vm.rating)}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
