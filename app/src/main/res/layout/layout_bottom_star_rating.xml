@@ -8,6 +8,10 @@
         <import type="android.text.TextUtils" />
 
         <variable
+            name="beer"
+            type="com.ddd4.synesthesia.beer.data.model.Beer" />
+
+        <variable
             name="vm"
             type="com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.StarRatingViewModel" />
 
@@ -64,7 +68,7 @@
             android:numStars="5"
             android:paddingTop="24dp"
             android:paddingBottom="16dp"
-            android:progressBackgroundTint="@color/silver_alpha_80"
+            android:progressBackgroundTint="@color/shark"
             android:progressTint="@color/butterscotch"
             android:rating="@={vm.rating}"
             android:secondaryProgressTint="@color/butterscotch"
@@ -79,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{vm.rating == null ? @string/rate(0.5) : @string/rate(vm.rating)}"
+            android:text="@{vm.rating == null ? @string/rate_unit(0.5) : @string/rate_unit(vm.rating)}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,9 +168,10 @@
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:paddingVertical="22dp"
-            android:text="@string/register"
+            android:text="@{beer.reviewOwner == null ? @string/register : @string/modify}"
             android:textColor="@{TextUtils.isEmpty(vm.review) ? @color/color_8e8f93 : @color/butterscotch}"
             android:textSize="16sp"
+            tools:text="@string/register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fl_review"
             app:layout_constraintEnd_toEndOf="parent"

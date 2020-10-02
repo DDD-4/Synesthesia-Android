@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.ddd4.synesthesia.beer.R
+import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.databinding.LayoutBottomStarRatingBinding
 import com.ddd4.synesthesia.beer.ext.showToast
 import com.ddd4.synesthesia.beer.ext.start
@@ -20,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRatingBinding>(R.layout.layout_bottom_star_rating) {
 
     private val starRatingViewModel by viewModels<StarRatingViewModel>()
-    private val id by lazy { arguments?.get(getString(R.string.key_id)) as? Int }
+    private val beerInfo by lazy { arguments?.get(getString(R.string.key_beer)) as? Beer }
     private var dismiss: (() -> Unit)? = null
     private val minRating = 0.5f
 
@@ -35,9 +36,14 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
         SimpleCallback.callback = reviewCallback
         binding.apply {
             vm = starRatingViewModel
+            beer = beerInfo
+            beerInfo?.let {
+                starRatingViewModel.review.value = it.reviewOwner?.content
+                starRatingViewModel.rating.value = it.reviewOwner?.ratio
+            }
             btnSendReview.setOnClickListener {
-                id?.let { id ->
-                    starRatingViewModel.postReview(id)
+                beerInfo?.let { beer ->
+                    starRatingViewModel.postReview(beer.id)
                 } ?: kotlin.run { context?.showToast(getString(R.string.review_fail_message)) }
             }
             edtReview.setOnClickListener {
@@ -45,6 +51,9 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
                     getString(R.string.key_review) to starRatingViewModel.review.value
                 )
                 start<WriteReviewActivity>(false, bundle)
+            }
+            ivClose.setOnClickListener {
+                dismiss()
             }
         }
         initObserving()
@@ -73,9 +82,11 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
             dismiss?.invoke()
         })
         starRatingViewModel.rating.observe(viewLifecycleOwner, Observer {
-            if(it < minRating) {
-                starRatingViewModel.rating.value = minRating
-            }
+            it?.let { rating ->
+                if(rating < minRating) {
+                    starRatingViewModel.rating.value = minRating
+                }
+            } ?: kotlin.run { starRatingViewModel.rating.value = 0.5f }
         })
     }
 }

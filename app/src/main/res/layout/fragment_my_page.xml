@@ -5,10 +5,15 @@
 
     <data>
 
-        <import type="android.view.View"/>
-        <import type="android.text.TextUtils"/>
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
         <import type="com.ddd4.synesthesia.beer.ext.ImageTransformType" />
 
+        <variable
+            name="itemClickListener"
+            type="com.ddd4.synesthesia.beer.util.ItemClickListener" />
         <variable
             name="myPageVm"
             type="com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewModel" />
@@ -49,21 +54,39 @@
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_gravity="center"
+            android:text="@{myPageVm.nickName}"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:onClick="@{() -> itemClickListener.onItemClick(null)}"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
-            android:text="@{@string/profile_name(myPageVm.userInfo.kakaoAccount.profile.nickname)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_profile"
-            tools:text="공감각님" />
+            tools:text="공감각" />
+
+        <ImageView
+            android:id="@+id/iv_modify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_modify"
+            android:scaleY="0.7"
+            android:scaleX="0.7"
+            android:onClick="@{() -> itemClickListener.onItemClick(null)}"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
 
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.email) ? View.GONE : View.VISIBLE}"
             android:text="@{myPageVm.userInfo.kakaoAccount.email}"
+            android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.email) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
@@ -74,8 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
             android:text="@string/connect_kakao"
+            android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
@@ -96,8 +119,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:clipToPadding="true"
-            app:adapter="@{userAdapter}"
             android:overScrollMode="never"
+            app:adapter="@{userAdapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

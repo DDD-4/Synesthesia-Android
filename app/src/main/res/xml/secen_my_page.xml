@@ -47,6 +47,16 @@
                 motion:motionTarget="@id/tv_email"
                 motion:framePosition="100"
                 android:alpha="0"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_modify"
+                motion:framePosition="30"
+                android:alpha="1"/>
+
+            <KeyAttribute
+                motion:motionTarget="@+id/iv_modify"
+                motion:framePosition="100"
+                android:alpha="0"/>
         </KeyFrameSet>
 
     </Transition>

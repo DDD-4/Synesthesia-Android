@@ -8,25 +8,25 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Beer(
     @SerializedName("abv")
-    val abv: Double,
+    val abv: Double?,
     @SerializedName("aroma")
-    val aromas: List<String>,
+    val aromas: List<String>?,
     @SerializedName("beer_style")
-    val beerStyle: String,
+    val beerStyle: String?,
     @SerializedName("brewery")
-    val brewery: String,
+    val brewery: String?,
     @SerializedName("country")
-    val country: String,
+    val country: String?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("image_url")
-    val imageUrl: List<String>,
+    val imageUrl: List<String>?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("rate_avg")
-    val rateAvg: Double,
+    val rateAvg: Double?,
     @SerializedName("rate_owner")
-    val rateOwner: RateOwner,
+    val rateOwner: RateOwner?,
     @SerializedName("reviews")
     val reviews: List<Review>?,
     @SerializedName("thumbnail_image")

@@ -7,10 +7,8 @@ import android.view.View
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.ddd4.synesthesia.beer.R
-import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.data.model.Review
 import com.ddd4.synesthesia.beer.databinding.FragmentDetailBinding
 import com.ddd4.synesthesia.beer.ext.showToast
@@ -29,7 +27,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     private val itemClickListener by lazy {
         object : ItemClickListener {
-            override fun <T> onItemClick(item: T) {
+            override fun <T> onItemClick(item: T?) {
                 when(item) {
                     // 리뷰
                     is Review -> {
@@ -63,7 +61,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                     MotionEvent.ACTION_UP -> {
                         StarRatingBottomDialog().run {
                             val bundle = Bundle()
-                            bundle.putInt("id",args.beer.id)
+                            bundle.putParcelable("beer",detailViewModel.response.value?.beer)
                             this@run.arguments = bundle
                             showDialog(this@DetailFragment.parentFragmentManager) {
                                 detailViewModel.fetchBeer(args.beer.id)
@@ -82,7 +80,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
 
     override fun initObserving() {
         super.initObserving()
-        detailViewModel.result.observe(viewLifecycleOwner, Observer { result ->
+        detailViewModel.response.observe(viewLifecycleOwner, Observer { result ->
             result.beer?.reviews?.let { binding.reviewAdapter?.updateItems(it) }
             result.beer?.aromas?.let { binding.aromaAdapter?.updateItems(it) }
             result.relatedBeers?.aromaRelated?.let { binding.aromaRelatedAdapter?.updateItems(it) }
