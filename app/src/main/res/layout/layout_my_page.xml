@@ -24,9 +24,9 @@
             android:layout_height="wrap_content"
             tools:text="내 활동"
             android:text="@{my.title}"
-            android:textSize="13sp"
-            android:paddingVertical="14dp"
-            android:textColor="@{my.type == InfomationsType.LOGOUT || my.type == InfomationsType.UNLINK ? @color/manatee : @color/white}"
+            android:textSize="@{my.type == InfomationsType.ITEM ? @dimen/textSize_14 : @dimen/textSize_12}"
+            android:paddingVertical="12dp"
+            android:textColor="@{my.type == InfomationsType.ITEM ? @color/white : @color/color_7a7a7a}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
             app:layout_constraintTop_toTopOf="parent"/>

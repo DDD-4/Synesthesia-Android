@@ -3,5 +3,7 @@
     <dimen name="textSize_12">12sp</dimen>
     <dimen name="textSize_14">14sp</dimen>
     <dimen name="textSize_18">18sp</dimen>
+    <dimen name="margin_0">0dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
 
 </resources>
