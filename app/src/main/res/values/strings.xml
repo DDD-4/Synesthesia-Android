@@ -43,4 +43,11 @@
     <string name="register_review">별점과 리뷰 남기기</string>
     <string name="manufacturer">제조사</string>
     <string name="registered_review">후기가 등록되었습니다.</string>
+    <string name="style">스타일</string>
+    <string name="aroma">향</string>
+    <string name="alcohol">도수</string>
+    <string name="minAbv">최소 도수</string>
+    <string name="maxAbv">최대 도수</string>
+    <string name="country">국가</string>
+    <string name="show_products">상품 보러가기</string>
 </resources>

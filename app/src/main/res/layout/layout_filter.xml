@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
+            type="com.ddd4.synesthesia.beer.presentation.ui.home.adapter.FilterCountryAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,14 +31,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_drop_down" />
+                android:src="@drawable/ic_arrow_drop_down"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="14dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_close" />
+                android:src="@drawable/ic_close"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
@@ -59,7 +61,7 @@
                     android:id="@+id/style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="스타일"
+                    android:text="@string/style"
                     android:layout_marginStart="28dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textSize_18"
@@ -77,7 +79,8 @@
                     android:bufferType="spannable"
                     app:layout_constraintBottom_toBottomOf="@id/style"
                     app:layout_constraintStart_toEndOf="@id/style"
-                    app:layout_constraintTop_toTopOf="@id/style" />
+                    app:layout_constraintTop_toTopOf="@id/style"
+                    app:updateCountText="@{vm.styleSelectedList}" />
 
 
                 <com.google.android.material.chip.ChipGroup
@@ -98,7 +101,7 @@
                     android:id="@+id/aroma"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="향"
+                    android:text="@string/aroma"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="18dp"
                     android:textColor="@color/white"
@@ -117,7 +120,8 @@
                     android:bufferType="spannable"
                     app:layout_constraintBottom_toBottomOf="@id/aroma"
                     app:layout_constraintStart_toEndOf="@id/aroma"
-                    app:layout_constraintTop_toTopOf="@id/aroma" />
+                    app:layout_constraintTop_toTopOf="@id/aroma"
+                    app:updateCountText="@{vm.aromaSelectedList}" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/aroma_chip_group"
@@ -136,7 +140,7 @@
                     android:id="@+id/abv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="도수"
+                    android:text="@string/alcohol"
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="56dp"
                     android:textColor="@color/white"
@@ -145,36 +149,94 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/aroma_chip_group" />
 
-                <SeekBar
+                <TextView
+                    android:id="@+id/tv_abv_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="@dimen/textSize_14"
+                    android:fontFamily="@font/notosans_kr_regular"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@id/abv"
+                    app:layout_constraintStart_toEndOf="@id/abv"
+                    app:layout_constraintTop_toTopOf="@id/abv"
+                    app:updateAbvRange="@{vm.abvSelectedRange}" />
+
+
+                <com.jaygoo.widget.RangeSeekBar
                     android:id="@+id/abv_seekbar"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="16dp"
                     android:layout_marginTop="22dp"
                     android:layout_marginStart="28dp"
                     android:layout_marginEnd="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/abv" />
+                    app:layout_constraintTop_toBottomOf="@id/abv"
+                    app:rsb_gravity="center"
+                    app:rsb_indicator_show_mode="alwaysHide"
+                    app:rsb_mode="range"
+                    app:rsb_progress_color="@color/butterscotch"
+                    app:rsb_progress_default_color="@color/color_7a7a7a"
+                    app:rsb_progress_height="3dp"
+                    app:rsb_progress_radius="5dp"
+                    app:rsb_thumb_drawable="@drawable/ic_seekbar"
+                    app:rsb_thumb_height="16dp"
+                    app:rsb_thumb_width="16dp" />
 
+                <TextView
+                    android:id="@+id/tv_min_abv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/minAbv"
+                    android:textSize="@dimen/textSize_12"
+                    android:textColor="@color/color_c8c8c8"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintStart_toStartOf="@id/abv_seekbar"
+                    app:layout_constraintTop_toBottomOf="@id/abv_seekbar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/maxAbv"
+                    android:textSize="@dimen/textSize_12"
+                    android:textColor="@color/color_c8c8c8"
+                    android:fontFamily="@font/notosans_kr_bold"
+                    app:layout_constraintEnd_toEndOf="@id/abv_seekbar"
+                    app:layout_constraintTop_toBottomOf="@id/abv_seekbar" />
 
                 <TextView
                     android:id="@+id/country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="국가"
+                    android:text="@string/country"
                     android:layout_marginTop="56dp"
                     android:layout_marginStart="28dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textSize_18"
                     android:fontFamily="@font/notosans_kr_bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/abv_seekbar" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_min_abv" />
+
+                <TextView
+                    android:id="@+id/tv_country_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:textSize="@dimen/textSize_14"
+                    android:fontFamily="@font/notosans_kr_regular"
+                    app:layout_constraintBottom_toBottomOf="@id/country"
+                    app:layout_constraintStart_toEndOf="@id/country"
+                    app:layout_constraintTop_toTopOf="@id/country"
+                    app:updateCountText="@{vm.countrySelectedList}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/country_group"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="24dp"
                     android:layout_marginStart="28dp"
                     android:layout_marginEnd="28dp"
@@ -190,10 +252,10 @@
                     android:id="@+id/btn_done"
                     android:layout_width="0dp"
                     android:layout_height="70dp"
-                    android:text="상품 보러가기"
+                    android:text="@string/show_products"
                     android:background="@color/black"
                     android:textColor="@color/white"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:gravity="center"
                     android:fontFamily="@font/notosans_kr_bold"
                     android:foreground="?attr/selectableItemBackground"

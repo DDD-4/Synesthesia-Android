@@ -61,3 +61,20 @@ fun decoration(recyclerview : RecyclerView, space : Int?, verticalSpace : Int?, 
             }
     }
 }
+
+@BindingAdapter("app:updateCountText")
+fun updateCountText(countView: TextView, selectedItemList: MutableLiveDataList<String>) {
+    if (selectedItemList.isNotEmpty()) {
+        val suffix = "${selectedItemList.count().minus(1)}개"
+        countView.text =
+            if (selectedItemList.count() > 1) "${selectedItemList[0]} 외 $suffix" else selectedItemList[0]
+    } else {
+        countView.text = ""
+    }
+}
+
+@BindingAdapter("app:updateAbvRange")
+fun updateAbvRange(abvTextView: TextView, abvRange: Pair<Int, Int>) {
+    val text = "${abvRange.first} - ${abvRange.second}"
+    abvTextView.text = text
+}

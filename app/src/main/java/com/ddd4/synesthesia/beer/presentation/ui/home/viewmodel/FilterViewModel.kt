@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ddd4.synesthesia.beer.presentation.base.BaseViewModel
+import com.ddd4.synesthesia.beer.util.MutableLiveDataList
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.filter.FilterSetting
 
@@ -11,17 +12,28 @@ class FilterViewModel @ViewModelInject constructor(
     private val filterSetting: FilterSetting
 ) : BaseViewModel() {
 
-    val styleSelectedList: MutableList<String> =
-        filterSetting.beerFilter.styleFilter?.toMutableList() ?: mutableListOf()
-    val aromaSelectedList: MutableList<String> =
-        filterSetting.beerFilter.aromaFilter?.toMutableList() ?: mutableListOf()
+    val styleSelectedList: MutableLiveDataList<String> = MutableLiveDataList(
+        filterSetting.beerFilter.styleFilter ?: mutableListOf()
+    )
+
+    val aromaSelectedList: MutableLiveDataList<String> = MutableLiveDataList(
+        filterSetting.beerFilter.aromaFilter ?: mutableListOf()
+    )
+
+    var abvSelectedRange: MutableLiveData<Pair<Int, Int>> = MutableLiveData(
+        filterSetting.beerFilter.abvFilter ?: 0 to 10
+    )
+
+    val countrySelectedList: MutableLiveDataList<String> = MutableLiveDataList(
+        filterSetting.beerFilter.countryFilter ?: mutableListOf()
+    )
 
     fun executeFiltering() {
         filterSetting.beerFilter = BeerFilter(
-            styleSelectedList,
-            aromaSelectedList,
-            null,
-            null
+            styleSelectedList.value,
+            aromaSelectedList.value,
+            abvSelectedRange.value,
+            countrySelectedList.value
         )
     }
 
@@ -50,19 +62,16 @@ class FilterViewModel @ViewModelInject constructor(
 
     private val _countryList = MutableLiveData<List<String>>(
         mutableListOf(
-            "미국",
-            "독일",
-            "중국",
-            "일본",
-            "한국",
-            "이탈리아",
-            "멕시코",
-            "브라질",
-            "태국",
-            "인도",
-            "프랑스",
-            "영국",
-            "스위스"
+            "TEST_COUNTRY_0",
+            "TEST_COUNTRY_1",
+            "TEST_COUNTRY_2",
+            "TEST_COUNTRY_3",
+            "TEST_COUNTRY_4",
+            "TEST_COUNTRY_5",
+            "TEST_COUNTRY_6",
+            "TEST_COUNTRY_7",
+            "TEST_COUNTRY_8",
+            "TEST_COUNTRY_9"
         )
     )
     val countryList: LiveData<List<String>>
