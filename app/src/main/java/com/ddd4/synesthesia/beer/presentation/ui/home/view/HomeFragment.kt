@@ -106,6 +106,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         homeViewModel.beerFilter.observe(viewLifecycleOwner, Observer {
             binding.filterChipGroup.setFilterChips(it)
+            endlessRecyclerViewScrollListener.resetState()
             homeViewModel.load()
         })
     }

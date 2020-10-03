@@ -79,7 +79,9 @@ class HomeViewModel @ViewModelInject constructor(
                     _beerFilter.postValue(filter)
                 }
                 .onStart { delay(200) }
-                .collect { }
+                .collect {
+                    _cursor.postValue(0)
+                }
         }
     }
 
