@@ -18,24 +18,28 @@
         <ImageView
             android:id="@+id/iv_beer_thumbnail"
             android:layout_width="80dp"
-            android:layout_height="100dp"
+            android:layout_height="110dp"
             android:background="@color/white"
             android:scaleType="centerCrop"
-            app:loadUrl="@{item.imageUrl.size() > 0 ? item.imageUrl.get(0) : null}"
+            app:loadUrl="@{item.thumbnailImage}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_close"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_beer_style"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:fontFamily="@font/notosans_kr_bold"
             android:text="@{item.beerStyle}"
             android:textColor="@color/white"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
             app:layout_constraintStart_toEndOf="@id/iv_beer_thumbnail"
+            app:layout_constraintEnd_toStartOf="@+id/tv_beer_rate"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="맥주스타일" />
 
@@ -49,6 +53,7 @@
             android:textSize="13sp"
             android:drawableStart="@drawable/ic_star"
             android:drawablePadding="4dp"
+            android:includeFontPadding="false"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_beer_style"
@@ -56,27 +61,32 @@
 
         <TextView
             android:id="@+id/tv_beer_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.name}"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:singleLine="true"
             android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_style"
             tools:text="맥주 이름" />
 
         <TextView
             android:id="@+id/tv_beer_country"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.country}"
             android:textColor="@color/white"
             android:textSize="12sp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@+id/tv_beer_abv"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_name"
             tools:text="대한민국" />
@@ -97,6 +107,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:scrollbars="none"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_beer_thumbnail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
@@ -106,7 +117,6 @@
                 android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
                 app:addChip="@{item.aromas}"
                 app:singleLine="true" />
         </HorizontalScrollView>

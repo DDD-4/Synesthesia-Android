@@ -17,6 +17,7 @@ class WriteNickNameActivity : BaseActivity<ActivityWriteNicknameBinding>(R.layou
                 requestFocus()
             }
             ivClose.setOnClickListener { finish() }
+            ivClear.setOnClickListener { contents = "" }
             btnSave.setOnClickListener {
                 SimpleCallback.callback?.call(edtNickname.text.toString())
                 finish()

@@ -31,6 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="@{related.beerStyle}"
+            android:ellipsize="end"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="@+id/iv_beer_thumbnail"
             app:layout_constraintStart_toStartOf="@+id/iv_beer_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/iv_beer_thumbnail"
@@ -55,6 +57,10 @@
             android:layout_height="wrap_content"
             android:text="@{@string/abv(related.abv)}"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintEnd_toStartOf="@+id/tv_beer_rate"
             app:layout_constraintStart_toStartOf="@+id/iv_beer_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
             tools:text="5.0%" />
@@ -69,6 +75,7 @@
             android:layout_marginStart="8dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_beer_abv"
             app:layout_constraintTop_toTopOf="@+id/tv_beer_abv"
             app:layout_constraintBottom_toBottomOf="@+id/tv_beer_abv"
             tools:text="3.5점" />
