@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.ddd4.synesthesia.beer.BR
 import com.ddd4.synesthesia.beer.HomeNavigationDirections
 import com.ddd4.synesthesia.beer.R
@@ -19,6 +20,7 @@ import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
+import com.example.hyojin.util.EndlessRecyclerViewScrollListener
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +40,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             BR.item,
             itemClickListener
         )
+    }
+
+    private val endlessRecyclerViewScrollListener by lazy {
+        object : EndlessRecyclerViewScrollListener(binding.contents.itemList.layoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                homeViewModel.loadMore()
+            }
+        }
     }
 
     private val itemClickListener by lazy {
@@ -78,6 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
         with(itemList) {
             adapter = listAdapter
+            addOnScrollListener(endlessRecyclerViewScrollListener)
         }
 
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {

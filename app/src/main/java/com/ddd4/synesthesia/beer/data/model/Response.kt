@@ -8,5 +8,7 @@ data class Response(
     @SerializedName("beer")
     val beer: Beer?,
     @SerializedName("related_beers")
-    val relatedBeers : RelatedBeers?
+    val relatedBeers : RelatedBeers?,
+    @SerializedName("next_cursor")
+    val nextCursor : Int?
 )

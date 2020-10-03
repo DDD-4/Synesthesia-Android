@@ -14,96 +14,111 @@
             type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include
-                android:id="@+id/header"
-                layout="@layout/layout_home_header" />
-
-            <HorizontalScrollView
-                android:id="@+id/filter_scroll"
-                android:layout_width="0dp"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:paddingStart="28dp"
-                android:paddingEnd="28dp"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                android:background="@color/black"
-                app:filterVisibility="@{vm.beerFilter}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/header">
+                app:layout_scrollFlags="scroll|enterAlways">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/filter_chip_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:chipSpacing="0dp"
-                    app:chipSpacingHorizontal="16dp"
-                    tools:visibility="visible" />
 
-            </HorizontalScrollView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/filter"
-                android:layout_width="0dp"
-                android:layout_height="44dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/filter_scroll">
+                    <include
+                        android:id="@+id/header"
+                        layout="@layout/layout_home_header" />
 
-                <TextView
-                    android:id="@+id/sort"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
-                    android:fontFamily="@font/notosans_kr_regular"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:drawableEnd="@drawable/ic_arrow_drop_down"
-                    android:drawablePadding="4dp"
-                    android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:sortTypeText="@{vm.sortType}"
+                    <HorizontalScrollView
+                        android:id="@+id/filter_scroll"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:overScrollMode="never"
+                        android:paddingStart="28dp"
+                        android:paddingEnd="28dp"
+                        android:scrollbars="none"
+                        android:visibility="gone"
+                        app:filterVisibility="@{vm.beerFilter}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/header">
 
-                    />
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/filter_chip_group"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:chipSpacing="0dp"
+                            app:chipSpacingHorizontal="16dp"
+                            tools:visibility="visible" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </HorizontalScrollView>
 
-            <include
-                android:id="@+id/contents"
-                layout="@layout/layout_home_contents"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:adapter="@{adapter}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/filter" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/filter"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/filter_scroll">
 
-            <!-- 임시 -->
-            <TextView
-                android:id="@+id/empty"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="데이터가 없음"
-                android:textSize="@dimen/textSize_18"
-                android:textAlignment="center"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/filter" />
+                        <TextView
+                            android:id="@+id/sort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="12dp"
+                            android:drawableEnd="@drawable/ic_arrow_drop_down"
+                            android:drawablePadding="4dp"
+                            android:fontFamily="@font/notosans_kr_regular"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:sortTypeText="@{vm.sortType}"
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                            />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <!-- 임시 -->
+                    <TextView
+                        android:id="@+id/empty"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:text="데이터가 없음"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/textSize_18"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/filter" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include
+            android:id="@+id/contents"
+            layout="@layout/layout_home_contents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:adapter="@{adapter}"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filter" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

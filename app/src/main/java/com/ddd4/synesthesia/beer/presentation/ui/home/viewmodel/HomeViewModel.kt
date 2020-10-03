@@ -39,20 +39,46 @@ class HomeViewModel @ViewModelInject constructor(
     val beerFilter: LiveData<BeerFilter>
         get() = _beerFilter
 
+    private val _cursor = MutableLiveData(0)
+    val cursor : LiveData<Int> get() = _cursor
+
+    private val _isLoadMore = MutableLiveData<Boolean>(false)
+    val isLoadMore : LiveData<Boolean> get() = _isLoadMore
+
     init {
+        load()
+    }
+
+    fun loadMore() {
+        _isLoadMore.value = true
+        load()
+    }
+
+    fun load() {
         viewModelScope.launch(Dispatchers.IO) {
             sortSetting.getSort()
                 .combine(filterSetting.getBeerFilterFlow()) { type, filter ->
                     _sortType.postValue(type)
                     _beerFilter.postValue(filter)
-                    beerRepository.getBeerList(type.value, filter)
+                    beerRepository.getBeerList(type.value, filter,_cursor.value)
                 }
                 .onStart { delay(200) }
                 .collect { it ->
-                    _beerList.postValue(it)
+                    _cursor.postValue(it?.nextCursor)
+                    if(_isLoadMore.value == true) {
+                        _beerList.postValue(_beerList.value?.let { beers ->
+                            beers.toMutableList().apply {
+                                it?.beers?.let { data ->
+                                    addAll(data)
+                                }
+                            }
+                        })
+                    } else {
+                        _beerList.postValue(it?.beers)
+                    }
+                    _isLoadMore.postValue(false)
                 }
         }
-
     }
 
     fun updateFilter(item: String, tag: String) {
