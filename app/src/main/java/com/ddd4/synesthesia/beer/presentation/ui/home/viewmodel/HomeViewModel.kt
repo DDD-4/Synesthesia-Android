@@ -32,12 +32,10 @@ class HomeViewModel @ViewModelInject constructor(
         get() = _beerList
 
     private val _sortType = MutableLiveData<SortType>()
-    val sortType: LiveData<SortType>
-        get() = _sortType
+    val sortType: LiveData<SortType> get() = _sortType
 
     private val _beerFilter = MutableLiveData<BeerFilter>()
-    val beerFilter: LiveData<BeerFilter>
-        get() = _beerFilter
+    val beerFilter: LiveData<BeerFilter> get() = _beerFilter
 
     private val _cursor = MutableLiveData(0)
     val cursor : LiveData<Int> get() = _cursor
@@ -46,7 +44,7 @@ class HomeViewModel @ViewModelInject constructor(
     val isLoadMore : LiveData<Boolean> get() = _isLoadMore
 
     init {
-        load()
+        filterSort()
     }
 
     fun loadMore() {
@@ -56,28 +54,32 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun load() {
         viewModelScope.launch(Dispatchers.IO) {
+            val response = beerRepository.getBeerList(_sortType.value?.value, _beerFilter.value,_cursor.value)
+            _cursor.postValue(response?.nextCursor)
+            if(_isLoadMore.value == true) {
+                _beerList.postValue(_beerList.value?.let { beers ->
+                    beers.toMutableList().apply {
+                        response?.beers?.let { data ->
+                            addAll(data)
+                        }
+                    }
+                })
+            } else {
+                _beerList.postValue(response?.beers)
+            }
+            _isLoadMore.postValue(false)
+        }
+    }
+
+    private fun filterSort() {
+        viewModelScope.launch(Dispatchers.IO) {
             sortSetting.getSort()
                 .combine(filterSetting.getBeerFilterFlow()) { type, filter ->
                     _sortType.postValue(type)
                     _beerFilter.postValue(filter)
-                    beerRepository.getBeerList(type.value, filter,_cursor.value)
                 }
                 .onStart { delay(200) }
-                .collect { it ->
-                    _cursor.postValue(it?.nextCursor)
-                    if(_isLoadMore.value == true) {
-                        _beerList.postValue(_beerList.value?.let { beers ->
-                            beers.toMutableList().apply {
-                                it?.beers?.let { data ->
-                                    addAll(data)
-                                }
-                            }
-                        })
-                    } else {
-                        _beerList.postValue(it?.beers)
-                    }
-                    _isLoadMore.postValue(false)
-                }
+                .collect { }
         }
     }
 
