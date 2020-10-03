@@ -142,6 +142,10 @@ class FilterDialog
 
             }
 
+            btnClose.setOnClickListener {
+                dismiss()
+            }
+
             btnDone.setOnClickListener {
                 viewModel.executeFiltering()
                 dismiss()
