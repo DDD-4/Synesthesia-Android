@@ -13,7 +13,6 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseViewModel
 import com.ddd4.synesthesia.beer.util.SingleLiveEvent
 import com.kakao.sdk.user.model.User
 import kotlinx.coroutines.launch
-import okhttp3.internal.notifyAll
 
 class MyPageViewModel @ViewModelInject constructor(
     private val loginRepository : LoginRepository,
@@ -34,18 +33,17 @@ class MyPageViewModel @ViewModelInject constructor(
     }
 
     fun generateInfoList() : List<MyInfo> = arrayListOf(
-        MyInfo(InfomationsData.ACTIVE.title, InfomationsType.HEADER),
-        MyInfo(InfomationsData.STAR.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.REVIEW.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.HELP.title, InfomationsType.HEADER),
-        MyInfo(InfomationsData.NOTICE.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.CONTACT.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.SERVICE_INFO.title, InfomationsType.HEADER),
-        MyInfo(InfomationsData.TERMS_OF_USE.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.SETTING.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.PUSH.title, InfomationsType.ITEM),
-        MyInfo(InfomationsData.LOGOUT.title, InfomationsType.LOGOUT),
-        MyInfo(InfomationsData.UNLINK.title, InfomationsType.UNLINK)
+        MyInfo(InfomationsData.ACTIVE.title, InfomationsData.ACTIVE.type),
+        MyInfo(InfomationsData.STAR_REVIEW.title, InfomationsData.STAR_REVIEW.type),
+        MyInfo(InfomationsData.HELP.title, InfomationsData.HELP.type),
+        MyInfo(InfomationsData.NOTICE.title, InfomationsData.NOTICE.type),
+        MyInfo(InfomationsData.CONTACT.title, InfomationsData.CONTACT.type),
+        MyInfo(InfomationsData.SERVICE_INFO.title, InfomationsData.SERVICE_INFO.type),
+        MyInfo(InfomationsData.TERMS_OF_USE.title, InfomationsData.TERMS_OF_USE.type),
+        MyInfo(InfomationsData.SETTING.title, InfomationsData.SETTING.type),
+        MyInfo(InfomationsData.PUSH.title, InfomationsData.PUSH.type),
+        MyInfo(InfomationsData.LOGOUT.title, InfomationsData.LOGOUT.type),
+        MyInfo(InfomationsData.UNLINK.title, InfomationsData.UNLINK.type)
     )
 
     private fun me() = loginRepository.me {

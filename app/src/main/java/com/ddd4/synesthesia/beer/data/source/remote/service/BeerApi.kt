@@ -58,6 +58,6 @@ interface BeerApi {
      * 리뷰
      */
     @GET("api/review")
-    suspend fun getReview() : List<Result<Review>>
+    suspend fun getReview() : Results<Review>
 
 }

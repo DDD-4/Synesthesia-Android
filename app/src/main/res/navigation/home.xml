@@ -39,6 +39,11 @@
             app:nullable="true"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/myReview"
+        android:name="com.ddd4.synesthesia.beer.presentation.ui.review.view.MyReviewFragment"
+        tools:layout="@layout/fragment_my_review"/>
+
 
     <!-- Global Action -->
     <action
@@ -62,6 +67,15 @@
     <action
         android:id="@+id/action_to_review_all"
         app:destination="@id/review"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out"
+        />
+
+    <action
+        android:id="@+id/action_to_my_review"
+        app:destination="@id/myReview"
         app:enterAnim="@anim/fade_in"
         app:exitAnim="@anim/fade_out"
         app:popEnterAnim="@anim/fade_in"

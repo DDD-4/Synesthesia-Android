@@ -6,6 +6,8 @@ import androidx.core.os.bundleOf
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.ddd4.synesthesia.beer.HomeNavigationDirections
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsData
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
@@ -21,7 +23,6 @@ import com.ddd4.synesthesia.beer.util.ItemClickListener
 import com.ddd4.synesthesia.beer.util.SimpleCallback
 import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_global_toolbar.view.*
 
 @AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
@@ -86,11 +87,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             InfomationsData.ACTIVE.title -> {
 
             }
-            InfomationsData.STAR.title -> {
-
-            }
-            InfomationsData.REVIEW.title -> {
-
+            InfomationsData.STAR_REVIEW.title -> {
+                findNavController().navigate(HomeNavigationDirections.actionToMyReview())
             }
             InfomationsData.HELP.title -> {
 

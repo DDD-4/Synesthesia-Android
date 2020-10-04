@@ -37,6 +37,7 @@
     <string name="sort_default">기본 정렬</string>
     <string name="sort_rating">별점 정렬</string>
     <string name="sort_review">리뷰 정렬</string>
+    <string name="my_review">내가 남긴 별점과 리뷰</string>
     <string name="review">리뷰</string>
     <string name="star_rating">별점</string>
     <string name="message_review">맥주이름에 대한 자세한 후기를 작성해주세요</string>

@@ -1,10 +1,6 @@
 package com.ddd4.synesthesia.beer.data.repository
 
-import com.ddd4.synesthesia.beer.data.model.Beer
-import com.ddd4.synesthesia.beer.data.model.Response
-import com.ddd4.synesthesia.beer.data.model.Result
-import com.ddd4.synesthesia.beer.data.model.Review
-import com.ddd4.synesthesia.beer.data.model.User
+import com.ddd4.synesthesia.beer.data.model.*
 import com.ddd4.synesthesia.beer.data.source.remote.service.BeerApi
 import com.ddd4.synesthesia.beer.domain.repository.BeerRepository
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
@@ -48,7 +44,7 @@ class BeerRepositoryImpl @Inject constructor(
         return beerApi.postReview(id, rating, review)
     }
 
-    override suspend fun getReview() : List<Result<Review>> {
+    override suspend fun getReview() : Results<Review> {
         return beerApi.getReview()
     }
 }
