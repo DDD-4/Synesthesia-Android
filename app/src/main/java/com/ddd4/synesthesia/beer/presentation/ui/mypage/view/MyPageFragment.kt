@@ -44,7 +44,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     InfomationsType.UNLINK -> { unConnected(getString(R.string.unlink_message)) }
                     else -> {
                         val bundle = bundleOf(
-                            getString(R.string.key_review) to binding.tvName.text
+                            getString(R.string.key_nickname) to binding.tvName.text
                         )
                         start<WriteNickNameActivity>(false,bundle)
                     }
