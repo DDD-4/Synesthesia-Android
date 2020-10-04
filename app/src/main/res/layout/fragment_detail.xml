@@ -253,16 +253,17 @@
                     android:textStyle="bold"
                     android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="@+id/tv_beer_manufacturer_title"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_all"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_review_all"
                     app:layout_constraintTop_toBottomOf="@+id/divider2"
                     tools:text="@string/review" />
 
                 <TextView
-                    android:id="@+id/tv_all"
+                    android:id="@+id/tv_review_all"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:textSize="13sp"
+                    android:textStyle="bold"
                     android:text="@string/show_all"
                     android:visibility="@{vm.response.beer.reviews == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_review"

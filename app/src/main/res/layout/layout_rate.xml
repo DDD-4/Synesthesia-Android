@@ -23,6 +23,7 @@
             android:text="@{@string/rate(rate)}"
             android:textColor="@color/butterscotch"
             android:textSize="13sp"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/tv_beer_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_beer_style"

@@ -3,13 +3,15 @@ package com.ddd4.synesthesia.beer.data.model
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Parcelize
 data class Review(
     @SerializedName("ratio")
     val ratio: Float?,
-    @SerializedName("date")
-    val date: String?,
+    @SerializedName("created_at")
+    val date: Date?,
     @SerializedName("user_id")
     val userId: Int?,
     @SerializedName("beer")
@@ -18,4 +20,7 @@ data class Review(
     val content: String?,
     @SerializedName("nickname")
     val nickname: String?
-) : Parcelable
+) : Parcelable {
+    val createdAt : String?
+        get() = SimpleDateFormat("YYYY. MM. dd").format(date)
+}

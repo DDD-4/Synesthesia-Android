@@ -37,8 +37,7 @@ class HomeViewModel @ViewModelInject constructor(
     private val _beerFilter = MutableLiveData<BeerFilter>()
     val beerFilter: LiveData<BeerFilter> get() = _beerFilter
 
-    private val _cursor = MutableLiveData(0)
-    val cursor : LiveData<Int> get() = _cursor
+    val cursor = MutableLiveData(0)
 
     private val _isLoadMore = MutableLiveData<Boolean>(false)
     val isLoadMore : LiveData<Boolean> get() = _isLoadMore
@@ -54,8 +53,8 @@ class HomeViewModel @ViewModelInject constructor(
 
     fun load() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = beerRepository.getBeerList(_sortType.value?.value, _beerFilter.value,_cursor.value)
-            _cursor.postValue(response?.nextCursor)
+            val response = beerRepository.getBeerList(_sortType.value?.value, _beerFilter.value,cursor.value)
+            cursor.postValue(response?.nextCursor)
             if(_isLoadMore.value == true) {
                 _beerList.postValue(_beerList.value?.let { beers ->
                     beers.toMutableList().apply {
@@ -80,7 +79,7 @@ class HomeViewModel @ViewModelInject constructor(
                 }
                 .onStart { delay(200) }
                 .collect {
-                    _cursor.postValue(0)
+                    cursor.postValue(0)
                 }
         }
     }
@@ -119,5 +118,9 @@ class HomeViewModel @ViewModelInject constructor(
     private fun removeContainsItem(removeItem: String, items: MutableList<String>?) {
         items ?: return
         if (items.contains(removeItem)) items.remove(removeItem)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }
