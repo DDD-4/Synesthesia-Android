@@ -53,7 +53,7 @@
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
@@ -62,12 +62,23 @@
             android:textStyle="bold"
             android:ellipsize="end"
             android:singleLine="true"
+            android:maxLength="@integer/max_length"
             android:onClick="@{() -> itemClickListener.onItemClick(null)}"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="@+id/iv_profile"
             app:layout_constraintStart_toStartOf="@+id/iv_profile"
             app:layout_constraintTop_toBottomOf="@+id/iv_profile"
             tools:text="공감각" />
+
+        <TextView
+            android:id="@+id/tv_name_cell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="님"
+            app:layout_constraintTop_toTopOf="@+id/tv_name"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_name" />
 
         <ImageView
             android:id="@+id/iv_modify"
@@ -80,7 +91,7 @@
             android:scaleX="0.7"
             android:onClick="@{() -> itemClickListener.onItemClick(null)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_name_cell"
             app:layout_constraintTop_toTopOf="@+id/tv_name" />
 
 
@@ -88,7 +99,7 @@
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="8dp"
             android:text="@{myPageVm.userInfo.kakaoAccount.email}"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.email) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +111,7 @@
             android:id="@+id/tv_kakao_connect_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:text="@string/connect_kakao"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"

@@ -16,6 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="28dp"
+        android:paddingVertical="8dp"
+        app:layout_margin_top="@{my.type == InfomationsType.ITEM ? @integer/space_4 : @integer/space_16}"
         app:forgroundSelected="@{my.type}">
 
         <TextView
@@ -24,8 +26,7 @@
             android:layout_height="wrap_content"
             tools:text="내 활동"
             android:text="@{my.title}"
-            android:textSize="@{my.type == InfomationsType.ITEM ? @dimen/textSize_14 : @dimen/textSize_12}"
-            android:paddingVertical="12dp"
+            android:textSize="@{my.type == InfomationsType.HEADER ? @dimen/textSize_12 : @dimen/textSize_14}"
             android:textColor="@{my.type == InfomationsType.ITEM ? @color/white : @color/color_7a7a7a}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
@@ -35,7 +36,7 @@
             android:id="@+id/iv_arrow"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:src="@drawable/arrow_right_baseline"
+            android:src="@drawable/ic_arrow_right"
             android:visibility="@{my.type == InfomationsType.ITEM ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="@+id/tv_title"
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"

@@ -1,13 +1,17 @@
 package com.ddd4.synesthesia.beer.util
 
+import android.content.res.Resources
 import android.util.TypedValue
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
+import com.ddd4.synesthesia.beer.ext.dp
 import com.ddd4.synesthesia.beer.ext.toPx
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.sort.SortType
@@ -29,11 +33,11 @@ fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
 }
 
 @BindingAdapter(value = ["forgroundSelected"])
-fun forgroundSelected(view : View, type : InfomationsType) = if(type == InfomationsType.HEADER) {
+fun forgroundSelected(view: View, type: InfomationsType) = if(type == InfomationsType.HEADER) {
     view.foreground = null
 } else {
     val typeValue = TypedValue()
-    view.context.theme.resolveAttribute(android.R.attr.selectableItemBackground,typeValue,true)
+    view.context.theme.resolveAttribute(android.R.attr.selectableItemBackground, typeValue, true)
     view.foreground = view.context.getDrawable(typeValue.resourceId)
 }
 
@@ -48,16 +52,26 @@ fun sortTypeText(textView: TextView, type: SortType?) {
 
 }
 
-@BindingAdapter(value = ["space","vertical_space","horizontal_space"], requireAll = false)
-fun decoration(recyclerview : RecyclerView, space : Int?, verticalSpace : Int?, horizontalSpace : Int?) {
+@BindingAdapter(value = ["space", "vertical_space", "horizontal_space"], requireAll = false)
+fun decoration(recyclerview: RecyclerView, space: Int?, verticalSpace: Int?, horizontalSpace: Int?) {
     verticalSpace?.let {
-        RecyclerItemDecoration(space = space?.toFloat()?.toPx(recyclerview.context) ?: 0,verticalSpace = verticalSpace.toFloat().toPx(recyclerview.context))
+        RecyclerItemDecoration(
+            space = space?.toFloat()?.toPx(recyclerview.context) ?: 0,
+            verticalSpace = verticalSpace.toFloat().toPx(
+                recyclerview.context
+            )
+        )
             .run {
                 recyclerview.addItemDecoration(this)
             }
     }
     horizontalSpace?.let {
-        RecyclerItemDecoration(space = space?.toFloat()?.toPx(recyclerview.context) ?: 0, horizontalSpace = horizontalSpace.toFloat().toPx(recyclerview.context))
+        RecyclerItemDecoration(
+            space = space?.toFloat()?.toPx(recyclerview.context) ?: 0,
+            horizontalSpace = horizontalSpace.toFloat().toPx(
+                recyclerview.context
+            )
+        )
             .run {
                 recyclerview.addItemDecoration(this)
             }
@@ -94,4 +108,18 @@ fun homeFilterVisibility(view: View, filter: BeerFilter?) {
         }
     }
 
+}
+
+@BindingAdapter(value = ["layout_margin_top", "layout_margin_bottom", "layout_margin_start", "layout_margin_end"], requireAll = false)
+fun margin(view: ConstraintLayout, marginTop: Int?, marginBottom: Int?, marginStart: Int?, marginEnd: Int?) {
+    val params = ConstraintLayout.LayoutParams(view.layoutParams)
+    params.setMargins(marginStart?.dp ?: 0, marginTop?.dp ?: 0, marginEnd?.dp ?: 0, marginBottom?.dp ?: 0)
+
+//    val px = TypedValue.applyDimension(
+//        TypedValue.COMPLEX_UNIT_DIP,
+//        view,
+//        view.resources.displayMetrics
+//    ).toInt()
+
+    view.layoutParams = params
 }

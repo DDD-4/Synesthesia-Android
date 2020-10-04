@@ -42,6 +42,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginStart="28dp"
+            android:maxLength="@integer/max_length"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_clear"
             app:layout_constraintTop_toBottomOf="@+id/iv_close"
@@ -67,6 +68,17 @@
             android:layout_marginTop="10dp"
             app:layout_constraintBottom_toTopOf="@+id/btn_save"
             app:layout_constraintTop_toBottomOf="@+id/edt_nickname"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/max_text_length(contents.length())}"
+            tools:text="0/10"
+            android:textColor="@{contents.length() >= 10 ? @color/red : @color/white}"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/edt_nickname"
+            app:layout_constraintEnd_toEndOf="@+id/edt_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/under_line"/>
 
         <TextView
             android:id="@+id/btn_save"
