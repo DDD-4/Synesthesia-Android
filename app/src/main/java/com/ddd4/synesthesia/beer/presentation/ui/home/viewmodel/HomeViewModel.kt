@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ddd4.synesthesia.beer.data.model.AppConfig
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.domain.repository.BeerRepository
 import com.ddd4.synesthesia.beer.presentation.base.BaseViewModel
@@ -42,8 +43,18 @@ class HomeViewModel @ViewModelInject constructor(
     private val _isLoadMore = MutableLiveData<Boolean>(false)
     val isLoadMore : LiveData<Boolean> get() = _isLoadMore
 
+    private val _appConfig = MutableLiveData<AppConfig>()
+    val appConfig: LiveData<AppConfig> get() = _appConfig
+
     init {
+        loadAppConfig()
         filterSort()
+    }
+
+    private fun loadAppConfig() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _appConfig.postValue(beerRepository.getAppConfig().result)
+        }
     }
 
     fun loadMore() {

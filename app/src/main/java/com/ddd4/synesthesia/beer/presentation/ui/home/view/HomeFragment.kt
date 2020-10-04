@@ -23,6 +23,7 @@ import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.example.hyojin.util.EndlessRecyclerViewScrollListener
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -91,6 +92,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             addOnScrollListener(endlessRecyclerViewScrollListener)
         }
 
+        homeViewModel.appConfig.observe(viewLifecycleOwner, Observer {
+            preference.setPreference("appConfig", Gson().toJson(it))
+        })
+
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {
             // TODO 추후 데이터 없는 경우에 대한 디자인 추가 되면 작업 예정
             if (it == null) {
@@ -117,7 +122,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     ) {
         filter.run {
             abvFilter?.let {
-                if (it.first == 0 && it.second == 10) return@let
                 val value = "${it.first}% - ${it.second}%"
                 makeChips(this@setFilterChips, mutableListOf(value), "abv")
             }

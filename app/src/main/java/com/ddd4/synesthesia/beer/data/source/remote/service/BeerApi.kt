@@ -6,6 +6,12 @@ import retrofit2.http.*
 interface BeerApi {
 
     /**
+     * App Config
+     */
+    @GET("api/app-config")
+    suspend fun getAppConfig(): Result<AppConfig>
+
+    /**
      * 맥주 리스트
      */
     @GET("api/beers")

@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.ddd4.synesthesia.beer.R
+import com.ddd4.synesthesia.beer.data.model.AppConfig
 import com.ddd4.synesthesia.beer.databinding.LayoutFilterBinding
 import com.ddd4.synesthesia.beer.presentation.base.BaseBottomSheetDialogFragment
 import com.ddd4.synesthesia.beer.presentation.ui.home.adapter.FilterCountryAdapter
@@ -18,6 +18,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
+import com.google.gson.Gson
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,8 +48,8 @@ class FilterDialog
             it.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
 
+        getAppConfig()
         initBind()
-        initObserving()
     }
 
 
@@ -87,18 +88,12 @@ class FilterDialog
         return R.style.BottomSheetDialog
     }
 
-
-    override fun initObserving() {
-        viewModel.countryList.observe(viewLifecycleOwner, Observer {
-            countryListAdapter.items = it
-        })
-
-    }
-
     override fun initBind() {
         binding.apply {
             vm = viewModel
             adapter = countryListAdapter
+
+            countryListAdapter.items = viewModel.countryList
 
             styleChipGroup.setChips(
                 viewModel.styleList,
@@ -113,21 +108,13 @@ class FilterDialog
             )
 
             abvSeekbar.apply {
-                val range = viewModel.abvSelectedRange.value ?: 0 to 10
-                setRange(0f, 10f, 1f)
+                val range = viewModel.abvSelectedRange.value ?: viewModel.minAbv to viewModel.maxAbv
+                setRange(viewModel.minAbv.toFloat(), viewModel.maxAbv.toFloat(), 1f)
                 setProgress(range.first.toFloat(), range.second.toFloat())
 
                 setOnRangeChangedListener(object : OnRangeChangedListener {
-                    override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
-                        //
-                    }
-
-                    override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
-                        viewModel.abvSelectedRange.postValue(
-                            (view?.leftSeekBar?.progress?.toInt()
-                                ?: 0) to (view?.rightSeekBar?.progress?.toInt() ?: 10)
-                        )
-                    }
+                    override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {}
+                    override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {}
 
                     override fun onRangeChanged(
                         view: RangeSeekBar?,
@@ -151,6 +138,21 @@ class FilterDialog
                 dismiss()
             }
         }
+    }
 
+    private fun getAppConfig() {
+        val value = preference.getPreferenceString("appConfig") ?: return
+        val result = Gson().fromJson(value, AppConfig::class.java)
+        with(viewModel) {
+            styleList.addAll(result.styleList)
+            aromaList.addAll(result.aromaList)
+            countryList.addAll(result.countryList)
+            minAbv = result.minAbv
+            maxAbv = result.maxAbv
+        }
+    }
+
+    override fun initObserving() {
+        //
     }
 }
