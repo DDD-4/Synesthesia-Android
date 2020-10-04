@@ -3,6 +3,7 @@ package com.ddd4.synesthesia.beer.util
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ddd4.synesthesia.beer.R
@@ -11,19 +12,19 @@ import com.ddd4.synesthesia.beer.ext.toPx
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 
 @BindingAdapter("app:addChip")
-fun makeChips(view: View, flavor: List<String>) {
-    for (i in flavor) {
-        val chip = Chip(view.context).apply {
-            text = i
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
-            setTextColor(resources.getColor(R.color.black, null))
-            chipBackgroundColor = resources.getColorStateList(R.color.white, null)
-
+fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
+    chipGroup.removeAllViews()
+    flavor.asSequence().forEach {
+        val chip = Chip(chipGroup.context).apply {
+            setChipDrawable(ChipDrawable.createFromResource(this.context, R.xml.chip_home_item))
+            typeface = ResourcesCompat.getFont(chipGroup.context, R.font.notosans_kr_bold)
+            text = it
         }
-        (view as ChipGroup).addView(chip)
+        chipGroup.addView(chip)
     }
 }
 
