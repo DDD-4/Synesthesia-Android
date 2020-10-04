@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ddd4.synesthesia.beer.HomeNavigationDirections
 import com.ddd4.synesthesia.beer.R
-import com.ddd4.synesthesia.beer.data.model.Beer
+import com.ddd4.synesthesia.beer.data.model.Related
 import com.ddd4.synesthesia.beer.data.model.Review
 import com.ddd4.synesthesia.beer.databinding.FragmentDetailBinding
 import com.ddd4.synesthesia.beer.ext.showToast
@@ -20,7 +20,6 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.DetailViewModel
 import com.ddd4.synesthesia.beer.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_global_toolbar.view.*
 
 @AndroidEntryPoint
 class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_detail) {
@@ -39,6 +38,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                     // 향
                     is String -> {
 
+                    }
+                    // 관련 맥주
+                    is Related -> {
+                        findNavController().navigate(HomeNavigationDirections.actionToDetail(item.id))
                     }
                 }
             }
@@ -70,7 +73,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
                             bundle.putParcelable("beer",detailViewModel.response.value?.beer)
                             this@run.arguments = bundle
                             showDialog(this@DetailFragment.parentFragmentManager) {
-                                detailViewModel.fetchBeer(args.beer.id)
+                                detailViewModel.fetchBeer(args.beerId)
                                 context?.showToast(getString(R.string.registered_review))
                             }
                         }
@@ -80,7 +83,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             }
         }
 
-        detailViewModel.fetchBeer(args.beer.id)
+        detailViewModel.fetchBeer(args.beerId)
         initObserving()
     }
 
