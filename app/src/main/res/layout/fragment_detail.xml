@@ -66,13 +66,13 @@
                     android:id="@+id/iv_beer"
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
-                    android:src="@color/silver_alpha_80"
+                    android:background="@android:color/transparent"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:loadUrl="@{vm.response.beer.imageUrl.size() > 0 ? vm.response.beer.imageUrl.get(0) : null}"
-                    tools:src="@color/silver_alpha_80" />
+                    tools:src="@drawable/beer" />
 
                 <TextView
                     android:id="@+id/tv_beer_manufacturer_title"
@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="28dp"
-                    android:drawableStart="@drawable/ic_star"
+                    android:drawableStart="@drawable/ic_rating_star"
                     android:drawablePadding="4dp"
                     android:text="@{@string/rate_unit(vm.response.beer.rateAvg)}"
                     android:textColor="@color/butterscotch"

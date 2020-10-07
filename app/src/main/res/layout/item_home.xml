@@ -13,24 +13,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="18dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="28dp">
 
         <ImageView
             android:id="@+id/iv_beer_thumbnail"
             android:layout_width="80dp"
             android:layout_height="110dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             app:loadUrl="@{item.thumbnailImage}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/beer" />
 
         <TextView
             android:id="@+id/tv_beer_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.beerStyle}"
             android:textSize="13sp"

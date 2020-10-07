@@ -18,10 +18,25 @@
             android:id="@+id/btn_beer_recommend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오늘의 맥주"
+            android:text="@string/recommend_beer1"
             android:fontFamily="@font/notosans_kr_bold"
             android:textSize="28sp"
+            android:gravity="center"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_beer_recommend2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_beer_recommend2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/recommend_beer2"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:textSize="28sp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/btn_beer_recommend"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -31,8 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_setting"
-            android:padding="18dp"
+            android:src="@drawable/ic_mypage"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

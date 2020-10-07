@@ -21,12 +21,12 @@
             android:id="@+id/iv_beer_thumbnail"
             android:layout_width="80dp"
             android:layout_height="110dp"
-            android:background="@color/white"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             app:loadUrl="@{review.beer.thumbnailImage}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@drawable/beer" />
 
         <TextView
             android:id="@+id/tv_beer_style"
@@ -107,7 +107,7 @@
             android:text="@{@string/rate_unit(review.ratio)}"
             android:textColor="@color/butterscotch"
             android:textSize="13sp"
-            android:drawableStart="@drawable/ic_star"
+            android:drawableStart="@drawable/ic_rating_star"
             android:drawablePadding="4dp"
             android:includeFontPadding="false"
             android:gravity="center"

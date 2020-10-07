@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
+import com.ddd4.synesthesia.beer.R
 
 @BindingAdapter(value = ["loadUrl", "tranformType","radius","loadingDuration"], requireAll = false)
 fun ImageView.loadUrl(
@@ -22,6 +23,7 @@ fun ImageView.loadUrl(
     url?.let { strUrl ->
         Glide.with(this)
             .load(strUrl)
+            .error(R.drawable.beer)
             .apply {
                 when (type) {
                     ImageTransformType.ROUND -> {

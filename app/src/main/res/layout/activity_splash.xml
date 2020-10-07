@@ -19,7 +19,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:src="@mipmap/ic_launcher"/>
 
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

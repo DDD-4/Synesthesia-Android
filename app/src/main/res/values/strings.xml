@@ -58,4 +58,6 @@
     <string name="country">국가</string>
     <string name="show_products">상품 보러가기</string>
     <string name="max_text_length">%d/10</string>
+    <string name="recommend_beer1">오늘의 맥주</string>
+    <string name="recommend_beer2">추천받기</string>
 </resources>
