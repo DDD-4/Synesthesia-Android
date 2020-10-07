@@ -136,6 +136,7 @@ class FilterDialog
             }
 
             btnReset.setOnClickListener {
+                abvSeekbar.setProgress(viewModel.minAbv.toFloat(), viewModel.maxAbv.toFloat())
                 with(viewModel) {
                     styleSelectedList.clear()
                     aromaSelectedList.clear()
@@ -144,7 +145,6 @@ class FilterDialog
                 }
                 styleChipGroup.clearCheck()
                 aromaChipGroup.clearCheck()
-                abvSeekbar.setProgress(viewModel.minAbv.toFloat(), viewModel.maxAbv.toFloat())
                 countryListAdapter.notifyDataSetChanged()
             }
 

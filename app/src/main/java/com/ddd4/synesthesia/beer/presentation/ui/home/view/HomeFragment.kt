@@ -125,9 +125,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 val value = "${it.first}% - ${it.second}%"
                 makeChips(this@setFilterChips, mutableListOf(value), "abv")
             }
-            styleFilter?.let { makeChips(this@setFilterChips, it, "style") }
-            aromaFilter?.let { makeChips(this@setFilterChips, it, "aroma") }
-            countryFilter?.let { makeChips(this@setFilterChips, it, "country") }
+
+            styleFilter?.let {
+                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "style")
+            }
+            aromaFilter?.let {
+                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "aroma")
+            }
+            countryFilter?.let {
+                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "country")
+            }
         }
     }
 

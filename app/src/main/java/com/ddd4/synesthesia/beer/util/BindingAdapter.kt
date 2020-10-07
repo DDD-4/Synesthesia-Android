@@ -93,7 +93,10 @@ fun updateCountText(countView: TextView, selectedItemList: MutableLiveDataList<S
 
 @BindingAdapter("app:updateAbvRange")
 fun updateAbvRange(abvTextView: TextView, abvRange: Pair<Int, Int>?) {
-    abvRange ?: return
+    if (abvRange == null) {
+        abvTextView.text = ""
+        return
+    }
     val text = "${abvRange.first} - ${abvRange.second}"
     abvTextView.text = text
 }
