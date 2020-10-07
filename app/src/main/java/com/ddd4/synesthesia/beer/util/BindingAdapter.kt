@@ -25,6 +25,8 @@ fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
     flavor.asSequence().forEach {
         val chip = Chip(chipGroup.context).apply {
             setChipDrawable(ChipDrawable.createFromResource(this.context, R.xml.chip_home_item))
+            setTextColor(resources.getColor(R.color.black, null))
+            textSize = 12f
             typeface = ResourcesCompat.getFont(chipGroup.context, R.font.notosans_kr_bold)
             text = it
         }
