@@ -28,10 +28,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/btn_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_arrow_drop_down"
+                android:src="@drawable/ic_reset_24"
                 tools:ignore="ContentDescription" />
 
             <ImageView

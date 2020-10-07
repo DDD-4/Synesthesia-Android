@@ -43,5 +43,10 @@ class MutableLiveDataList<T> constructor() : MutableLiveData<MutableList<T>>() {
         return value?.count() ?: 0
     }
 
+    fun clear() {
+        val items: MutableList<T> = value ?: return
+        items.clear()
+    }
+
 
 }

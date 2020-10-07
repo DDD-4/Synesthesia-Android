@@ -29,6 +29,10 @@ class FilterCountryAdapter(
         holder.bind(items[position])
     }
 
+    override fun getItemId(position: Int): Long {
+        return items[position].hashCode().toLong()
+    }
+
     class CountryViewHolder(
         private val binding: ItemFilterCountryBinding,
         private val checkedList: MutableLiveDataList<String>
@@ -37,10 +41,7 @@ class FilterCountryAdapter(
         fun bind(item: String) {
             binding.apply {
                 country = item
-
-                if (checkedList.isNotEmpty() && checkedList.contains(item)) {
-                    checkbox.isChecked = true
-                }
+                checkbox.isChecked = checkedList.isNotEmpty() && checkedList.contains(item)
 
                 checkbox.setOnClickListener {
                     if (checkbox.isChecked) {

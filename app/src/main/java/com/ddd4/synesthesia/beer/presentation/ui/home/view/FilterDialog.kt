@@ -30,7 +30,9 @@ class FilterDialog
     private val viewModel: FilterViewModel by viewModels()
 
     private val countryListAdapter by lazy {
-        FilterCountryAdapter(viewModel.countrySelectedList)
+        FilterCountryAdapter(viewModel.countrySelectedList).apply {
+            setHasStableIds(true)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -131,6 +133,19 @@ class FilterDialog
 
             btnClose.setOnClickListener {
                 dismiss()
+            }
+
+            btnReset.setOnClickListener {
+                with(viewModel) {
+                    styleSelectedList.clear()
+                    aromaSelectedList.clear()
+                    abvSelectedRange.postValue(null)
+                    countrySelectedList.postValue(mutableListOf())
+                }
+                styleChipGroup.clearCheck()
+                aromaChipGroup.clearCheck()
+                abvSeekbar.setProgress(viewModel.minAbv.toFloat(), viewModel.maxAbv.toFloat())
+                countryListAdapter.notifyDataSetChanged()
             }
 
             btnDone.setOnClickListener {
