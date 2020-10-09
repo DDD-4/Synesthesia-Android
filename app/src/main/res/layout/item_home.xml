@@ -5,9 +5,16 @@
 
     <data>
 
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+
         <variable
             name="item"
             type="com.ddd4.synesthesia.beer.data.model.Beer" />
+
+        <variable
+            name="createAt"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,9 +26,10 @@
         <ImageView
             android:id="@+id/iv_beer_thumbnail"
             android:layout_width="80dp"
-            android:layout_height="110dp"
+            android:layout_height="0dp"
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="8:11"
             app:loadUrl="@{item.thumbnailImage}"
             app:errorDrawable="@{@drawable/beer}"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,27 +48,26 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:gravity="center_vertical"
-            android:includeFontPadding="false"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/iv_beer_thumbnail"
-            app:layout_constraintEnd_toStartOf="@+id/tv_beer_rate"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_date"
+            app:layout_constraintTop_toTopOf="@+id/iv_beer_thumbnail"
+            app:layout_constraintBottom_toTopOf="@+id/tv_beer_name"
             tools:text="맥주스타일" />
 
         <TextView
-            android:id="@+id/tv_beer_rate"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{@string/rate_unit(item.rateAvg)}"
-            android:textColor="@color/butterscotch"
+            android:fontFamily="@font/notosans_kr_medium"
+            android:text="@{createAt}"
             android:textSize="13sp"
-            android:drawableStart="@drawable/ic_rating_star"
             android:drawablePadding="4dp"
-            android:includeFontPadding="false"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_beer_style"
-            tools:text="5.0" />
+            tools:text="2020. 10. 10" />
 
         <TextView
             android:id="@+id/tv_beer_name"
@@ -76,22 +83,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_style"
+            app:layout_constraintBottom_toTopOf="@+id/tv_beer_country"
             tools:text="맥주 이름" />
 
         <TextView
             android:id="@+id/tv_beer_country"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:fontFamily="@font/notosans_kr_regular"
             android:text="@{item.country}"
             android:textColor="@color/color_c8c8c8"
             android:textSize="12sp"
             android:singleLine="true"
             android:ellipsize="end"
+            android:paddingBottom="8dp"
+
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_beer_abv"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_name"
+            app:layout_constraintBottom_toTopOf="@+id/hsv_style"
             tools:text="대한민국" />
 
         <TextView
@@ -103,26 +114,50 @@
             android:textColor="@color/color_c8c8c8"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_beer_country"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_beer_country"
             tools:text="4.9%" />
 
         <HorizontalScrollView
+            android:id="@+id/hsv_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:scrollbars="none"
-            android:layout_marginTop="8dp"
+            android:overScrollMode="never"
+            tools:layout_height="20dp"
+            tools:background="@color/white"
+            android:paddingVertical="0dp"
             app:layout_constraintBottom_toBottomOf="@id/iv_beer_thumbnail"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_beer_rate"
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_country">
 
-            <com.google.android.material.chip.ChipGroup
+            <LinearLayout
                 android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 app:addChip="@{item.aromas}"
                 app:singleLine="true" />
         </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/tv_beer_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_kr_bold"
+            android:text="@{@string/rate_unit(item.rateAvg)}"
+            android:textColor="@color/butterscotch"
+            android:textSize="13sp"
+            android:drawableStart="@drawable/ic_rating_star"
+            android:drawablePadding="8dp"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/hsv_style"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/hsv_style"
+            app:layout_constraintBottom_toBottomOf="@+id/hsv_style"
+            tools:text="5.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

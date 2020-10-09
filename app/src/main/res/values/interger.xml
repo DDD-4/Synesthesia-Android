@@ -6,6 +6,7 @@
     <integer name="space_10">10</integer>
     <integer name="space_12">12</integer>
     <integer name="space_16">16</integer>
+    <integer name="space_20">20</integer>
     <integer name="space_24">24</integer>
     <integer name="space_28">28</integer>
     <integer name="space_32">32</integer>

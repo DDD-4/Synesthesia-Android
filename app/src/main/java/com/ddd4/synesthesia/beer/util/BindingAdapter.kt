@@ -2,6 +2,8 @@ package com.ddd4.synesthesia.beer.util
 
 import android.util.TypedValue
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
@@ -11,6 +13,7 @@ import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
 import com.ddd4.synesthesia.beer.ext.dp
 import com.ddd4.synesthesia.beer.ext.toPx
+import com.ddd4.synesthesia.beer.util.chip.StyleChipLayout
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.sort.SortType
 import com.google.android.material.chip.Chip
@@ -18,17 +21,12 @@ import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 
 @BindingAdapter("app:addChip")
-fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
-    chipGroup.removeAllViews()
+fun makeChips(chipFrame: LinearLayout, flavor: List<String>) {
+    chipFrame.removeAllViews()
     flavor.asSequence().forEach {
-        val chip = Chip(chipGroup.context).apply {
-            setChipDrawable(ChipDrawable.createFromResource(this.context, R.xml.chip_home_item))
-            setTextColor(resources.getColor(R.color.black, null))
-            textSize = 12f
-            typeface = ResourcesCompat.getFont(chipGroup.context, R.font.notosans_kr_bold)
-            text = it
-        }
-        chipGroup.addView(chip)
+        val chip = StyleChipLayout(chipFrame.context)
+        chip.setText(it)
+        chipFrame.addView(chip)
     }
 }
 
