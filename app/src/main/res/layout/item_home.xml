@@ -23,6 +23,7 @@
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             app:loadUrl="@{item.thumbnailImage}"
+            app:errorDrawable="@{@drawable/beer}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/beer" />

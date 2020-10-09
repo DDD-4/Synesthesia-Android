@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
@@ -22,7 +23,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startLogin()
+        loginViewModel.tokenInfo {
+//            Timber.tag("tokenInfo").w("splash token : ${it?.accessToken}")
+//            Timber.tag("tokenInfo").w("prefs token : ${preference.getPreferenceString(getString(R.string.key_token))}")
+            startLogin()
+        }
     }
 
     override fun onBackPressed() {
@@ -30,8 +35,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
     }
 
     private fun startLogin() {
-        // TODO retresh token
-
         CoroutineScope(Dispatchers.IO).launch {
             delay(1500)
             if(preference.getPreferenceString(getString(R.string.key_token)).isNullOrEmpty()) {

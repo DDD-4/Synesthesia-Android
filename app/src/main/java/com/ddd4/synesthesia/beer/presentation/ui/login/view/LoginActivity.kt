@@ -1,5 +1,6 @@
 package com.ddd4.synesthesia.beer.presentation.ui.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.core.os.bundleOf
@@ -13,6 +14,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseActivity
 import com.ddd4.synesthesia.beer.presentation.ui.login.viewmodel.LoginViewModel
 import com.ddd4.synesthesia.beer.presentation.ui.main.view.MainActivity
 import com.kakao.sdk.auth.LoginClient
+import com.kakao.sdk.auth.model.OAuthToken
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -20,36 +22,65 @@ import timber.log.Timber
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
     private val loginViewModel by viewModels<LoginViewModel>()
+    private val callback : (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        if (error != null) {
+            Timber.tag("tokenInfo").e(error)
+            showToast(getString(R.string.fail_login))
+        } else if (token != null) {
+            preference.setPreference(getString(R.string.key_token),token.accessToken)
+            loginViewModel.login()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         intent.getStringExtra(getString(R.string.is_show_snackbar))?.let {
             binding.root.showSnackBar(it)
         }
+        intent.data?.let {
+            it.query?.split("=")?.let { query ->
+                if(query.isNotEmpty()) {
+                    loginViewModel.accessToken(query[1])
+                }
+            }
+        }
+
         binding.btnLogin.setOnClickListener {
             startLogin()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     private fun startLogin() {
         // 카카오톡으로 로그인
-        LoginClient.instance.loginWithKakaoTalk(this@LoginActivity) { token, error ->
-            if (error != null) {
-                Timber.tag("login").e(error)
-                showToast(getString(R.string.fail_login))
-            } else if (token != null) {
-                preference.setPreference(getString(R.string.key_token),token.accessToken)
-                loginViewModel.login()
+        LoginClient.instance.apply {
+            if(isKakaoTalkLoginAvailable(this@LoginActivity)) {
+                loginWithKakaoTalk(context = this@LoginActivity, callback = callback)
+            } else {
+                loginWithKakaoAccount(this@LoginActivity, callback = callback)
             }
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun initObserving() {
-        super.initObserving()
-        loginViewModel.isLoginSuccess.observe(this@LoginActivity, Observer { user ->
-            user?.let {
+        loginViewModel.isLoginSuccess.observe(this@LoginActivity, Observer {
+            it.first?.let {
                 start<MainActivity>(true,bundleOf(Pair(getString(R.string.key_user),it)))
-            } ?: kotlin.run { preference.remove(getString(R.string.key_token)) }
+            } ?: kotlin.run {
+                showToast("${getString(R.string.fail_login)}\n${it.second?.message}")
+                preference.remove(getString(R.string.key_token))
+            }
         })
 
     }

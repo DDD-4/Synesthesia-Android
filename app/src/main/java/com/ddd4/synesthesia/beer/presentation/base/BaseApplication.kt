@@ -10,6 +10,9 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class BaseApplication : Application() {
+
+    val clientId by lazy { getString(R.string.kakao) }
+
     override fun onCreate() {
         super.onCreate()
         // SDK 초기화 V2

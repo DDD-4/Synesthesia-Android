@@ -1,7 +1,9 @@
 package com.ddd4.synesthesia.beer.presentation.ui.detail.view
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -10,12 +12,14 @@ import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.databinding.LayoutBottomStarRatingBinding
 import com.ddd4.synesthesia.beer.ext.showToast
-import com.ddd4.synesthesia.beer.ext.start
 import com.ddd4.synesthesia.beer.presentation.base.BaseBottomSheetDialogFragment
 import com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.StarRatingViewModel
 import com.ddd4.synesthesia.beer.util.SimpleCallback
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRatingBinding>(R.layout.layout_bottom_star_rating) {
@@ -59,13 +63,25 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
         initObserving()
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val reviewSheetDialog = BottomSheetDialog(requireContext(),theme)
+        reviewSheetDialog.setOnShowListener {  dialog ->
+            (dialog as? BottomSheetDialog)?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)?.run {
+                BottomSheetBehavior.from(this).state = BottomSheetBehavior.STATE_EXPANDED
+            }
+        }
+
+        return reviewSheetDialog
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         SimpleCallback.callback = null
     }
 
-    fun showDialog(fm : FragmentManager, dismiss : (() -> Unit)?) {
-        show(fm,"")
+    fun showDialog(fm: FragmentManager, dismiss: (() -> Unit)?) {
+        show(fm, "")
         this@StarRatingBottomDialog.dismiss = dismiss
     }
     override fun getTheme(): Int {
@@ -83,7 +99,7 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
         })
         starRatingViewModel.rating.observe(viewLifecycleOwner, Observer {
             it?.let { rating ->
-                if(rating < minRating) {
+                if (rating < minRating) {
                     starRatingViewModel.rating.value = minRating
                 }
             } ?: kotlin.run { starRatingViewModel.rating.value = 0.5f }

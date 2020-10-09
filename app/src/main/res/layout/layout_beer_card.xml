@@ -22,6 +22,7 @@
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             app:loadUrl="@{related.thumbnailImage}"
+            app:errorDrawable="@{@drawable/beer}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

@@ -91,9 +91,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            motion:layout_constraintHorizontal_chainStyle="packed"
             motion:layout_constraintStart_toStartOf="@+id/iv_profile"
-            motion:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            motion:layout_constraintEnd_toStartOf="@+id/tv_name_cell"
             motion:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
+
+        <Constraint android:id="@+id/tv_name_cell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/tv_name"
+            motion:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            motion:layout_constraintBottom_toBottomOf="@+id/tv_name"/>
 
         <Constraint android:id="@+id/tv_email"
             android:layout_width="wrap_content"
@@ -149,6 +157,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             motion:layout_constraintStart_toEndOf="@+id/include_toolbar"
+            motion:layout_constraintBottom_toBottomOf="@+id/include_toolbar"
+            motion:layout_constraintTop_toTopOf="@+id/include_toolbar" />
+
+        <Constraint android:id="@+id/tv_name_cell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toEndOf="@+id/tv_name"
             motion:layout_constraintBottom_toBottomOf="@+id/include_toolbar"
             motion:layout_constraintTop_toTopOf="@+id/include_toolbar" />
 

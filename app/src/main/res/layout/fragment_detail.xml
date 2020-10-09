@@ -71,6 +71,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:errorDrawable="@{@drawable/beer}"
                     app:loadUrl="@{vm.response.beer.imageUrl.size() > 0 ? vm.response.beer.imageUrl.get(0) : null}"
                     tools:src="@drawable/beer" />
 

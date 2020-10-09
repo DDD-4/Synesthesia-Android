@@ -44,7 +44,7 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
     }
 
     fun showRecentlyVisitTime() {
-        preference.getPreferenceString(getString(R.string.key_recently_visit))?.let {
+        preference?.getPreferenceString(getString(R.string.key_recently_visit))?.let {
             when(it.isEmpty()) {
                 false -> {
                     dateFormat().run {

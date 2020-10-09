@@ -48,6 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
             app:loadUrl="@{myPageVm.userInfo.kakaoAccount.profile.profileImageUrl}"
+            app:errorDrawable="@{@drawable/ic_person}"
             app:tranformType="@{ImageTransformType.CIRCLE}"
             tools:background="@color/silver_alpha_80" />
 
@@ -65,9 +66,10 @@
             android:maxLength="@integer/max_length"
             android:onClick="@{() -> itemClickListener.onItemClick(null)}"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.profile.nickname) ? View.GONE : View.VISIBLE}"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+            app:layout_constraintEnd_toStartOf="@+id/tv_name_cell"
             app:layout_constraintStart_toStartOf="@+id/iv_profile"
             app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+            app:layout_constraintHorizontal_chainStyle="packed"
             tools:text="공감각" />
 
         <TextView
@@ -78,7 +80,8 @@
             android:text="님"
             app:layout_constraintTop_toTopOf="@+id/tv_name"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintStart_toEndOf="@+id/tv_name" />
+            app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile"/>
 
         <ImageView
             android:id="@+id/iv_modify"
