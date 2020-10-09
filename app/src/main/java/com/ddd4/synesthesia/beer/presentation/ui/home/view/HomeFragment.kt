@@ -121,20 +121,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         filter: BeerFilter
     ) {
         filter.run {
+            if (styleFilter.isNullOrEmpty() || aromaFilter.isNullOrEmpty() || countryFilter.isNullOrEmpty()) removeAllViews()
+
             abvFilter?.let {
                 val value = "${it.first}% - ${it.second}%"
                 makeChips(this@setFilterChips, mutableListOf(value), "abv")
             }
 
-            styleFilter?.let {
-                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "style")
-            }
-            aromaFilter?.let {
-                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "aroma")
-            }
-            countryFilter?.let {
-                if (it.isEmpty()) removeAllViews() else makeChips(this@setFilterChips, it, "country")
-            }
+            styleFilter?.let { makeChips(this@setFilterChips, it, "style") }
+            aromaFilter?.let { makeChips(this@setFilterChips, it, "aroma") }
+            countryFilter?.let { makeChips(this@setFilterChips, it, "country") }
         }
     }
 
@@ -151,7 +147,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             chip.apply {
                 text = item
                 this.tag = item
-                Timber.d("makeChips Item $item")
             }
 
             chip.setOnCloseIconClickListener {
