@@ -234,6 +234,7 @@
                     android:layout_marginStart="12dp"
                     android:textSize="@dimen/textSize_14"
                     android:fontFamily="@font/notosans_kr_regular"
+                    android:bufferType="spannable"
                     app:layout_constraintBottom_toBottomOf="@id/country"
                     app:layout_constraintStart_toEndOf="@id/country"
                     app:layout_constraintTop_toTopOf="@id/country"

@@ -1,5 +1,9 @@
 package com.ddd4.synesthesia.beer.util
 
+import android.graphics.Typeface
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
@@ -86,9 +90,27 @@ fun decoration(
 @BindingAdapter("app:updateCountText")
 fun updateCountText(countView: TextView, selectedItemList: MutableLiveDataList<String>) {
     if (selectedItemList.isNotEmpty()) {
-        val suffix = "${selectedItemList.count().minus(1)}개"
+        val context = countView.context
+
+        val prefix = context.getString(R.string.update_count_text_prefix, selectedItemList[0])
+        val suffix = context.getString(R.string.update_count_text_suffix, selectedItemList.count().minus(1))
+
+        val typeface =
+            ResourcesCompat.getFont(context, R.font.notosans_kr_bold) ?: Typeface.DEFAULT_BOLD
+
+        val span = SpannableString(suffix).apply {
+            setSpan(
+                CustomTypefaceSpan(
+                    typeface,
+                    context.resources.getColor(R.color.butterscotch, null)
+                ), 0, suffix.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+
+        val text = SpannableStringBuilder(prefix).append(" ").append(span)
+
         countView.text =
-            if (selectedItemList.count() > 1) "${selectedItemList[0]} 외 $suffix" else selectedItemList[0]
+            if (selectedItemList.count() > 1) text else selectedItemList[0]
     } else {
         countView.text = ""
     }
