@@ -10,6 +10,6 @@
       android:pathData="M14,14l16,16M14,30l16,-16"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#C8C8C8"
+      android:strokeColor="#7a7a7a"
       android:strokeLineCap="round"/>
 </vector>

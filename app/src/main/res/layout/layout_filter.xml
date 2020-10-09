@@ -25,15 +25,20 @@
             android:gravity="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UseCompoundDrawables">
 
-            <ImageView
+            <TextView
                 android:id="@+id/btn_reset"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/reset"
+                android:layout_marginEnd="13dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_reset_24"
-                tools:ignore="ContentDescription" />
+                android:fontFamily="@font/notosans_kr_medium"
+                android:textSize="@dimen/textSize_14"
+                android:textColor="@color/color_7a7a7a"
+                />
 
             <ImageView
                 android:id="@+id/btn_close"

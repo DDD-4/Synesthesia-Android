@@ -60,4 +60,5 @@
     <string name="max_text_length">%d/10</string>
     <string name="recommend_beer1">오늘의 맥주</string>
     <string name="recommend_beer2">추천받기</string>
+    <string name="reset">초기화</string>
 </resources>
