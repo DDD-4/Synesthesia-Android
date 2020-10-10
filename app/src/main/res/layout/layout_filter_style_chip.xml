@@ -1,0 +1,10 @@
+<com.google.android.material.chip.Chip xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Filter.Chip"
+    android:layout_width="96dp"
+    android:layout_height="wrap_content"
+    android:textAppearance="@style/TextAppearance.Filter.Common"
+    android:textAlignment="center"
+    android:textColor="@color/filter_select_change"
+    android:gravity="center"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp" />

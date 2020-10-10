@@ -56,14 +56,15 @@ class FilterDialog
 
 
     private fun ChipGroup.setChips(
+        layout: Int,
         items: List<String>,
         selectedItemList: MutableLiveDataList<String>,
         shapeModel: ShapeAppearanceModel
     ) {
         for (item in items) {
             val chip: Chip = layoutInflater.inflate(
-                R.layout.layout_filter_chip,
-                binding.aromaChipGroup,
+                layout,
+                this,
                 false
             ) as Chip
 
@@ -98,12 +99,14 @@ class FilterDialog
             countryListAdapter.items = viewModel.countryList
 
             styleChipGroup.setChips(
+                R.layout.layout_filter_style_chip,
                 viewModel.styleList,
                 viewModel.styleSelectedList,
                 ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 8f).build()
             )
 
             aromaChipGroup.setChips(
+                R.layout.layout_filter_aroma_chip,
                 viewModel.aromaList,
                 viewModel.aromaSelectedList,
                 ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 50f).build()

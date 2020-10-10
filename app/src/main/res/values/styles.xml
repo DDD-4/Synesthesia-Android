@@ -67,6 +67,12 @@
         <item name="chipBackgroundColor">@color/color_1c1b21</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">@color/filter_select_change</item>
+        <item name="chipMinTouchTargetSize">0dp</item>
+        <item name="chipStartPadding">0dp</item>
+        <item name="chipEndPadding">0dp</item>
+        <item name="chipMinHeight">0dp</item>
+        <item name="textStartPadding">0dp</item>
+        <item name="textEndPadding">0dp</item>
     </style>
 
     <style name="Home.Filter.Chip" parent="Base.Widget.MaterialComponents.Chip">
@@ -91,6 +97,15 @@
         <item name="textStartPadding">0dp</item>
         <item name="textEndPadding">0dp</item>
         <item name="chipCornerRadius">14.5dp</item>
+    </style>
+
+    <style name="TextAppearance.Filter.Common" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/notosans_kr_bold</item>
+    </style>
+
+    <style name="TextAppearance.Filter.Aroma" parent="TextAppearance.Filter.Common">
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>
