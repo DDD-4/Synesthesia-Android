@@ -1,9 +1,13 @@
 package com.ddd4.synesthesia.beer.util
 
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.ImageSpan
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
@@ -93,7 +97,8 @@ fun updateCountText(countView: TextView, selectedItemList: MutableLiveDataList<S
         val context = countView.context
 
         val prefix = context.getString(R.string.update_count_text_prefix, selectedItemList[0])
-        val suffix = context.getString(R.string.update_count_text_suffix, selectedItemList.count().minus(1))
+        val suffix =
+            context.getString(R.string.update_count_text_suffix, selectedItemList.count().minus(1))
 
         val typeface =
             ResourcesCompat.getFont(context, R.font.notosans_kr_bold) ?: Typeface.DEFAULT_BOLD
@@ -122,8 +127,37 @@ fun updateAbvRange(abvTextView: TextView, abvRange: Pair<Int, Int>?) {
         abvTextView.text = ""
         return
     }
-    val text = "${abvRange.first} - ${abvRange.second}"
-    abvTextView.text = text
+    val minAbv = "${abvRange.first}%"
+    val maxAbv = "${abvRange.second}%"
+
+    val span = SpannableStringBuilder(minAbv).append(" ")
+
+    val imageSpan = object : ImageSpan(abvTextView.context, R.drawable.layer_filter_line) {
+        override fun draw(
+            canvas: Canvas,
+            text: CharSequence?,
+            start: Int,
+            end: Int,
+            x: Float,
+            top: Int,
+            y: Int,
+            bottom: Int,
+            paint: Paint
+        ) {
+            val drawable = drawable
+            canvas.save()
+            // Align Center
+            val transY = bottom.minus(top).div(2).minus(drawable.bounds.height().div(2))
+
+            canvas.translate(x, transY.toFloat())
+            drawable.draw(canvas)
+            canvas.restore()
+        }
+    }
+
+    span.setSpan(imageSpan, span.length - 1, span.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    span.append(maxAbv)
+    abvTextView.setText(span, TextView.BufferType.SPANNABLE)
 }
 
 @BindingAdapter("app:filterVisibility")
