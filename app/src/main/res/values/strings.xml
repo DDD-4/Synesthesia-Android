@@ -42,7 +42,7 @@
     <string name="star_rating">별점</string>
     <string name="message_review">맥주이름에 대한 자세한 후기를 작성해주세요</string>
     <string name="message_star_rating">맥주이름에 대한 별점을 남겨주세요</string>
-    <string name="title_aroma">과일향이 나는 맥주입니다 🍒</string>
+    <string name="title_aroma">비슷한향이 나는 맥주입니다 🍒</string>
     <string name="title_style">같은 스타일의 맥주입니다 🍺</string>
     <string name="title_random">추천하는 맥주입니다 🏆</string>
     <string name="show_all">전체보기</string>

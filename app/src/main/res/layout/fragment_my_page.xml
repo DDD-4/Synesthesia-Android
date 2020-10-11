@@ -39,8 +39,8 @@
 
         <ImageView
             android:id="@+id/iv_profile"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
@@ -90,8 +90,6 @@
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
             android:src="@drawable/ic_modify"
-            android:scaleY="0.7"
-            android:scaleX="0.7"
             android:onClick="@{() -> itemClickListener.onItemClick(null)}"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
             app:layout_constraintStart_toEndOf="@+id/tv_name_cell"
@@ -103,6 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:textColor="@color/color_c8c8c8"
             android:text="@{myPageVm.userInfo.kakaoAccount.email}"
             android:visibility="@{TextUtils.isEmpty(myPageVm.userInfo.kakaoAccount.email) ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"

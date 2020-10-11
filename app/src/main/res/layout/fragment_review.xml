@@ -29,7 +29,7 @@
             tools:listitem="@layout/layout_review"
             app:adapter="@{reviewAdatper}"
             app:vertical_space="@{@integer/space_16}"
-            app:space="@{@integer/space_24}"
+            app:space="@{@integer/space_32}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

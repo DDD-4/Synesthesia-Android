@@ -42,6 +42,7 @@
             android:layout_marginHorizontal="28dp"
             android:paddingTop="18dp"
             android:text="@{title}"
+            android:fontFamily="@font/notosans_kr_regular"
             android:textStyle="bold"
             android:visibility="@{isVisible ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_review"
-            app:space="@{@integer/space_10}"
+            app:space="@{@integer/space_12}"
             tools:listitem="@layout/layout_beer_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

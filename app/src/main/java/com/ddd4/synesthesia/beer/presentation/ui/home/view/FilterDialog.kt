@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.AppConfig
 import com.ddd4.synesthesia.beer.databinding.LayoutFilterBinding
+import com.ddd4.synesthesia.beer.ext.dp
 import com.ddd4.synesthesia.beer.presentation.base.BaseBottomSheetDialogFragment
 import com.ddd4.synesthesia.beer.presentation.ui.home.adapter.FilterCountryAdapter
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.FilterViewModel
@@ -103,14 +104,14 @@ class FilterDialog
                 R.layout.layout_filter_style_chip,
                 viewModel.styleList,
                 viewModel.styleSelectedList,
-                ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 8f).build()
+                ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 4f.dp.toFloat()).build()
             )
 
             aromaChipGroup.setChips(
                 R.layout.layout_filter_aroma_chip,
                 viewModel.aromaList,
                 viewModel.aromaSelectedList,
-                ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 50f).build()
+                ShapeAppearanceModel().toBuilder().setAllCorners(CornerFamily.ROUNDED, 50f.dp.toFloat()).build()
             )
 
             abvSeekbar.apply {
