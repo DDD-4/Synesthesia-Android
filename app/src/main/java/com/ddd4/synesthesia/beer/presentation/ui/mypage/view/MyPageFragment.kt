@@ -19,6 +19,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity
 import com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewModel
+import com.ddd4.synesthesia.beer.util.ClickType
 import com.ddd4.synesthesia.beer.util.ItemClickListener
 import com.ddd4.synesthesia.beer.util.SimpleCallback
 import com.hyden.ext.start
@@ -42,7 +43,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                     InfomationsType.ITEM -> { infomationsEvent(item.title) }
                     InfomationsType.LOGOUT -> { unConnected(getString(R.string.logout_message)) }
                     InfomationsType.UNLINK -> { unConnected(getString(R.string.unlink_message)) }
-                    else -> {
+                }
+                when (item as? ClickType) {
+                    ClickType.ITEM -> {
                         val bundle = bundleOf(
                             getString(R.string.key_nickname) to binding.tvName.text
                         )
@@ -82,7 +85,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun infomationsEvent(section: String) {
-        context?.showToast(section)
         when (section) {
             InfomationsData.ACTIVE.title -> {
 

@@ -43,6 +43,8 @@
             android:textSize="20sp"
             android:layout_marginStart="28dp"
             android:maxLength="@integer/max_length"
+            android:hint="@string/nickname"
+            android:textColorHint="@color/color_c8c8c8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_clear"
             app:layout_constraintTop_toBottomOf="@+id/iv_close"

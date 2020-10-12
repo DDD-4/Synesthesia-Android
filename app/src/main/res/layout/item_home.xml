@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable
             name="item"
             type="com.ddd4.synesthesia.beer.data.model.Beer" />
+        
+        <variable
+            name="createAt"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,6 +83,24 @@
             app:layout_constraintStart_toStartOf="@id/tv_beer_style"
             app:layout_constraintTop_toBottomOf="@id/tv_beer_style"
             tools:text="맥주 이름" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{createAt}"
+            android:textSize="12sp"
+            android:fontFamily="@font/notosans_kr_medium"
+            android:textColor="@color/color_c8c8c8"
+            tools:text="2020. 10. 10"
+            android:visibility="@{TextUtils.isEmpty(createAt) ? View.GONE : View.VISIBLE }"
+            app:layout_constraintStart_toStartOf="@+id/tv_beer_country"
+            app:layout_constraintTop_toTopOf="@+id/tv_beer_country"/>
+
+        <androidx.constraintlayout.widget.Group
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{TextUtils.isEmpty(createAt) ? View.VISIBLE : View.INVISIBLE }"
+            app:constraint_referenced_ids="tv_beer_country,tv_beer_abv"/>
 
         <TextView
             android:id="@+id/tv_beer_country"

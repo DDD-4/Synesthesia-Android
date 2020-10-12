@@ -13,7 +13,7 @@ data class ReviewOwner(
     @SerializedName("nickname")
     val nickname: String?,
     @SerializedName("ratio")
-    val ratio: Float?,
+    val ratio: Float? = 0.5f,
     @SerializedName("user_id")
     val userId: Int
 ) : Parcelable

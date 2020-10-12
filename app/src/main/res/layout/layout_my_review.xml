@@ -17,121 +17,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_beer_thumbnail"
-            android:layout_width="80dp"
-            android:layout_height="110dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"
-            app:loadUrl="@{review.beer.thumbnailImage}"
-            app:errorDrawable="@{@drawable/beer}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/beer" />
+        <include
+            android:id="@+id/include_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:item="@{review.beer}"
+            app:createAt="@{review.createdAt}"
+            layout="@layout/item_home"/>
 
         <TextView
-            android:id="@+id/tv_beer_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{review.beer.beerStyle}"
-            android:textColor="@color/white"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:includeFontPadding="false"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@id/iv_beer_thumbnail"
-            app:layout_constraintEnd_toStartOf="@+id/tv_date"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="맥주스타일" />
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{review.createdAt}"
-            tools:text="2020. 10. 03"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_beer_style"/>
-
-        <TextView
-            android:id="@+id/tv_beer_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/notosans_kr_regular"
-            android:text="@{review.beer.name}"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:singleLine="true"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_beer_style"
-            app:layout_constraintTop_toBottomOf="@id/tv_beer_style"
-            tools:text="맥주 이름" />
-
-        <TextView
-            android:id="@+id/tv_beer_country"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/notosans_kr_regular"
-            android:text="@{review.beer.country}"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:singleLine="true"
-            android:ellipsize="end"
-            app:layout_constraintEnd_toStartOf="@+id/tv_beer_abv"
-            app:layout_constraintStart_toStartOf="@id/tv_beer_style"
-            app:layout_constraintTop_toBottomOf="@id/tv_beer_name"
-            tools:text="대한민국" />
-
-        <TextView
-            android:id="@+id/tv_beer_abv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{@string/abv(review.beer.abv)}"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_beer_country"
-            tools:text="4.9%" />
-
-        <TextView
-            android:id="@+id/tv_beer_rate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
-            android:text="@{@string/rate_unit(review.ratio)}"
-            android:textColor="@color/butterscotch"
-            android:textSize="13sp"
-            android:drawableStart="@drawable/ic_rating_star"
-            android:drawablePadding="4dp"
-            android:includeFontPadding="false"
-            android:gravity="center"
-            android:visibility="@{review.ratio == null ? View.GONE : View.VISIBLE }"
-            app:layout_constraintStart_toStartOf="@+id/tv_beer_name"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_beer_thumbnail"
-            tools:text="5.0" />
-
-        <TextView
-            android:id="@+id/tv_beer_review"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_regular"
             android:text="@{review.content}"
-            android:textSize="13sp"
-            android:layout_marginStart="8dp"
-            android:singleLine="true"
-            android:ellipsize="end"
+            android:layout_marginTop="16dp"
             tools:text="아 맥주.. 제 인생 맥주입니다 ㅠㅠ 너무 맛있어요ㅠㅠㅠ 저는 과일향 나는, 가볍게 마실 수 있는 맥주를 선호하는데, 그런저에게 딱인 것 같습니다! 상큼한 향이 너무 좋았어요"
-            app:layout_constraintStart_toEndOf="@+id/tv_beer_rate"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_beer_rate"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_beer_rate" />
+            app:layout_constraintTop_toBottomOf="@+id/include_home"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

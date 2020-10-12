@@ -1,6 +1,7 @@
 package com.ddd4.synesthesia.beer.presentation.ui.detail.view
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
@@ -14,6 +15,7 @@ import com.ddd4.synesthesia.beer.databinding.LayoutBottomStarRatingBinding
 import com.ddd4.synesthesia.beer.ext.showToast
 import com.ddd4.synesthesia.beer.presentation.base.BaseBottomSheetDialogFragment
 import com.ddd4.synesthesia.beer.presentation.ui.detail.viewmodel.StarRatingViewModel
+import com.ddd4.synesthesia.beer.util.CustomAlertDialog
 import com.ddd4.synesthesia.beer.util.SimpleCallback
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -57,7 +59,7 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
                 start<WriteReviewActivity>(false, bundle)
             }
             ivClose.setOnClickListener {
-                dismiss()
+                notice()
             }
         }
         initObserving()
@@ -68,6 +70,7 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
         reviewSheetDialog.setOnShowListener {  dialog ->
             (dialog as? BottomSheetDialog)?.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)?.run {
                 BottomSheetBehavior.from(this).state = BottomSheetBehavior.STATE_EXPANDED
+                BottomSheetBehavior.from(this).isHideable = false
             }
         }
 
@@ -104,5 +107,19 @@ class StarRatingBottomDialog : BaseBottomSheetDialogFragment<LayoutBottomStarRat
                 }
             } ?: kotlin.run { starRatingViewModel.rating.value = 0.5f }
         })
+    }
+
+    private fun notice() {
+        if(beerInfo?.reviewOwner?.ratio == starRatingViewModel.rating.value && beerInfo?.reviewOwner?.content == starRatingViewModel.review.value) {
+            dismiss()
+        } else {
+            CustomAlertDialog(
+                title = getString(R.string.page_out),
+                message = getString(R.string.do_not_save),
+                posivie = getString(R.string.yes),
+                negative = getString(R.string.no),
+                result = DialogInterface.OnClickListener { dialog, which -> dismiss() }
+            ).show(parentFragmentManager,null)
+        }
     }
 }

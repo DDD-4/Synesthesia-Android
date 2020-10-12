@@ -1,6 +1,7 @@
 package com.ddd4.synesthesia.beer.presentation.ui.home.view
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
@@ -13,6 +14,7 @@ import com.ddd4.synesthesia.beer.ext.dp
 import com.ddd4.synesthesia.beer.presentation.base.BaseBottomSheetDialogFragment
 import com.ddd4.synesthesia.beer.presentation.ui.home.adapter.FilterCountryAdapter
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.FilterViewModel
+import com.ddd4.synesthesia.beer.util.CustomAlertDialog
 import com.ddd4.synesthesia.beer.util.MutableLiveDataList
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -141,14 +143,12 @@ class FilterDialog
             }
 
             btnReset.setOnClickListener {
-                // TODO 디자인 버튼 위치 등 확인 후 커스텀 진행 예정
-                AlertDialog.Builder(requireContext())
-                    .setTitle("초기화 하시겠습니까?")
-                    .setMessage("적용한 필터 내용이 사라집니다!")
-                    .setPositiveButton(
-                        "네"
-                    ) { _, _ ->
-
+                CustomAlertDialog(
+                    title = getString(R.string.page_out),
+                    message = getString(R.string.reset_filter),
+                    posivie = getString(R.string.yes),
+                    negative = getString(R.string.no),
+                    result = DialogInterface.OnClickListener { dialog, which ->
                         abvSeekbar.setProgress(
                             viewModel.minAbv.toFloat(),
                             viewModel.maxAbv.toFloat()
@@ -162,9 +162,8 @@ class FilterDialog
                         styleChipGroup.clearCheck()
                         aromaChipGroup.clearCheck()
                         countryListAdapter.notifyDataSetChanged()
-                    }.setNegativeButton("아니오") { _, _ ->
-                        dismiss()
-                    }.create().show()
+                    }
+                ).show(parentFragmentManager,null)
             }
 
             btnDone.setOnClickListener {

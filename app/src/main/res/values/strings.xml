@@ -26,6 +26,7 @@
     <string name="connect_kakao">카카오톡 계정 연결</string>
 
     <string name="review_fail_message">리뷰등록에 실패하였습니다.</string>
+    <string name="not_modified">변경사항이 없습니다.</string>
     <string name="logout_message">로그아웃 하시겠습니까?</string>
     <string name="unlink_message">카카오 계정연결을 끊으시겠습니까?</string>
     <string name="rate_unit">%,.1f점</string>
@@ -63,4 +64,10 @@
     <string name="reset">초기화</string>
     <string name="update_count_text_prefix">%s 외</string>
     <string name="update_count_text_suffix">%d개</string>
+    <string name="page_out">페이지를 나가시겠습니까?</string>
+    <string name="do_not_save">변경사항이 저장되지 않습니다</string>
+    <string name="reset_filter">적용한 필터 내용이 사라집니다!</string>
+    <string name="yes">네</string>
+    <string name="no">아니요</string>
+    <string name="nickname">닉네임을 입력해주세요.</string>
 </resources>
