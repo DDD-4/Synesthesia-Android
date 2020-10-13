@@ -1,12 +1,12 @@
 package com.ddd4.synesthesia.beer.presentation.ui.home.view
 
-import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.data.model.AppConfig
 import com.ddd4.synesthesia.beer.databinding.LayoutFilterBinding
@@ -26,6 +26,7 @@ import com.google.gson.Gson
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FilterDialog
@@ -148,22 +149,14 @@ class FilterDialog
                     message = getString(R.string.reset_filter),
                     posivie = getString(R.string.yes),
                     negative = getString(R.string.no),
-                    result = DialogInterface.OnClickListener { dialog, which ->
-                        abvSeekbar.setProgress(
-                            viewModel.minAbv.toFloat(),
-                            viewModel.maxAbv.toFloat()
-                        )
-                        with(viewModel) {
-                            styleSelectedList.clear()
-                            aromaSelectedList.clear()
-                            abvSelectedRange.postValue(null)
-                            countrySelectedList.postValue(mutableListOf())
+                    result = DialogInterface.OnClickListener { _, _ ->
+
+                        lifecycleScope.launch {
+                            viewModel.resetAllAsync().await()
+                            btnDone.performClick()
                         }
-                        styleChipGroup.clearCheck()
-                        aromaChipGroup.clearCheck()
-                        countryListAdapter.notifyDataSetChanged()
                     }
-                ).show(parentFragmentManager,null)
+                ).show(parentFragmentManager, null)
             }
 
             btnDone.setOnClickListener {
