@@ -32,6 +32,7 @@ fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
         val chip = Chip(chipGroup.context).apply {
             setChipDrawable(ChipDrawable.createFromResource(this.context, R.xml.chip_home_item))
             setTextColor(resources.getColor(R.color.black, null))
+            ensureAccessibleTouchTarget(20.dp)
             textSize = 12f
             typeface = ResourcesCompat.getFont(chipGroup.context, R.font.notosans_kr_bold)
             text = it
