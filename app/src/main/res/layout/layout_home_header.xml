@@ -14,32 +14,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
+        <LinearLayout
             android:id="@+id/btn_beer_recommend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recommend_beer1"
-            android:fontFamily="@font/notosans_kr_bold"
-            android:textSize="28sp"
-            android:gravity="center"
-            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/btn_beer_recommend2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/btn_beer_recommend2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/recommend_beer2"
-            android:fontFamily="@font/notosans_kr_regular"
-            android:textSize="28sp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/btn_beer_recommend"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recommend_beer1"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:textSize="28sp"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recommend_beer2"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosans_kr_light"
+                android:textSize="28sp"
+                android:gravity="center"
+                />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/btn_my_page"
