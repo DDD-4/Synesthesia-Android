@@ -5,6 +5,8 @@ import PropertiesExt.getKakaoKey
 
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("android.extensions")
@@ -93,6 +95,9 @@ dependencies {
     kapt(Libs.HILT_COMPILER)
     implementation(Libs.KAKAO)
     implementation(Libs.RANGE_SEEK_BAR)
+    implementation(platform(Libs.FIREBASE))
+    implementation(Libs.FIREBASE_ANALYTICS)
+    implementation(Libs.FIREBASE_CRASHLYTICS)
 
     testImplementation(TestLibs.JUNIT)
     androidTestImplementation(TestLibs.ANDROID_X_JUNIT)

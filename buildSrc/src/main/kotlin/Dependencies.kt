@@ -17,6 +17,7 @@ object Versions {
     const val NAVIGATION_FRAGMENT = "2.3.0"
     const val NAVIGATION_UI_KTX = "2.3.0"
     const val NAVIGATION_SAFE_ARGS = "2.3.0"
+    const val GOOGLE_SERVIER = "4.3.4"
 
     // ThirdParty Libraries
     const val RETROFIT = "2.8.2"
@@ -28,6 +29,10 @@ object Versions {
     const val TIMBER = "4.7.1"
     const val KAKAO = "2.0.0-beta07"
     const val RANGE_SEEK_BAR = "3.0.0"
+    const val GOOGLE_BOM = "25.12.0"
+    const val GOOGLE_CRASHLYTICS = "2.3.0"
+    const val FIREBASE_ANALYTICS = "17.5.0"
+    const val FIREBASE_CRASHLYTICS = "17.2.1"
 }
 
 object Libs {
@@ -73,6 +78,10 @@ object Libs {
     const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val KAKAO = "com.kakao.sdk:v2-user:${Versions.KAKAO}"
     const val RANGE_SEEK_BAR = "com.github.Jay-Goo:RangeSeekBar:${Versions.RANGE_SEEK_BAR}"
+
+    const val FIREBASE = "com.google.firebase:firebase-bom:${Versions.GOOGLE_BOM}"
+    const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
+    const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics-ktx"
 
 }
 
