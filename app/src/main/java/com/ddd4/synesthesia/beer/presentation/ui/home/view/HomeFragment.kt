@@ -8,6 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.gif.GifDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.ddd4.synesthesia.beer.BR
 import com.ddd4.synesthesia.beer.HomeNavigationDirections
 import com.ddd4.synesthesia.beer.R
@@ -76,6 +82,24 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     show(this@HomeFragment.parentFragmentManager, tag)
                 }
             }
+
+            Glide.with(this@HomeFragment)
+                .asGif()
+                .listener(object : RequestListener<GifDrawable> {
+                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<GifDrawable>?, isFirstResource: Boolean): Boolean {
+                        return false
+                    }
+
+                    override fun onResourceReady(resource: GifDrawable?, model: Any?, target: Target<GifDrawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        resource?.setLoopCount(1)
+                        return false
+                    }
+                })
+                .load(R.raw.home_motion)
+                .into(header.ivBack)
+
+
+
 
             sort.setOnClickListener {
                 val bottom = HomeSortDialog()

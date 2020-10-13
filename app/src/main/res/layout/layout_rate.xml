@@ -20,13 +20,13 @@
             android:layout_marginEnd="28dp"
             android:drawableStart="@drawable/ic_rating_star"
             android:drawablePadding="4dp"
-            android:text="@{@string/rate(rate)}"
+            android:text="@{@string/rate_unit(rate)}"
             android:textColor="@color/butterscotch"
             android:textSize="13sp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@+id/tv_beer_style"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_beer_style"
-            tools:text="5.0" />
+            tools:text="5.0점" />
     </LinearLayout>
 </layout>

@@ -11,4 +11,5 @@
     <dimen name="margin_18">18dp</dimen>
     <dimen name="margin_24">24dp</dimen>
     <dimen name="margin_28">28dp</dimen>
+    <dimen name="margin_56">56dp</dimen>
 </resources>
