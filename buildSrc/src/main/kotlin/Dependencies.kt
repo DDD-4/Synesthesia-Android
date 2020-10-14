@@ -27,7 +27,7 @@ object Versions {
     const val HILT = "2.28-alpha"
     const val HILT_VIEWMODEL = "1.0.0-alpha01"
     const val TIMBER = "4.7.1"
-    const val KAKAO = "2.0.0-beta07"
+    const val KAKAO = "2.0.3"
     const val RANGE_SEEK_BAR = "3.0.0"
     const val GOOGLE_BOM = "25.12.0"
     const val GOOGLE_CRASHLYTICS = "2.3.0"

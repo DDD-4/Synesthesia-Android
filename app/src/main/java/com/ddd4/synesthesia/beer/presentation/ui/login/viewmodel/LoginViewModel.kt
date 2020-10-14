@@ -35,7 +35,7 @@ class LoginViewModel @ViewModelInject constructor(
         viewModelScope.launch(handler) {
             loginRepository.accessToken(code) {
                 it?.run {
-                    TokenManagerProvider.currentManager.setToken(
+                    TokenManagerProvider.instance.manager.setToken(
                         OAuthToken(accessToken, Date(expiresIn.toLong()),refreshToken,Date(refreshTokenExpiresIn.toLong()),scope.split(","))
                     )
                     accessToken.let { token ->

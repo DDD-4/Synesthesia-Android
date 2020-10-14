@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             }
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.ibLogin.setOnClickListener {
             startLogin()
         }
     }

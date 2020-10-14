@@ -10,19 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btn_login"
+        <include
+            android:id="@+id/include_beer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/layout_beer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/ib_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/login_kakao"
+            android:src="@drawable/ic_kakao_login"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@android:color/transparent"
             android:padding="10dp"
-            android:background="@drawable/background_butterscotch_round_8"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginHorizontal="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/include_beer"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -22,8 +22,8 @@ class LoginRepositoryImpl(
                 tokenInfo.invoke(null)
                 preference.remove("token")
             } else if (token != null) {
-                preference.setPreference("token",TokenManagerProvider.currentManager.getToken()?.accessToken)
-                tokenInfo.invoke(TokenManagerProvider.currentManager.getToken())
+                preference.setPreference("token",TokenManagerProvider.instance.manager.getToken()?.accessToken)
+                tokenInfo.invoke(TokenManagerProvider.instance.manager.getToken())
             }
         }
     }

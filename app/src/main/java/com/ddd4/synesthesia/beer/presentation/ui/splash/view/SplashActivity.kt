@@ -38,9 +38,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_spl
         CoroutineScope(Dispatchers.IO).launch {
             delay(1500)
             if(preference.getPreferenceString(getString(R.string.key_token)).isNullOrEmpty()) {
-                start<LoginActivity>(true)
+                start<LoginActivity>(isFinish = true, isAnimation = true)
             } else {
-                start<MainActivity>(true)
+                start<MainActivity>(isFinish = true, isAnimation = true)
             }
             finish()
         }
