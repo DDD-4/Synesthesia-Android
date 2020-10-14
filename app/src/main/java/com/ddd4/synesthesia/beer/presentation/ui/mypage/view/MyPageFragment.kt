@@ -1,5 +1,6 @@
 package com.ddd4.synesthesia.beer.presentation.ui.mypage.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -20,6 +21,7 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity
 import com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewModel
 import com.ddd4.synesthesia.beer.util.ClickType
+import com.ddd4.synesthesia.beer.util.CustomAlertDialog
 import com.ddd4.synesthesia.beer.util.ItemClickListener
 import com.ddd4.synesthesia.beer.util.SimpleCallback
 import com.hyden.ext.start
@@ -120,15 +122,21 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun unConnected(message : String) {
-        context?.showSimpleDialog(message = message) {
-            when(message) {
-                getString(R.string.logout_message) -> {
-                    myPageViewModel.logout()
-                }
-                getString(R.string.unlink_message) -> {
-                    myPageViewModel.unlink()
+        CustomAlertDialog(
+            title = "",
+            message = message,
+            posivie = getString(R.string.yes),
+            negative = getString(R.string.no),
+            result = DialogInterface.OnClickListener { dialog, which ->
+                when(message) {
+                    getString(R.string.logout_message) -> {
+                        myPageViewModel.logout()
+                    }
+                    getString(R.string.unlink_message) -> {
+                        myPageViewModel.unlink()
+                    }
                 }
             }
-        }
+        ).show(parentFragmentManager,null)
     }
 }
