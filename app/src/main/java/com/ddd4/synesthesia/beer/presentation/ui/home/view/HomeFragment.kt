@@ -3,6 +3,7 @@ package com.ddd4.synesthesia.beer.presentation.ui.home.view
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.children
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -121,16 +122,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         })
 
         homeViewModel.beerList.observe(viewLifecycleOwner, Observer {
-            // TODO 추후 데이터 없는 경우에 대한 디자인 추가 되면 작업 예정
-            if (it == null) {
-                binding.empty.visibility = View.VISIBLE
-                binding.contents.itemList.visibility = View.GONE
-            } else {
-                binding.empty.visibility = View.GONE
-                binding.contents.itemList.visibility = View.VISIBLE
-                listAdapter.updateItems(it)
-            }
-
+            binding.emptyList.isVisible = it.isNullOrEmpty()
+            listAdapter.updateItems(it ?: mutableListOf())
         })
 
         homeViewModel.beerFilter.observe(viewLifecycleOwner, Observer {

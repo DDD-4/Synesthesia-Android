@@ -58,8 +58,6 @@
     <string name="country">국가</string>
     <string name="show_products">상품 보러가기</string>
     <string name="max_text_length">%d/10</string>
-    <string name="recommend_beer1">오늘의 맥주</string>
-    <string name="recommend_beer2">추천받기</string>
     <string name="reset">초기화</string>
     <string name="update_count_text_prefix">%s 외</string>
     <string name="update_count_text_suffix">%d개</string>
@@ -69,4 +67,5 @@
     <string name="yes">네</string>
     <string name="no">아니요</string>
     <string name="nickname">닉네임을 입력해주세요.</string>
+    <string name="beer_empty">검색 된 맥주가 없습니다.\n필터를 다시 설정해주세요!</string>
 </resources>

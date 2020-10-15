@@ -90,35 +90,34 @@
                             />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <!-- 임시 -->
-                    <TextView
-                        android:id="@+id/empty"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="center"
-                        android:text="데이터가 없음"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/textSize_18"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/filter" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include
-            android:id="@+id/contents"
-            layout="@layout/layout_home_contents"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:adapter="@{adapter}"
+            android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/filter" />
+            >
+            <include
+                android:id="@+id/contents"
+                layout="@layout/layout_home_contents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:adapter="@{adapter}"
+                />
+
+            <include
+                android:id="@+id/empty_list"
+                layout="@layout/layout_empty_list"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
