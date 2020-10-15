@@ -43,7 +43,7 @@
                         android:id="@+id/filter_scroll"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:background="@color/black"
+                        android:background="?attr/colorPrimaryDark"
                         android:overScrollMode="never"
                         android:paddingStart="28dp"
                         android:paddingEnd="28dp"

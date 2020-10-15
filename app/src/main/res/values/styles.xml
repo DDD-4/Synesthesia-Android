@@ -104,8 +104,7 @@
     </style>
 
     <style name="Home.Filter.Chip" parent="Base.Widget.MaterialComponents.Chip">
-        <item name="theme">@style/AppTheme</item>
-        <item name="chipSurfaceColor">@color/black</item>
+        <item name="chipBackgroundColor">?attr/colorPrimaryDark</item>
         <item name="closeIcon">@drawable/ic_chip_cancel_24</item>
         <item name="closeIconTint">@color/color_d3d3d3</item>
         <item name="chipStartPadding">0dp</item>
