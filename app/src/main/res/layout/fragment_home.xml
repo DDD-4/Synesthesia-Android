@@ -23,12 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:elevation="0dp"
+
             >
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/clt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways">
+                app:layoutScrolFlagMode="@{vm.beerList == null}"
+                >
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

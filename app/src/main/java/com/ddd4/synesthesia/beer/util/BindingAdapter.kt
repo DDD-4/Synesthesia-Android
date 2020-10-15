@@ -21,9 +21,12 @@ import com.ddd4.synesthesia.beer.ext.dp
 import com.ddd4.synesthesia.beer.ext.toPx
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
 import com.ddd4.synesthesia.beer.util.sort.SortType
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
+
 
 @BindingAdapter("app:addChip")
 fun makeChips(chipGroup: ChipGroup, flavor: List<String>) {
@@ -202,4 +205,17 @@ fun margin(
 //    ).toInt()
 
     view.layoutParams = params
+}
+
+@BindingAdapter(value = ["layoutScrolFlagMode"])
+fun setLayoutScrollFlagMode(view: CollapsingToolbarLayout, isEmpty : Boolean) {
+    val params = view.layoutParams as? AppBarLayout.LayoutParams
+    val appBarLayoutParams = view.layoutParams
+    if (isEmpty) {
+        params?.scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_NO_SCROLL
+        view.layoutParams = appBarLayoutParams
+    } else {
+        params?.scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+        view.layoutParams = appBarLayoutParams
+    }
 }
