@@ -62,12 +62,6 @@ class MyPageViewModel @ViewModelInject constructor(
         }
     }
 
-//    private fun me() {
-//        viewModelScope.launch {
-//            beerRepository.getUserInfo()
-//        }
-//    }
-
     fun logout() = loginRepository.logout {
         isUnConnected.call(it)
     }

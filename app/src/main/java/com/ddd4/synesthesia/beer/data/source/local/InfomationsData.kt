@@ -11,5 +11,5 @@ enum class InfomationsData(val title : String,val type : InfomationsType) {
     SETTING("설정",InfomationsType.HEADER),
     PUSH("알림설정",InfomationsType.ITEM),
     LOGOUT("로그아웃",InfomationsType.LOGOUT),
-    UNLINK("연결끊기",InfomationsType.UNLINK)
+    UNLINK("회원탈퇴",InfomationsType.UNLINK)
 }

@@ -28,7 +28,7 @@
     <string name="review_fail_message">리뷰등록에 실패하였습니다.</string>
     <string name="not_modified">변경사항이 없습니다.</string>
     <string name="logout_message">로그아웃 하시겠습니까?</string>
-    <string name="unlink_message">카카오 계정연결을 끊으시겠습니까?</string>
+    <string name="unlink_message">회원탈퇴 하시겠습니까?</string>
     <string name="rate_unit">%,.1f점</string>
     <string name="abv">%,.1f%%</string>
     <string name="back_press">\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다</string>
