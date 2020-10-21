@@ -76,7 +76,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun initObserving() {
         loginViewModel.isLoginSuccess.observe(this@LoginActivity, Observer {
             it.first?.let {
-                start<MainActivity>(true,bundleOf(Pair(getString(R.string.key_user),it)))
+                start<MainActivity>(true)
             } ?: kotlin.run {
                 showToast("${getString(R.string.fail_login)}\n${it.second?.message}")
                 preference.remove(getString(R.string.key_token))
