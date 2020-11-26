@@ -25,9 +25,9 @@ import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
+import com.ddd4.synesthesia.beer.util.EndlessRecyclerViewScrollListener
 import com.ddd4.synesthesia.beer.util.ItemClickListener
 import com.ddd4.synesthesia.beer.util.filter.BeerFilter
-import com.example.hyojin.util.EndlessRecyclerViewScrollListener
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.gson.Gson
@@ -50,13 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         )
     }
 
-    private val endlessRecyclerViewScrollListener by lazy {
-        object : EndlessRecyclerViewScrollListener(binding.contents.itemList.layoutManager) {
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
-                homeViewModel.loadMore()
-            }
-        }
-    }
+    private lateinit var endlessRecyclerViewScrollListener : EndlessRecyclerViewScrollListener
 
     private val itemClickListener by lazy {
         object : ItemClickListener {
@@ -111,6 +105,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     }
 
     private fun LayoutHomeContentsBinding.set() {
+        endlessRecyclerViewScrollListener = object : EndlessRecyclerViewScrollListener(binding.contents.itemList.layoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                homeViewModel.loadMore()
+            }
+        }
 
         with(itemList) {
             adapter = listAdapter

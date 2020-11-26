@@ -14,8 +14,6 @@ import com.ddd4.synesthesia.beer.data.source.local.InfomationsData
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
 import com.ddd4.synesthesia.beer.data.source.local.MyInfo
 import com.ddd4.synesthesia.beer.databinding.FragmentMyPageBinding
-import com.ddd4.synesthesia.beer.ext.showSimpleDialog
-import com.ddd4.synesthesia.beer.ext.showToast
 import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity

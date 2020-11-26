@@ -1,4 +1,4 @@
-package com.example.hyojin.util
+package com.ddd4.synesthesia.beer.util
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
