@@ -2,6 +2,7 @@ package com.ddd4.synesthesia.beer.di.module
 
 import android.app.Application
 import android.content.Context
+import com.ddd4.synesthesia.beer.util.AppConfig
 import com.ddd4.synesthesia.beer.util.SharedPreferenceProvider
 import com.ddd4.synesthesia.beer.util.filter.FilterImpl
 import com.ddd4.synesthesia.beer.util.filter.FilterSetting
@@ -14,6 +15,7 @@ import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
+
 @Module
 @InstallIn(ApplicationComponent::class)
 object AppModule {
@@ -22,6 +24,12 @@ object AppModule {
     @Singleton
     fun provideSharedPreference(application: Application): SharedPreferenceProvider {
         return SharedPreferenceProvider(application)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppConfig(application: Application,sharedPreference : SharedPreferenceProvider): AppConfig {
+        return AppConfig(application,sharedPreference)
     }
 
     @Provides

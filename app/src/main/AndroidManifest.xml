@@ -38,6 +38,8 @@
         <activity android:name=".presentation.ui.mypage.view.WriteNickNameActivity"
             android:windowSoftInputMode="adjustResize"/>
 
+        <activity android:name=".presentation.ui.webview.WebViewActivity"/>
+
     </application>
 
 </manifest>

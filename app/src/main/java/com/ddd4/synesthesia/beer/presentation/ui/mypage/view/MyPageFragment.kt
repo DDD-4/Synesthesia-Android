@@ -1,6 +1,11 @@
 package com.ddd4.synesthesia.beer.presentation.ui.mypage.view
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.DialogInterface
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -14,21 +19,23 @@ import com.ddd4.synesthesia.beer.data.source.local.InfomationsData
 import com.ddd4.synesthesia.beer.data.source.local.InfomationsType
 import com.ddd4.synesthesia.beer.data.source.local.MyInfo
 import com.ddd4.synesthesia.beer.databinding.FragmentMyPageBinding
+import com.ddd4.synesthesia.beer.ext.showToast
 import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
 import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.login.view.LoginActivity
 import com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewModel
-import com.ddd4.synesthesia.beer.util.ClickType
-import com.ddd4.synesthesia.beer.util.CustomAlertDialog
-import com.ddd4.synesthesia.beer.util.ItemClickListener
-import com.ddd4.synesthesia.beer.util.SimpleCallback
+import com.ddd4.synesthesia.beer.presentation.ui.webview.WebViewActivity
+import com.ddd4.synesthesia.beer.presentation.ui.webview.WebViewActivity.Companion.WEBVIEW_URL
+import com.ddd4.synesthesia.beer.util.*
 import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
 
+    @Inject lateinit var appConfig : AppConfig
     private val myPageViewModel by viewModels<MyPageViewModel>()
     private val nickNameCallback = object : SimpleCallback {
         override fun call(text: String) {
@@ -86,35 +93,59 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun infomationsEvent(section: String) {
         when (section) {
-            InfomationsData.ACTIVE.title -> {
-
-            }
-            InfomationsData.STAR_REVIEW.title -> {
+            // 내가 남긴 리뷰
+            InfomationsData.REVIEW.title -> {
                 findNavController().navigate(HomeNavigationDirections.actionToMyReview())
             }
-            InfomationsData.HELP.title -> {
-
-            }
+            // 공지사항
             InfomationsData.NOTICE.title -> {
-
+                start<WebViewActivity>(false, bundleOf(WEBVIEW_URL to resources.getString(R.string.development_notice)))
             }
+            // 문의하기
             InfomationsData.CONTACT.title -> {
-
+                try {
+                    Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        setPackage("com.google.android.gm")
+                        putExtra(Intent.EXTRA_EMAIL, resources.getStringArray(R.array.developer_email))
+                        putExtra(Intent.EXTRA_SUBJECT, resources.getString(R.string.developer_email_subject))
+                        putExtra(Intent.EXTRA_TEXT,
+                            "모델명 : ${Build.MODEL}\n" +
+                                    "OS버전 : ${Build.VERSION.RELEASE}\n" +
+                                    "SDK버전 : ${Build.VERSION.SDK_INT}\n" +
+                                    "앱버전 : ${appConfig.version}\n " +
+                                    "-----------------------------------------\n\n"
+                        )
+                        startActivity(this)
+                    }
+                } catch (e : ActivityNotFoundException) {
+                    context?.showToast(resources.getString(R.string.error))
+                }
             }
-            InfomationsData.SERVICE_INFO.title -> {
-
+            // 릴리즈 노트
+            InfomationsData.RELEASE_NOTE.title -> {
+                start<WebViewActivity>(false, bundleOf(WEBVIEW_URL to resources.getString(R.string.development_release_note)))
             }
+            // 오픈소스 라이브러리
+            InfomationsData.OPEN_SOURCE_LIB.title -> {
+                start<WebViewActivity>(false, bundleOf(WEBVIEW_URL to resources.getString(R.string.development_open_source_library)))
+            }
+            // 플레이 스토어 평가
+            InfomationsData.PLAY_STORE.title -> {
+                try {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(resources.getString(R.string.play_store_market))
+                    startActivity(intent)
+                } catch (e : ActivityNotFoundException) {
+                    context?.showToast(resources.getString(R.string.not_installed_play_store))
+                }
+            }
+            // 이용약관
             InfomationsData.TERMS_OF_USE.title -> {
-
-            }
-            InfomationsData.SETTING.title -> {
-
+                start<WebViewActivity>(false, bundleOf(WEBVIEW_URL to resources.getString(R.string.development_terms_of_use)))
             }
             InfomationsData.PUSH.title -> {
-
-            }
-            InfomationsData.LOGOUT.title -> {
-
+                context?.showToast(resources.getString(R.string.please_wait_for_a_little_while))
             }
         }
     }

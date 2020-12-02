@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">비어있다</string>
+    <string name="developer_email_subject">[비어있다] 앱 문의사항</string>
+    <string name="play_store_market">market://details?id=com.ddd4.synesthesia.beer</string>
+    <string name="development_notice">https://www.notion.so/hjiee/99805d0193d744af93593477be1b05ea</string>
+    <string name="development_terms_of_use">https://www.notion.so/hjiee/4e41a432f7b645eba40177af7168a1a9</string>
+    <string name="development_release_note">https://www.notion.so/hjiee/50b879a6f68b4e41b5c01b99145a8f01</string>
+    <string name="development_open_source_library">https://www.notion.so/hjiee/8cb7a23a898f4636ae40445ea2242928</string>
 
     <string name="key_id">id</string>
     <string name="key_beer">beer</string>
@@ -20,10 +26,13 @@
     <string name="modify">수정하기</string>
     <string name="save">저장하기</string>
 
+    <string name="error">오류가 발생했습니다</string>
+    <string name="please_wait_for_a_little_while">조금만 기다려 주세요. 준비중이에요!😃</string>
     <string name="success_logout">로그아웃에 성공하였습니다</string>
     <string name="fail_login">로그인에 실패하였습니다</string>
     <string name="login_kakao">카카오톡으로 로그인</string>
     <string name="connect_kakao">카카오톡 계정 연결</string>
+    <string name="not_installed_play_store">구글 플레이 스토어가 설치되어있지 않습니다.</string>
 
     <string name="review_fail_message">리뷰등록에 실패하였습니다.</string>
     <string name="not_modified">변경사항이 없습니다.</string>

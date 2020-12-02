@@ -5,6 +5,7 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <import type="com.ddd4.synesthesia.beer.data.source.local.InfomationsType"/>
 
         <variable
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="28dp"
         android:paddingVertical="8dp"
-        app:layout_margin_top="@{my.type == InfomationsType.ITEM ? @integer/space_4 : @integer/space_16}"
+        app:layout_margin_top="@{my.type == InfomationsType.ITEM || my.type == InfomationsType.TEXT? @integer/space_4 : @integer/space_16}"
         app:forgroundSelected="@{my.type}">
 
         <TextView
@@ -27,7 +28,7 @@
             tools:text="내 활동"
             android:text="@{my.title}"
             android:textSize="@{my.type == InfomationsType.HEADER ? @dimen/textSize_12 : @dimen/textSize_14}"
-            android:textColor="@{my.type == InfomationsType.ITEM ? @color/white : @color/color_7a7a7a}"
+            android:textColor="@{my.type == InfomationsType.HEADER || my.type == InfomationsType.LOGOUT || my.type == InfomationsType.UNLINK ? @color/color_7a7a7a : @color/white}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -42,6 +43,21 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/tv_title"/>
+
+        <TextView
+            android:id="@+id/tv_detail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{my.detailInfomation}"
+            tools:text="2.0.0"
+            android:textStyle="bold"
+            android:visibility="@{TextUtils.isEmpty(my.detailInfomation) ? View.GONE : View.VISIBLE}"
+            android:textSize="@{my.type == InfomationsType.HEADER ? @dimen/textSize_12 : @dimen/textSize_14}"
+            android:textColor="@{my.type == InfomationsType.HEADER ? @color/color_7a7a7a : @color/white}"
+            app:layout_constraintTop_toTopOf="@+id/tv_title"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+            app:layout_constraintLeft_toRightOf="@+id/tv_title"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
