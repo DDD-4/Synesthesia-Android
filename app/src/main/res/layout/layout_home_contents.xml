@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater" />
+            type="com.ddd4.synesthesia.beer.presentation.base.BaseRecyclerView.Adapter" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -52,22 +52,28 @@ class HomeViewModel @ViewModelInject constructor(
     }
 
     private fun loadAppConfig() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _appConfig.postValue(beerRepository.getAppConfig().result)
+        viewModelScope.launch {
+            _appConfig.value = beerRepository.getAppConfig().result
         }
     }
 
     fun loadMore() {
-        _isLoadMore.value = true
-        load()
+        cursor.value?.let {
+            if(_isLoadMore.value == false) {
+                _beerList.value = _beerList.value?.toMutableList()?.apply { addAll(listOf(Beer(id = -1))) }
+                _isLoadMore.value = true
+                load()
+            }
+        }
     }
 
     fun load() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val response = beerRepository.getBeerList(_sortType.value?.value, _beerFilter.value,cursor.value)
-            cursor.postValue(response?.nextCursor)
+            cursor.value = response?.nextCursor
             if(_isLoadMore.value == true) {
-                _beerList.postValue(_beerList.value?.let { beers ->
+                _beerList.value = (_beerList.value?.toMutableList()?.apply { _beerList.value?.let { removeAt(it.size-1) } })
+                _beerList.value = (_beerList.value?.let { beers ->
                     beers.toMutableList().apply {
                         response?.beers?.let { data ->
                             addAll(data)
@@ -75,22 +81,24 @@ class HomeViewModel @ViewModelInject constructor(
                     }
                 })
             } else {
-                _beerList.postValue(response?.beers)
+                response?.beers?.let {
+                    _beerList.value = it
+                }
             }
-            _isLoadMore.postValue(false)
+            _isLoadMore.value = false
         }
     }
 
     private fun filterSort() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             sortSetting.getSort()
                 .combine(filterSetting.getBeerFilterFlow()) { type, filter ->
-                    _sortType.postValue(type)
-                    _beerFilter.postValue(filter)
+                    _sortType.value = type
+                    _beerFilter.value = filter
                 }
                 .onStart { delay(200) }
                 .collect {
-                    cursor.postValue(0)
+                    cursor.value = 0
                 }
         }
     }

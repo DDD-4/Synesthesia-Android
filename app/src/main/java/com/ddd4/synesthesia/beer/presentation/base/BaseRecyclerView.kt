@@ -37,7 +37,7 @@ class BaseRecyclerView {
         private val longClickItemEvent: ItemLongClickListener? = null
     ) : RecyclerView.Adapter<ViewHolder<B>>() {
 
-        private var list = listOf<ITEM>()
+        var list = listOf<ITEM>()
         private var lastClickTime = 0L
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<B> {
@@ -74,7 +74,14 @@ class BaseRecyclerView {
         }
     }
 
-    abstract class ViewHolder<B : ViewDataBinding>(
+    class LoadingViewHolder<B : ViewDataBinding>(
+        private val layoutId: Int,
+        private val parent: ViewGroup
+    ) : ViewHolder<B> (layoutId,parent,null) {
+
+    }
+
+    abstract class ViewHolder<B : ViewDataBinding?>(
         private val layoutId: Int,
         private val parent: ViewGroup,
         private val bindingVariableId: Int?
@@ -91,4 +98,9 @@ class BaseRecyclerView {
             }
         }
     }
+}
+
+enum class BaseViewType {
+    ITEM,
+    LOADING
 }

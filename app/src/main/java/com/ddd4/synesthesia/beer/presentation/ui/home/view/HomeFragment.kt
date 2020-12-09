@@ -22,8 +22,8 @@ import com.ddd4.synesthesia.beer.data.model.Beer
 import com.ddd4.synesthesia.beer.databinding.FragmentHomeBinding
 import com.ddd4.synesthesia.beer.databinding.LayoutHomeContentsBinding
 import com.ddd4.synesthesia.beer.presentation.base.BaseFragment
-import com.ddd4.synesthesia.beer.presentation.base.BaseItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.NavigationDirections
+import com.ddd4.synesthesia.beer.presentation.ui.home.adapter.HomeItemsApdater
 import com.ddd4.synesthesia.beer.presentation.ui.home.viewmodel.HomeViewModel
 import com.ddd4.synesthesia.beer.util.EndlessRecyclerViewScrollListener
 import com.ddd4.synesthesia.beer.util.ItemClickListener
@@ -43,11 +43,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val homeViewModel by viewModels<HomeViewModel>()
     private val listAdapter by lazy {
-        BaseItemsApdater(
-            R.layout.item_home,
-            BR.item,
-            itemClickListener
-        )
+        HomeItemsApdater(R.layout.item_home, BR.item, itemClickListener)
     }
 
     private lateinit var endlessRecyclerViewScrollListener : EndlessRecyclerViewScrollListener
