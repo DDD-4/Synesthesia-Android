@@ -1,9 +1,9 @@
 package com.ddd4.synesthesia.beer.data.source.local
 
 enum class InfomationsData(val title : String,val type : InfomationsType) {
-    ACTIVE("내활동",InfomationsType.HEADER),
+    ACTIVE("내 활동",InfomationsType.HEADER),
     REVIEW("내가 준 별점과 리뷰",InfomationsType.ITEM),
-    RECENTLY_VISIT_TIME("최근 접속한 시간",InfomationsType.TEXT),
+    RECENTLY_VISIT_TIME("마지막 접속 시간",InfomationsType.TEXT),
     HELP("고객센터 & 도움말",InfomationsType.HEADER),
     NOTICE("공지사항",InfomationsType.ITEM),
     CONTACT("문의하기",InfomationsType.ITEM),

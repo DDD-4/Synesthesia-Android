@@ -59,8 +59,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
             styleRelatedAdapter = BaseItemsApdater(R.layout.layout_beer_card, BR.related, itemClickListener)
             randomRelatedAdapter = BaseItemsApdater(R.layout.layout_beer_card, BR.related, itemClickListener)
 
-            inclideToolbar.toolbar.setNavigationOnClickListener {
-                parentFragmentManager.popBackStack()
+            includeToolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
             }
             tvReviewAll.setOnClickListener {
                 findNavController().navigate(HomeNavigationDirections.actionToReviewAll(detailViewModel.response.value?.beer?.reviews?.toTypedArray()))

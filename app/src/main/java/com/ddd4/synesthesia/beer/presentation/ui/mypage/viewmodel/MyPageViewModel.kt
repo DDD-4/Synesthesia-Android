@@ -37,7 +37,7 @@ class MyPageViewModel @ViewModelInject constructor(
         // 내 활동
         MyInfo(InfomationsData.ACTIVE.title, InfomationsData.ACTIVE.type),
         MyInfo(InfomationsData.REVIEW.title, InfomationsData.REVIEW.type),
-        MyInfo(InfomationsData.RECENTLY_VISIT_TIME.title, InfomationsData.RECENTLY_VISIT_TIME.type,appConfig.recentlyVisitTime),
+        MyInfo(InfomationsData.RECENTLY_VISIT_TIME.title, InfomationsData.RECENTLY_VISIT_TIME.type,appConfig.lastVisitTime),
         // 고객센터 & 도움말
         MyInfo(InfomationsData.HELP.title, InfomationsData.HELP.type),
         MyInfo(InfomationsData.NOTICE.title, InfomationsData.NOTICE.type),

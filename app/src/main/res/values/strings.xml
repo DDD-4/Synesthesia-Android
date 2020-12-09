@@ -10,6 +10,7 @@
     <string name="key_id">id</string>
     <string name="key_beer">beer</string>
     <string name="key_token">token</string>
+    <string name="key_last_visit">last_visit</string>
     <string name="key_recently_visit">visit</string>
     <string name="key_user">user</string>
     <string name="key_sort_type">sort_type</string>

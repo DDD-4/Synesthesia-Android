@@ -38,6 +38,9 @@ class MyReviewFragment : BaseFragment<FragmentMyReviewBinding>(R.layout.fragment
             srvReview.setOnRefreshListener {
                 viewModel.review()
             }
+            includeToolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
         initObserving()
     }

@@ -7,12 +7,14 @@ import androidx.databinding.ViewDataBinding
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.ext.dateFormat
 import com.ddd4.synesthesia.beer.ext.showSnackBar
+import com.ddd4.synesthesia.beer.util.AppConfig
 import com.ddd4.synesthesia.beer.util.SharedPreferenceProvider
 import javax.inject.Inject
 
 abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : AppCompatActivity() {
 
     @Inject lateinit var preference : SharedPreferenceProvider
+    @Inject lateinit var appConfig : AppConfig
     private var backKeyPressedTime = 0L
     lateinit var binding : B
 
@@ -44,11 +46,12 @@ abstract class BaseActivity<B : ViewDataBinding>(private val layoutId : Int) : A
     }
 
     fun showRecentlyVisitTime() {
-        preference?.getPreferenceString(getString(R.string.key_recently_visit))?.let {
+        preference.getPreferenceString(getString(R.string.key_recently_visit))?.let {
             when(it.isEmpty()) {
                 false -> {
                     dateFormat().run {
                         binding.root.showSnackBar("최근 접속일 : ${it}")
+                        appConfig.lastVisitTime = it
                         preference.setPreference(getString(R.string.key_recently_visit),format(System.currentTimeMillis()))
                     }
                 }

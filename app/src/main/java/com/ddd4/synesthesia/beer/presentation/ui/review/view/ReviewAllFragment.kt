@@ -3,6 +3,7 @@ package com.ddd4.synesthesia.beer.presentation.ui.review.view
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.library.baseAdapters.BR
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.ddd4.synesthesia.beer.R
 import com.ddd4.synesthesia.beer.databinding.FragmentReviewBinding
@@ -19,8 +20,8 @@ class ReviewAllFragment : BaseFragment<FragmentReviewBinding>(R.layout.fragment_
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             reviewAdatper = BaseItemsApdater(R.layout.layout_review,BR.review)
-            inclideToolbar.toolbar.setNavigationOnClickListener {
-                parentFragmentManager.popBackStack()
+            includeToolbar.toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
             }
         }
 

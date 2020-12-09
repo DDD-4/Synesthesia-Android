@@ -17,6 +17,7 @@ class AppConfig @Inject constructor(
             null
         }
 
-    val recentlyVisitTime
-        get() = sharedPreference.getPreferenceString(context.resources.getString(R.string.key_recently_visit))
+    var lastVisitTime
+        get() = sharedPreference.getPreferenceString(context.resources.getString(R.string.key_last_visit))
+        set(value) = sharedPreference.setPreference(context.resources.getString(R.string.key_last_visit),value)
 }

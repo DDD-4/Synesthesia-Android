@@ -80,7 +80,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             itemClickListener = this@MyPageFragment.itemClickListener
             userAdapter = BaseItemsApdater(R.layout.layout_my_page, BR.my, itemClickListener).apply { updateItems(myPageViewModel.generateInfoList()) }
             includeToolbar.toolbar.setNavigationOnClickListener {
-                parentFragmentManager.popBackStack()
+                findNavController().popBackStack()
             }
         }
         myPageViewModel.isUnConnected.observe(viewLifecycleOwner, Observer {
