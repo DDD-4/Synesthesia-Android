@@ -12,6 +12,7 @@ buildscript {
         classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION_SAFE_ARGS}")
         classpath ("com.google.gms:google-services:${Versions.GOOGLE_SERVIER}")
         classpath ("com.google.firebase:firebase-crashlytics-gradle:${Versions.GOOGLE_CRASHLYTICS}")
+        classpath ("com.google.android.gms:oss-licenses-plugin:${Versions.LICENSES}")
     }
 }
 

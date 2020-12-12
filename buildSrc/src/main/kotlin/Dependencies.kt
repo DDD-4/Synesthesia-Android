@@ -34,6 +34,8 @@ object Versions {
     const val GOOGLE_CRASHLYTICS = "2.3.0"
     const val FIREBASE_ANALYTICS = "17.5.0"
     const val FIREBASE_CRASHLYTICS = "17.2.1"
+    const val LICENSES = "0.10.2"
+    const val OSS_LICENSES = "17.0.0"
 }
 
 object Libs {
@@ -84,6 +86,8 @@ object Libs {
     const val FIREBASE = "com.google.firebase:firebase-bom:${Versions.GOOGLE_BOM}"
     const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
     const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics-ktx"
+
+    const val LICENSES = "com.google.android.gms:play-services-oss-licenses:${Versions.OSS_LICENSES}"
 
 }
 

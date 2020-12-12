@@ -27,6 +27,7 @@ import com.ddd4.synesthesia.beer.presentation.ui.mypage.viewmodel.MyPageViewMode
 import com.ddd4.synesthesia.beer.presentation.ui.webview.WebViewActivity
 import com.ddd4.synesthesia.beer.presentation.ui.webview.WebViewActivity.Companion.WEBVIEW_URL
 import com.ddd4.synesthesia.beer.util.*
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.hyden.ext.start
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -128,7 +129,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             }
             // 오픈소스 라이브러리
             InfomationsData.OPEN_SOURCE_LIB.title -> {
-                start<WebViewActivity>(false, bundleOf(WEBVIEW_URL to resources.getString(R.string.development_open_source_library)))
+                start<OssLicensesMenuActivity>(false)
             }
             // 플레이 스토어 평가
             InfomationsData.PLAY_STORE.title -> {
