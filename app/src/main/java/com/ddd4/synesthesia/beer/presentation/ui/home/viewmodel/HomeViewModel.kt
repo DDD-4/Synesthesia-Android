@@ -70,6 +70,11 @@ class HomeViewModel @ViewModelInject constructor(
     fun load() {
         viewModelScope.launch {
             val response = beerRepository.getBeerList(_sortType.value?.value, _beerFilter.value,cursor.value)
+
+            if (response?.beers.isNullOrEmpty() && cursor.value == 0)  {
+                _beerList.value = response?.beers
+            }
+
             cursor.value = response?.nextCursor
             if(_isLoadMore.value == true) {
                 _beerList.value = (_beerList.value?.toMutableList()?.apply { _beerList.value?.let { removeAt(it.size-1) } })
