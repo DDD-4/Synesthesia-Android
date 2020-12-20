@@ -58,11 +58,13 @@ class HomeViewModel @ViewModelInject constructor(
     }
 
     fun loadMore() {
-        cursor.value?.let {
-            if(_isLoadMore.value == false) {
-                _beerList.value = _beerList.value?.toMutableList()?.apply { addAll(listOf(Beer(id = -1))) }
-                _isLoadMore.value = true
-                load()
+        viewModelScope.launch(Dispatchers.IO) {
+            cursor.value?.let {
+                if(_isLoadMore.value == false) {
+                    _beerList.postValue(_beerList.value?.toMutableList()?.apply { addAll(listOf(Beer(id = -1))) })
+                    _isLoadMore.postValue(true)
+                    load()
+                }
             }
         }
     }
